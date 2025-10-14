@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
-
+import OurProduct from "../components/OurProduct"
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Matat Application" },
@@ -14,6 +14,7 @@ export default function Home() {
     <>
       <Header />
       <HeroSection />
+      <OurProduct />
       
     </>
   );
