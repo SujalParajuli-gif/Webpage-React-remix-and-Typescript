@@ -13,6 +13,6 @@
 /* Apply globally */
 html,
 body {
-  @apply font-sans bg-white text-gray-900;
+  @apply font-sans bg-white;
   color-scheme: light;
 }
