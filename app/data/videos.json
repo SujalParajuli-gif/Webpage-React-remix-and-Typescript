@@ -1,26 +1,28 @@
 [
   {
     "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-desktop.mp4"
+    "videoSrc": "/public/videos/shoez1.mp4"
   },
   {
     "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-mid.mp4"
+    "videoSrc": "/videos/shoez1.mp4"
   },
   {
     "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-mobile.mp4"
-  },
-  {
-    "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-showcase.mp4"
-  },
-  {
-    "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-demo.mp4"
-  },
-  {
-    "title": "SHOEZ",
-    "videoSrc": "/videos/shoez-preview.mp4"
+    "videoSrc": "/videos/shoez1.mp4"
   }
+  ,
+  {
+    "title": "SHOEZ",
+    "videoSrc": "/public/videos/shoez1.mp4"
+  },
+  {
+    "title": "SHOEZ",
+    "videoSrc": "/videos/shoez1.mp4"
+  },
+  {
+    "title": "SHOEZ",
+    "videoSrc": "/videos/shoez1.mp4"
+  }
+  
 ]

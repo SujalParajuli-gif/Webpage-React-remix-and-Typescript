@@ -32,7 +32,9 @@ const HeroSection = () => {
           </div>
 
           {/* Right side - Text and logos */}
-          <div className="hero-text w-full lg:w-1/2 text-left">
+          <div className="hero-text w-full lg:w-1/2 text-left transform translate-x-25 translate-y-10 ">
+
+
             {/* Heading */}
             <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight text-gray-900">
               Do you need an efficient, high-quality and most importantly
