@@ -1,63 +1,35 @@
 import React from "react";
-import videoData from "../data/videos.json"; // importing JSON file for videos and photos
-import photoData from "../data/photos.json"; 
+import items from "../data/portfolio.json";  // videos JSON: [{ title?, videoSrc, order? }, ...]
 
-const OurProduct = () => {
+import VideoCard from "../components/VideoCard";
+import PhotoCard from "../components/PhotoCard";
+
+// TS type annotation for strict ts errors
+type PortfolioItem = {
+  type: "video" | "image"; // tells which component to render
+  src: string;             // media path
+           // only for videos
+};
+
+export default function OurProduct() {
+  // main area
   return (
-    // Main section 
     <section className="bg-white py-16">
-      {/* Section title */}
+      {/* section heading */}
       <h2 className="text-center text-3xl font-bold mb-12">Our Projects</h2>
 
-      {/* Container for all videos */}
+      {/* mixed grid layout of (videos + photos together in the way we have it in the JSON file) */}
       <div className="max-w-8xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15">
-        {videoData.map((video, index) => (
-          // Single video card
-          <div key={index} className="relative bg-gray-100 overflow-hidden shadow-md">
-            {/* Project background video that plays*/}
-            <video
-              src={video.videoSrc}
-              className="w-full h-[500px] object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-            ></video>
-
-            {/* Overlay for project name */}
-            <div className="absolute bottom-4 left-0 w-full flex justify-center">
-              <p className="text-white text-5xl font-bold tracking-widest px-4 py-2 rounded">
-                {video.title}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Container for all photos (added) */}
-      <div className="max-w-8xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15 mt-16">
-        {photoData.map((photo, index) => (
-          // Single photo card (mirrors video card)
-          <div key={`img-${index}`} className="relative bg-gray-100 overflow-hidden shadow-md">
-            {/* Project background image */}
-            <img
-              src={photo.imageSrc}
-              alt={photo.title || "Project image"}
-              className="w-full h-[500px] object-cover"
-              loading="lazy"
-            />
-
-            {/* Overlay for project name */}
-            <div className="absolute bottom-4 left-0 w-full flex justify-center">
-              <p className="text-white text-5xl font-bold tracking-widest px-4 py-2 rounded">
-                {photo.title}
-              </p>
-            </div>
-          </div>
-        ))}
+        {(items as PortfolioItem[]).map((item, idx) =>
+          item.type === "video" ? (
+            // render a video card when type is "video"
+            <VideoCard key={`v-${idx}`} src={item.src} />
+          ) : (
+            // render a photo card when type is "image"
+            <PhotoCard key={`p-${idx}`} src={item.src} />
+          )
+        )}
       </div>
     </section>
   );
-};
-
-export default OurProduct;
+}
