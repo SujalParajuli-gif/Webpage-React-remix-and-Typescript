@@ -70,5 +70,17 @@
     {
         "type": "image",
         "src": "/images/meat3.png"
+    },
+    {
+        "type": "image",
+        "src": "/images/sandal1.png"
+    },
+    {
+        "type": "image",
+        "src": "/images/sandal2.png"
+    },
+    {
+        "type": "image",
+        "src": "/images/sandal3.png"
     }
 ]
