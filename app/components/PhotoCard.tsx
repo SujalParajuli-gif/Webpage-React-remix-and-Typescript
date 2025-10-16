@@ -11,7 +11,7 @@ const PhotoCard: React.FC<Props> = ({ src }) => {
     <div className="relative bg-gray-100 overflow-hidden shadow-md">
       <img
         src={src}
-        className="w-full h-[520px] object-cover"
+        className="w-full h-full object-cover"
         loading="lazy" // load when near
         alt=""         // no title for images
       />

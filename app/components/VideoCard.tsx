@@ -11,7 +11,7 @@ const VideoCard: React.FC<Props> = ({ src }) => {
     <div className="relative bg-gray-100 overflow-hidden shadow-md">
       <video
         src={src}
-        className="w-full h-[520px] object-cover"
+        className="w-full h-full object-cover"
         autoPlay   // play automatically
         loop       // repeat
         muted      // needed for autoplay on mobile
