@@ -114,7 +114,7 @@ export default function Header() {
       </header>
 
       {/*render existing LeaveMsg component when state is true */}
-      {showLeaveMsg && <LeaveMsg />}
+      {showLeaveMsg && <LeaveMsg onClose={() => setShowLeaveMsg(false)} />}
     </>
   );
 }

@@ -1,23 +1,40 @@
 import React from "react";
 
+// props type for closing from parent (Header)
+type LeaveMsgProps = {
+  onClose: () => void;
+};
+
 // main contact us component
-const LeaveMsg: React.FC = () => {
+const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
   return (
     // Fullscreen overlay for popup centering
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+      // NEW: click on overlay closes popup
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
       {/* Popup container */}
-      <section className="relative bg-white rounded-2xl shadow-2xl p-8 w-[90%] max-w-3xl text-[#1F1F1F]">
+      <section
+        className="relative bg-white rounded-2xl shadow-2xl p-20 h-170 max-w-3xl"
+        // NEW: prevent overlay close when clicking inside the panel
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Close icon (optional, you can link it to hide popup later) */}
         <button
           className="absolute top-4 right-5 text-2xl text-gray-500 hover:text-gray-700"
-          onClick={() => console.log("close popup")}
+          // NEW: actually close the popup
+          onClick={onClose}
+          aria-label="Close"
         >
           ×
         </button>
 
         {/* heading text */}
         <h2 className="text-3xl md:text-4xl font-semibold text-[#4577E4] mb-10 text-center">
-          Contact Us
+          Leave a Message
         </h2>
 
         {/* form part */}
