@@ -29,7 +29,7 @@ export default function Header() {
           // when the header postion is at the top
           "fixed top-0 left-0 w-full z-50 transition-all duration-200 ease-in-out",
           // spacing
-          "px-4 md:px-12 pb-1 pt-1",
+          "px-4 md:px-12 pb-2 pt-4",
           // styles based on scroll
           isAtTop
             ? "bg-transparent shadow-none"
@@ -44,7 +44,7 @@ export default function Header() {
                 <img
                   src="/logos/matat-logo.png"
                   alt="Matat Logo"
-                  className="h-13 w-auto"
+                  className="w-51"
                 />
               </a>
             </div>

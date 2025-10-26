@@ -14,7 +14,7 @@ const HeroSection = () => {
       {/* Light blue circle */}
       <div>
         
-        <img src="/shapes/header-bg-02.svg" className="absolute w-full bottom-140 opacity-100 "></img>
+        <img src="/shapes/header-bg-02.svg" className="absolute w-full bottom-150 opacity-100 "></img>
       </div>
 
       {/* Main content area */}
@@ -27,7 +27,7 @@ const HeroSection = () => {
             <img
               src="/images/element_1.svg"
               alt="Shopping illustration"
-              className="w-full max-w-[600px] lg:max-w-[650px] scale-110 drop-shadow-[0_20px_40px_rgba(0,0,0,0.10)]"
+              className="w-full max-w-[600px] lg:max-w-[650px] scale-130 drop-shadow-[0_20px_40px_rgba(0,0,0,0.10)] mt-10"
             />
           </div>
 
