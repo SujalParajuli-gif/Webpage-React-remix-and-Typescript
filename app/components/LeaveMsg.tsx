@@ -29,7 +29,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
           onClick={onClose}
           aria-label="Close"
         >
-          ×
+          
         </button>
 
         {/* heading text */}

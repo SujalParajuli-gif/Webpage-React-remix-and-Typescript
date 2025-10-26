@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="37px" viewBox="0 0 36 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>facebook</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hp-hovers" transform="translate(-4.000000, -836.000000)" fill-rule="nonzero">
+            <g id="facebook" transform="translate(4.000000, 836.000000)">
+                <circle id="Oval" fill="#4964A5" cx="18" cy="18" r="18"></circle>
+                <g transform="translate(11.000000, 9.000000)" fill="#FFFFFF" id="Shape">
+                    <path d="M8.9117106,27.8522418 L8.9117106,13.9244903 L12.8765251,13.9244903 L13.4019486,9.12490994 L8.9117106,9.12490994 L8.9184468,6.72267378 C8.9184468,5.47086931 9.04110175,4.80012387 10.8952405,4.80012387 L13.3738811,4.80012387 L13.3738811,0 L9.40850527,0 C4.64545124,0 2.96897971,2.32831284 2.96897971,6.24380286 L2.96897971,9.12545348 L0,9.12545348 L0,13.9250338 L2.96897971,13.9250338 L2.96897971,27.8522418 L8.9117106,27.8522418 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

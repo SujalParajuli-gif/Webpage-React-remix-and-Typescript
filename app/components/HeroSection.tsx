@@ -6,16 +6,16 @@ const HeroSection = () => {
     // Hero main section
     <section className="relative overflow-hidden bg-white">
       {/* Blue curved background */}
-      <div
-        className="absolute -top-56 left-1/2 -translate-x-1/2 w-[140vw] h-[420px] bg-gradient-to-r from-blue-600 to-blue-500 rounded-b-[55%]"
-        aria-hidden="true"
-      />
+      <div>
+        
+        <img src="/shapes/header-bg-01.svg" className="absolute w-53rem top-0 opacity-100"></img>
+      </div>
 
       {/* Light blue circle */}
-      <div
-        className="absolute -top-52 -left-44 w-[640px] h-[440px] rounded-full bg-[#EAF2FF] opacity-100"
-        aria-hidden="true"
-      />
+      <div>
+        
+        <img src="/shapes/header-bg-02.svg" className="absolute w-full bottom-140 opacity-100 "></img>
+      </div>
 
       {/* Main content area */}
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 pt-28 md:pt-36 pb-16">
@@ -65,18 +65,20 @@ const HeroSection = () => {
               {/* Instagram button */}
               <a
                 href="#"
-                className="inline-flex items-center gap-3 bg-white rounded-full px-5 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.10)] border border-gray-100 text-gray-800 font-medium hover:-translate-y-0.5 transition-transform"
+                className="inline-flex items-center gap-3 bg-white rounded-full px-5 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.10)] border border-gray-100 text-gray-800 font-medium "
               >
-                <FaInstagram className="text-xl text-[#E1306C]" />
+                <img src="/logos/instagram.svg" className="text-xl text-[#E1306C] hover:scale-115 transition-transform">
+                </img>
                 <span>Instagram</span>
               </a>
 
               {/* Facebook button */}
               <a
                 href="#"
-                className="inline-flex items-center gap-3 bg-white rounded-full px-5 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.10)] border border-gray-100 text-gray-800 font-medium hover:-translate-y-0.5 transition-transform"
+                className="inline-flex items-center gap-3 bg-white rounded-full px-5 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.10)] border border-gray-100 text-gray-800 font-medium "
               >
-                <FaFacebookF className="text-xl text-[#1877F2]" />
+                 <img src="/logos/facebook.svg" className="text-xl text-[#E1306C] hover:scale-115 transition-transform">
+                </img>
                 <span>Facebook</span>
               </a>
             </div>

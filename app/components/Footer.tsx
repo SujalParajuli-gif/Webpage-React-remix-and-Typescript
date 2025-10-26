@@ -5,32 +5,32 @@ const Footer = () => {
   return (
     <footer className="relative bg-white text-black pt-20 overflow-hidden">
       {/* Top curved blue bar */}
-      <div className="pointer-events-none select-none absolute -top-5 left-0 w-full z-0">
+      <div className="pointer-events-none select-none absolute -top-2 -left-300 w-1100 z-0">
         <img
-          src="/images/footer-shape.svg"
+          src="/shapes/footer-shape.svg"
           alt=""
           aria-hidden="true"
-          className="w-full h-auto block"
+          className="w-1100 h-110 block"
         />
       </div>
 
       {/* Main footer content */}
-      <div className="relative z-10 max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      <div className="relative z-10 max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
         {/* Column 1: Follow us */}
         <div>
           <h3 className="text-lg font-bold mb-4">Follow us</h3>
-          <div className="flex gap-4">
+          <div className="flex gap-9">
             <a
               href="#"
               className="text-2xl text-blue-600 transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              <FaFacebookF />
+              <img src="/logos/facebook-2.svg"></img>
             </a>
             <a
               href="#"
               className="text-2xl text-pink-600 transition-transform duration-300 ease-in-out hover:scale-125"
             >
-              <FaInstagram />
+              <img src="/logos/instagram-2.svg"></img>
             </a>
           </div>
         </div>
@@ -83,7 +83,7 @@ const Footer = () => {
             alt="Matat Logo"
             className="h-10 w-auto mb-4"
           />
-          <p className="text-xs text-gray-700 leading-relaxed text-left ">
+          <p className="text-xs leading-relaxed text-left ">
             Home Software for Sales Website Development and advanced systems,
             based on WordPress and Shopify platforms.
           </p>

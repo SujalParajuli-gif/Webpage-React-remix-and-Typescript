@@ -5,6 +5,7 @@ export default function Services() {
       
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-16 md:grid-cols-2">
+          <img src="/shapes/bg-service.svg" className="absolute left-410 bottom-50"></img>
           {/* Why us? */}
           <div className="flex items-start justify-between gap-15">
             <div className="max-w-xl">
