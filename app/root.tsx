@@ -1,28 +1,24 @@
-//root.tsx generates HTML dynamically for every request both on the server (SSR) and on the client works same as creating an html file.
+// app/root.tsx
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import type { Route } from "./+types/root";
 import "./app.css";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+// This is the default root layout for the Remix app
+export default function Root() {
   return (
-    <html lang="eng">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/png" href="/matat-logo.png" />
-
+        <link rel="icon" type="image/svg" href="/images/new-logo.svg" />
         <Meta />
         <Links />
       </head>
       <body className="font-[Poppins] bg-white text-gray-900">
-        {children}
+        {/* This is where all our pages (home, article, etc.) will render */}
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }

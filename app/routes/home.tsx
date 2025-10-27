@@ -1,13 +1,13 @@
-// importing route types for meta function (Remix stuff)
+// importing route types for meta function (Remix stuffss)
 import type { Route } from "./+types/home";
 
-// importing your UI components (sections)
+// importing our UI components (sections)
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import OurProduct from "../components/OurProjects"; // uses VideoCard + PhotoCard internally
 import Services from "../components/Services";
 import Sidebar from "../components/Slidebar";
-import OurCustomer from "../components/OurCustomer";
+import OurClients from "../components/OurClients";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
 
@@ -41,7 +41,7 @@ export default function Home() {
         <Sidebar />
 
         {/* customer testimonials */}
-        <OurCustomer />
+        <OurClients />
 
         {/* contact section */}
         <ContactUs />
