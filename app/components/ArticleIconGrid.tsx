@@ -1,16 +1,14 @@
-// app/components/ArticleIconGrid.tsx
 import React from "react";
 import { Link } from "react-router"; // client-side navigation between routes
 import { FiShoppingCart, FiLayout, FiCode, FiMonitor } from "react-icons/fi"; // feather-style icons
-import { LuMegaphone } from "react-icons/lu"; // feather-like megaphone (feather has no megaphone)
+import { LuMegaphone } from "react-icons/lu"; // icons like megaphone
 
-// Reusable Tailwind classes so we don't repeat long classNames in JSX
-const card =
-  "group flex flex-col items-center justify-center rounded-2xl min-h-[150px] " +
-  "bg-white ring-1 ring-black/5 shadow-[0_8px_22px_rgba(69,119,228,0.15)] " +
-  "transition-colors hover:bg-[#4577E4] hover:shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
+// Reusable Tailwind classes 
+const card = "h-36 w-38 pt-5 group flex flex-col items-center justify-center rounded-xl radius" + "bg-white shadow-[0_8px_22px_rgba(69,119,228,0.15)] " + "transition-colors hover:bg-[#4577E4] hover:shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
+
+
 const icon =
-  "text-[35px] text-black transition-colors group-hover:text-white"; // icon turns white on hover
+  "text-[30px] text-black transition-colors group-hover:text-white"; // icon turns white on hover
 const label =
   "mt-3 text-[18px] leading-6 text-black text-center transition-colors group-hover:text-white"; // text turns white on hover
 
@@ -30,7 +28,7 @@ export default function ArticleIconGrid() {
     // Responsive grid: 2 cols (mobile), 3 cols (sm), 6 cols 
     <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
       {items.map(({ to, label: text, Icon }) => (
-        // Link = SPA navigation; card styles come from the shared constant above
+        // Link = SPA navigation; 
         <Link key={to} to={to} className={card}>
           {/* Icon inherits color and switches with group-hover */}
           <Icon className={icon} />

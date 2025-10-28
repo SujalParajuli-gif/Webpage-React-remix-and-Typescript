@@ -46,7 +46,7 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
                 <img
                   src="/logos/matat-logo.png"
                   alt="Matat Logo"
-                  className="w-51"
+                  className="w-52 h-13.8"
                 />
               </Link>
             </div>
@@ -119,7 +119,7 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
                     "transition-colors duration-200",
                   ].join(" ")}
                 >
-                  Message Us
+                  Leave a Message
                 </span>
               </div>
             </a>

@@ -9,7 +9,7 @@ export default function Root() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/svg" href="/images/new-logo.svg" />
+        <link rel="icon" type="image/svg" href="/images/matat logo title.png" />
         <Meta />
         <Links />
       </head>

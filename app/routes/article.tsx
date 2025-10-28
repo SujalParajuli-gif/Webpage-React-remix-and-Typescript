@@ -1,6 +1,15 @@
-// importing the article component
+// importing the Article and ContactUs components
 import Article from "../components/Article";
-// routing for article component
+import ContactUs from "../components/ContactUs";
+import Footer from "../components/Footer";
+
+// routing for different components inside the Database page
 export default function ArticleRoute() {
-  return <Article />;
+  return (
+    <>
+      <Article />
+      <ContactUs />
+      <Footer />
+    </>
+  );
 }

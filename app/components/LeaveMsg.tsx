@@ -19,7 +19,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
       {/* Popup container */}
       <section
         className="relative bg-white rounded-2xl shadow-2xl p-20 h-170 max-w-3xl"
-        // NEW: prevent overlay close when clicking inside the panel
+        // prevent overlay close when clicking inside the panel
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close icon (optional, you can link it to hide popup later) */}

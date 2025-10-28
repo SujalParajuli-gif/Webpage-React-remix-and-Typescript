@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header"; //importing our existing header
 import { FiSearch } from "react-icons/fi";
 import ArticleIconGrid from "./ArticleIconGrid";
+import ArticleGrid from "./ArticleGrid"; // added: grid that reads cards from JSON
 
 const Article = () => {
   return (
@@ -10,7 +11,7 @@ const Article = () => {
       <Header variant="article" />
 
       {/* Main content section for Database / Article */}
-      <div className="bg-white py-10 md:py-14 w-8xl">
+      <div className="bg-white py-10 md:py-14 w-8xl mr-25">
         {/* container */}
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-25">
           {/* Blue background card behind everything */}
@@ -84,8 +85,13 @@ const Article = () => {
         </div>
 
         {/* ICON GRID (cards below the banner) */}
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="mx-auto w-full max-w-7xl ml-90 px-4 sm:px-6 lg:px-8 mt-20">
           <ArticleIconGrid />
+        </div>
+
+        {/*article cards loaded from /data/articles.json */}
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
+          <ArticleGrid />
         </div>
       </div>
     </>
