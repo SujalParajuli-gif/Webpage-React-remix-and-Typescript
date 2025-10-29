@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router"; // added useLocation for detecting current route
 import LeaveMsg from "./LeaveMsg";
 
-// added variant prop so we can reuse header with small style changes on other pages
-export default function Header({ variant = "default" }: { variant?: "default" | "article" }) {
+// we render the main header bar with scroll-aware styles and per-page color rules
+export default function Header() {
   //creating usestate for changing data when input is at top or when onscroll
   const [isAtTop, setIsAtTop] = useState(true);
 
@@ -19,7 +19,87 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // controls LeaveMsg popup visibility 
+  // get current route path to apply underline dynamically
+  const location = useLocation();
+
+  // ------------------------------------------
+  // code color behavior
+  // ------------------------------------------
+  // This map defines how the nav text, icons, and the "Leave a Message"/phone text behave
+  // when at top vs after scroll for each route.
+  const pageMap: Record<
+    string,
+    {
+      navTop: "white" | "black";
+      navScrolled: "white" | "black";
+      msgPhoneTextTop: "inherit" | "blue" | "black" | "white";
+      msgPhoneTextScrolled: "inherit" | "blue" | "black" | "white";
+      mailIconTop: "white" | "blue";
+      mailIconScrolled: "white" | "blue";
+      phoneIconTop: "white" | "blue";
+      phoneIconScrolled: "white" | "blue";
+    }
+  > = {
+    // Home page behavior
+    "/": {
+      navTop: "white",
+      navScrolled: "black",
+      msgPhoneTextTop: "inherit", // inherits nav color (white at top)
+      msgPhoneTextScrolled: "inherit", // inherits nav color (black after scroll)
+      mailIconTop: "white",
+      mailIconScrolled: "blue",
+      phoneIconTop: "white",
+      phoneIconScrolled: "blue",
+    },
+    // Article page behavior
+    "/article": {
+      navTop: "black",
+      navScrolled: "black",
+      msgPhoneTextTop: "blue", // blue at top
+      msgPhoneTextScrolled: "black",
+      mailIconTop: "blue",
+      mailIconScrolled: "blue",
+      phoneIconTop: "blue",
+      phoneIconScrolled: "blue",
+    },
+    // Vibez page
+    "/vibez": {
+      navTop: "white",
+      navScrolled: "black",
+      msgPhoneTextTop: "inherit",
+      msgPhoneTextScrolled: "inherit",
+      mailIconTop: "white",
+      mailIconScrolled: "blue",
+      phoneIconTop: "white",
+      phoneIconScrolled: "blue",
+    },
+    // Fallback (acts like home)
+    "*": {
+      navTop: "white",
+      navScrolled: "black",
+      msgPhoneTextTop: "inherit",
+      msgPhoneTextScrolled: "inherit",
+      mailIconTop: "white",
+      mailIconScrolled: "blue",
+      phoneIconTop: "white",
+      phoneIconScrolled: "blue",
+    },
+  };
+
+  // pick settings for current page
+  const cfg = pageMap[location.pathname] ?? pageMap["*"];
+
+  // small helper to map our tokens to Tailwind classes
+  const toTextClass = (c: "white" | "black" | "blue" | "inherit") =>
+    c === "white"
+      ? "text-white"
+      : c === "black"
+      ? "text-black"
+      : c === "blue"
+      ? "text-blue-600"
+      : "";
+
+  // controls LeaveMsg popup visibility
   const [showLeaveMsg, setShowLeaveMsg] = useState(false);
 
   //wrap return in pices so we can render the popup after the header
@@ -46,7 +126,7 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
                 <img
                   src="/logos/matat-logo.png"
                   alt="Matat Logo"
-                  className="w-52 h-13.8"
+                  className="w-52"
                 />
               </Link>
             </div>
@@ -57,34 +137,44 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
           <nav
             className={[
               "flex space-x-9 text-base font-bold ",
-              // color for when it is at the top (changes if variant is 'article')
-              variant === "article"
-                ? "text-black"
-                : isAtTop
-                ? "text-white"
-                : "text-black",
+              // color from pageMap (top vs scrolled)
+              isAtTop ? toTextClass(cfg.navTop) : toTextClass(cfg.navScrolled),
               // smooth color change
               "transition-colors duration-10 ease-in-out",
             ].join(" ")}
           >
+            {/* Home link with active underline */}
             <Link
               to="/"
-              className="underline underline-offset-5"
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+                ${location.pathname === "/" ? "after:w-full" : "after:w-0"} 
+                after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out`}
             >
               Home
             </Link>
 
-            <a
-              href="#"
-              className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out "
+            {/* CHANGED: use Link so it can get active underline */}
+            <Link
+              to="/vibez"
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+                ${
+                  location.pathname === "/vibez" ? "after:w-full" : "after:w-0"
+                } 
+                after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out `}
             >
               VIBEZ Project
-            </a>
+            </Link>
 
             {/* Link helps to go to another page (Article route) without refreshing the entire page*/}
             <Link
               to="/article"
-              className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out "
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                ${
+                  location.pathname === "/article"
+                    ? "after:w-full"
+                    : "after:w-0"
+                }
+                after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out`}
             >
               Database
             </Link>
@@ -100,22 +190,21 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
               <div className="flex items-center gap-2">
                 <IoIosMail
                   className={[
-                    "text-blue-600 text-2xl transition-transform duration-300 ease-in-out group-hover:scale-125",
-                    // use variant to decide colors (article page keeps blue, home uses scroll logic)
-                    variant === "article"
-                      ? "text-blue-600"         // article: always blue
-                      : isAtTop
-                      ? "!text-white"           // home top: white
-                      : "!text-blue-600",       // home scrolled: BLUE (changed from black)
+                    "text-2xl transition-transform duration-300 ease-in-out group-hover:scale-125",
+                    // color from map (white at top on "/")
+                    isAtTop
+                      ? toTextClass(cfg.mailIconTop)
+                      : toTextClass(cfg.mailIconScrolled),
                   ].join(" ")}
                 />
+
                 <span
                   className={[
-                    // ARTICLE ONLY: blue at top, black on scroll
-                    variant === "article"
-                      ? (isAtTop ? "text-blue-600" : "text-black")
-                      : "",
-                    // DEFAULT variant inherits nav color 
+                    // text near the icon: follows map (inherit means use nav color above)
+                    isAtTop
+                      ? toTextClass(cfg.msgPhoneTextTop)
+                      : toTextClass(cfg.msgPhoneTextScrolled),
+                    // DEFAULT variant inherits nav color
                     "transition-colors duration-200",
                   ].join(" ")}
                 >
@@ -128,21 +217,19 @@ export default function Header({ variant = "default" }: { variant?: "default" | 
               <div className="flex items-center gap-2">
                 <FaPhone
                   className={[
-                    "text-blue-600 text-base transition-transform duration-300 ease-in-out group-hover:scale-125",
-                    // use variant to decide colors (article page keeps blue, home uses scroll logic)
-                    variant === "article"
-                      ? "text-blue-600"         // article: always blue
-                      : isAtTop
-                      ? "!text-white"           // home top: white
-                      : "!text-blue-600",       // home scrolled: BLUE 
+                    "text-base transition-transform duration-300 ease-in-out group-hover:scale-125",
+                    // color from map (white at top on "/")
+                    isAtTop
+                      ? toTextClass(cfg.phoneIconTop)
+                      : toTextClass(cfg.phoneIconScrolled),
                   ].join(" ")}
                 />
                 <span
                   className={[
-                    // ARTICLE ONLY: blue at top, black on scroll
-                    variant === "article"
-                      ? (isAtTop ? "text-blue-600" : "text-black")
-                      : "",
+                    // text near the icon: follows map (inherit means use nav color above)
+                    isAtTop
+                      ? toTextClass(cfg.msgPhoneTextTop)
+                      : toTextClass(cfg.msgPhoneTextScrolled),
                     // DEFAULT variant inherits nav color
                     "transition-colors duration-200",
                   ].join(" ")}

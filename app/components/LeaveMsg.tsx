@@ -11,42 +11,39 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
     // Fullscreen overlay for popup centering
     <div
       className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      // NEW: click on overlay closes popup
+      // added click on overlay that closes popup
       onClick={onClose}
       role="dialog"
-      aria-modal="true"
     >
       {/* Popup container */}
       <section
-        className="relative bg-white rounded-2xl shadow-2xl p-20 h-170 max-w-3xl"
+        className="relative bg-white rounded-2xl shadow-2xl p-20 h-180  max-w-160"
         // prevent overlay close when clicking inside the panel
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close icon (optional, you can link it to hide popup later) */}
+        {/* Cross close button on top-left */}
         <button
-          className="absolute top-4 right-5 text-2xl text-gray-500 hover:text-gray-700"
-          // NEW: actually close the popup
+          className="absolute top-4 left-5 text-3xl text-gray-400 hover:text-gray-700 transition-all duration-200"
           onClick={onClose}
-          aria-label="Close"
         >
-          
+          &times;
         </button>
 
         {/* heading text */}
         <h2 className="text-3xl md:text-4xl font-semibold text-[#4577E4] mb-10 text-center">
-          Leave a Message
+          Contact Us
         </h2>
 
         {/* form part */}
         <form
-          className="w-full bg-white space-y-6"
+          className="w-full bg-white space-y-6 text-[#281776] "
           onSubmit={(e) => e.preventDefault()}
         >
           {/* input fields for name and phone */}
-          <div className="flex flex-col md:flex-row md:space-x-6">
+          <div className="flex flex-col md:flex-row md:space-x-6 ">
             {/* full name input */}
             <div className="flex-1 mb-4 md:mb-0">
-              <label className="block text-lg font-semibold mb-2">
+              <label className="block text-lg  mb-2">
                 Full Name
               </label>
               <input
@@ -58,7 +55,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
 
             {/* phone input */}
             <div className="flex-1">
-              <label className="block text-lg font-semibold mb-2">Phone</label>
+              <label className="block text-lg  mb-2">Phone</label>
               <input
                 type="text"
                 placeholder="phone"
@@ -69,7 +66,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
 
           {/* message input area */}
           <div>
-            <label className="block text-lg font-semibold mb-2">Message</label>
+            <label className="block text-lg mb-2">Message</label>
             <textarea
               placeholder="message"
               rows={5}
@@ -78,9 +75,9 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
           </div>
 
           {/* privacy policy section */}
-          <div className="flex items-start space-x-2 text-lg text-[#1F1F1F]">
+          <div className="flex items-start space-x-2 text-lg text-[#281776] ">
             <input type="checkbox" className="mt-1" />
-            <p className="leading-relaxed text-[13px] md:text-[14px]">
+            <p className="leading-relaxed md:text-[15px]">
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
               accordance with{" "}
@@ -96,7 +93,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
           {/* send button */}
           <button
             type="submit"
-            className="w-full md:w-1/2 mx-auto block bg-[#7D8EF8] text-white font-semibold py-2 rounded-full hover:bg-[#5b6ce0] transition-all duration-200"
+            className="max-w-44 h-12 md:w-1/2 mx-auto block bg-[#4577E4] text-white font-semibold py-2 rounded-full hover:scale-105 transition-all duration-200"
           >
             send
           </button>

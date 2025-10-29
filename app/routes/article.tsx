@@ -1,4 +1,4 @@
-// importing the Article and ContactUs components
+// importing components inside the database page
 import Article from "../components/Article";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";

@@ -1,15 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router";            // used for navigation
-import { FiArrowLeft } from "react-icons/fi";          // left arrow icon
-import items from "../data/articles.json";             // JSON data file
+import { useNavigate } from "react-router"; // used for navigation
+import { FiArrowLeft } from "react-icons/fi"; // left arrow icon
+import items from "../data/articles.json"; // JSON data file
 
 // This type matches the JSON directly (no normalizer)
 type ArticleItem = {
-  id: string;        // unique id
-  title: string;     // heading text
-  summary: string;   // short text under the title
+  id: string; // unique id
+  title: string; // heading text
+  summary: string; // short text under the title
   labels?: string[]; // tag chips
-  paths: string;     // URL part used for /article/:paths
+  paths: string; // URL part used for /article/:paths
 };
 
 const ACCENT = "#2d5fcc"; // shared accent color for hovers
@@ -24,7 +24,7 @@ const LeftAction: React.FC<{ onClick: () => void }> = ({ onClick }) => (
       "inline-flex h-8 w-8 items-center justify-center rounded-full",
       "bg-[color:var(--accent)] text-white ring-1 ring-[color:var(--accent)]/20",
       "shadow-sm transition-colors duration-200",
-      "hover:bg-white hover:text-[color:var(--accent)]"
+      "hover:bg-white hover:text-[color:var(--accent)]",
     ].join(" ")}
     style={{ ["--accent" as any]: ACCENT }}
   >
@@ -50,9 +50,9 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
         onClick={() => navigate(`/article/${item.paths}`)} // title click navigates
         className={[
           "mb-2 text-[19px] font-bold leading-6 text-[#0D1B2A]",
-          "[font-family:inherit]",                          // heading uses page font
+          "[font-family:inherit]", // heading uses page font
           "cursor-pointer transition-colors duration-200",
-          "hover:text-[color:var(--accent)]"               // hover only on h4
+          "hover:text-[color:var(--accent)]", // hover only on h4
         ].join(" ")}
         style={{ ["--accent" as any]: ACCENT }}
       >
@@ -63,40 +63,35 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
       <p
         className={[
           "text-[14px] leading-relaxed text-[rgb(0_0_0_/_60%)] pb-3",
-          "[font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]"
+          "[font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]",
         ].join(" ")}
       >
         {item.summary}
       </p>
 
       {/* left button + tags inside their own wrappers */}
-      <div
-        className={[
-          " mt-auto flex items-center justify-between"
-        ].join(" ")}
-      >
+      <div className={[" mt-auto flex items-center justify-between"].join(" ")}>
         {/* left: action button */}
         <div className="post-action">
           <LeftAction onClick={() => navigate(`/article/${item.paths}`)} />
         </div>
 
-        
         <div
           className={[
             "post-cat flex flex-wrap justify-end",
             "gap-x-3 gap-y-2", // horizontal/vertical space between chips
-            "pl-4"             // space between button group and chips group
+            "pl-4", // space between button group and chips group
           ].join(" ")}
         >
           {item.labels?.map((t) => (
             <span
               key={t}
               className={[
-                "rounded-full px-3 py-1 text-[12px]",
-                "bg-[rgb(87_108_155_/_.08)] text-[#576C9B]",
+                "rounded-full px-3 py-1 text-[13px]",
+                "bg-[#e2f1ff] text-black",
                 "[font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]",
                 "transition-colors duration-200",
-                "hover:bg-[color:var(--accent)] hover:text-white"
+                "hover:bg-[color:var(--accent)] hover:text-white",
               ].join(" ")}
               style={{ ["--accent" as any]: ACCENT }}
             >
@@ -114,7 +109,7 @@ export default function ArticleGrid() {
   //the grid's gap controls spacing between cards
   return (
     <section className="bg-white py-10">
-      <div className="mx-auto max-w-8xl px-5 sm:px-6 lg:px-0">
+      <div className="mx-auto max-w-9xl px-5 sm:px-6 lg:px-0">
         <div className="grid grid-cols-1 gap-17 md:grid-cols-2 lg:grid-cols-3">
           {(items as ArticleItem[]).map((it) => (
             <TextCard key={it.id} item={it} />

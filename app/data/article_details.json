@@ -1,0 +1,88 @@
+{
+    "install-anydesk": {
+        "title": "HOW DO YOU INSTALL ANYDESK?",
+        "blocks": [
+            {
+                "type": "h2",
+                "text": "WHAT IS ANYDESK"
+            },
+            {
+                "type": "p",
+                "text": "AnyDesk is software that allows a third party to access your computer screen and perform actions on it. Technical support representatives will usually ask you to install the software so they can access your computer remotely to diagnose problems, perform repairs, or do actions that can only be done from your PC."
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Go to: https://150.co.il/",
+                    "Choose the appropriate option — 3 or 8 — depending on your operating system. Option 3 is for Windows; option 8 is for Mac."
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_1.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "ol",
+                "continue": true,
+                "items": [
+                    "The download will start immediately — file name: AnyDesk.exe.",
+                    "Click the downloaded file. The software will ask you to register or log in to an existing account.",
+                    "If you don't have an account, please register. Then go to your email inbox and confirm the account.",
+                    "After confirming, you'll receive a message that your account has been updated.",
+                    "Log in to the new account you created.",
+                    "When you click “Log In,” a new window will open in your browser and you'll need to enter the email and password you created."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Good luck!"
+            },
+            {
+                "type": "p",
+                "text": "18/4/23 | Avishai Brina"
+            },
+            {
+                "type": "h2",
+                "text": "Need help?"
+            },
+            {
+                "type": "p",
+                "text": "Want to know more? For questions and inquiries, we're here for you:"
+            },
+            {
+                "type": "p",
+                "text": "Mobile: 055-9-91-91-91"
+            },
+            {
+                "type": "p",
+                "text": "Email: Support@matat.co.il"
+            }
+        ]
+    },
+    "use-sms-on-sales-sites": {
+        "title": "Use SMS messages on sales sites",
+        "blocks": [
+            {
+                "type": "p",
+                "text": "Today, the world has moved forward and your customers on the sales sites will be happy to receive many notifications by SMS..."
+            },
+            {
+                "type": "p",
+                "text": "The advantages of SMS messages to a sales site that we will detail in this article:"
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Update customers about products that have returned to stock.",
+                    "Update customers about the change in order status on the website.",
+                    "Log in to the website using a code sent by SMS to a mobile device."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "In online stores, the sales rate is different from physical stores..."
+            }
+        ]
+    }
+}
