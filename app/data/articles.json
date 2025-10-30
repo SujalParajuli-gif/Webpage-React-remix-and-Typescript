@@ -29,13 +29,24 @@
         "paths": "sales-site-menu-best-practices"
     },
     {
-        "id": "a3",
-        "title": "Main menu on a sales website — how do you do it right?",
-        "summary": "A structured menu helps users navigate quickly and improves conversions. Layout and naming patterns inside.",
+        "id": "a1",
+        "title": "HOW DO YOU INSTALL ANYDESK?",
+        "summary": "AnyDesk is a program that allows a third party to access your computer screen and perform actions on it. Usually technical…",
         "labels": [
-            "UX Characterization"
+            "E commerce"
         ],
-        "paths": "sales-site-menu-best-practices"
+        "paths": "install-anydesk"
+    },
+    {
+        "id": "a2",
+        "title": "Use SMS messages on sales sites",
+        "summary": "Customers expect clear SMS notifications for orders and shipping updates. Setup tips and caveats included.",
+        "labels": [
+            "Website Security",
+            "E commerce",
+            "Additives"
+        ],
+        "paths": "use-sms-on-sales-sites"
     },
     {
         "id": "a3",
@@ -47,13 +58,15 @@
         "paths": "sales-site-menu-best-practices"
     },
     {
-        "id": "a3",
-        "title": "Main menu on a sales website — how do you do it right?",
-        "summary": "A structured menu helps users navigate quickly and improves conversions. Layout and naming patterns inside.",
+        "id": "a2",
+        "title": "Use SMS messages on sales sites",
+        "summary": "Customers expect clear SMS notifications for orders and shipping updates. Setup tips and caveats included.",
         "labels": [
-            "UX Characterization"
+            "Website Security",
+            "E commerce",
+            "Additives"
         ],
-        "paths": "sales-site-menu-best-practices"
+        "paths": "use-sms-on-sales-sites"
     },
     {
         "id": "a3",
@@ -65,21 +78,12 @@
         "paths": "sales-site-menu-best-practices"
     },
     {
-        "id": "a3",
-        "title": "Main menu on a sales website — how do you do it right?",
-        "summary": "A structured menu helps users navigate quickly and improves conversions. Layout and naming patterns inside.",
+        "id": "a1",
+        "title": "HOW DO YOU INSTALL ANYDESK?",
+        "summary": "AnyDesk is a program that allows a third party to access your computer screen and perform actions on it. Usually technical…",
         "labels": [
-            "UX Characterization"
+            "E commerce"
         ],
-        "paths": "sales-site-menu-best-practices"
-    },
-    {
-        "id": "a3",
-        "title": "Main menu on a sales website — how do you do it right?",
-        "summary": "A structured menu helps users navigate quickly and improves conversions. Layout and naming patterns inside.",
-        "labels": [
-            "UX Characterization"
-        ],
-        "paths": "sales-site-menu-best-practices"
+        "paths": "install-anydesk"
     }
 ]

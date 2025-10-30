@@ -96,7 +96,7 @@ export default function Header() {
       : c === "black"
       ? "text-black"
       : c === "blue"
-      ? "text-blue-600"
+      ? "text-blue-600" 
       : "";
 
   // controls LeaveMsg popup visibility

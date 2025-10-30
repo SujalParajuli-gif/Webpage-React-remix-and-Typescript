@@ -1,36 +1,36 @@
 // app/components/Article_Details.tsx
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import list from "../data/articles.json";          // list for related titles
+import list from "../data/articles.json";            // list for related titles
 import detailMap from "../data/article_details.json"; // full article data
 import ArticleIconGrid from "../components/ArticleIconGrid";
 
 // list item type (same as our grid)
 type ListItem = {
-  id: string;        // unique id
-  title: string;     // heading text
-  summary: string;   // short summary
-  labels?: string[]; // tags (not used here)
-  paths: string;     // slug like "install-anydesk"
+  id: string;
+  title: string;
+  summary: string;
+  labels?: string[];
+  paths: string; // slug like "install-anydesk"
 };
 
 // one block of content in the detail page
 type ContentBlock = {
-  type: "p" | "h2" | "ol" | "img"; // paragraph, small heading, ordered list, or image
-  text?: string;                   // text for p/h2
-  items?: string[];                // items for ordered list
-  src?: string;                    // image path
-  alt?: string;                    // image alt
-  continue?: boolean;              // if true, continue numbering from previous <ol>
+  type: "p" | "h2" | "ol" | "ul" | "img"; // added "ul"
+  text?: string;
+  items?: string[];
+  src?: string;
+  alt?: string;
+  continue?: boolean; // only used by <ol>
 };
 
 // detail record loaded by slug
 type DetailEntry = {
-  title: string;          // main page title
-  blocks: ContentBlock[]; // ordered content blocks
+  title: string;
+  blocks: ContentBlock[];
 };
 
-// simple divider used in left card
+// small divider used in left card
 const Divider: React.FC = () => <div className="my-2 h-px w-full bg-black/10" />;
 
 const Article_Details: React.FC = () => {
@@ -43,10 +43,10 @@ const Article_Details: React.FC = () => {
     ? (detailMap as Record<string, DetailEntry>)[paths]
     : undefined;
 
-  // NON data entry handling (simple fallback)
+  // fallback when slug not found
   if (!entry) {
     return (
-      <div className="mx-auto max-w-6xl px-5 py-16">
+      <div className="mx-auto max-w-6xl px-5 py-35">
         <h1 className="text-2xl font-bold">Article not found</h1>
         <p className="mt-2 text-[14px] text-black/60">
           This article has not been added to <code>article_details.json</code> yet.
@@ -76,26 +76,19 @@ const Article_Details: React.FC = () => {
         >
           {/* nav links: Home / Database / Title */}
           <div className="mb-3 text-[13px] text-black/60">
-            {/* Home goes to real home page */}
-            <Link to="/" className="hover:text-[#2d5fcc]">
-              Home
-            </Link>
+            <Link to="/" className="hover:text-[#2d5fcc]">Home</Link>
             <span className="mx-1">/</span>
-
-            {/* Database LINK goes back to previous page */}
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                navigate(-1); // goes back to the previous page
+                navigate(-1); // back to previous page
               }}
               className="hover:text-[#2d5fcc]"
             >
               Database
             </a>
             <span className="mx-1">/</span>
-
-            {/* current title (not a link) */}
             <span className="text-black">{entry.title}</span>
           </div>
 
@@ -107,22 +100,17 @@ const Article_Details: React.FC = () => {
       </div>
 
       {/* main layout: left related sticky layout + right article content */}
-      <div
-        className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pb-16"
-        // The sticky area stops when this container ends (before the <hr/>).
-      >
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pb-16">
         <div className="grid grid-cols-1 gap-25 lg:grid-cols-[300px_1fr]">
           {/* LEFT COLUMN (sticky wrapper) */}
           <div className="relative">
-            {/* Sticky sidebar on lg screen also adjusts -stick-top if header height changes. */}
-
             <div
               className="lg:sticky lg:top-[var(--stick-top)] h-max"
               style={{ ["--stick-top" as any]: "120px" }}
             >
               <aside className="space-y-10">
                 {/* Related Articles card */}
-                <div className=" rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-80 p-6">
+                <div className="rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-80 p-6">
                   <h3 className="mb-4 text-center text-[15px] font-bold text-gray-400">
                     Related Articles
                   </h3>
@@ -152,13 +140,7 @@ const Article_Details: React.FC = () => {
                 </div>
 
                 {/* Promo card with background image */}
-                <div
-                  className={[
-                    "relative overflow-hidden rounded-lg border border-black/5",
-                    "p-5 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500",
-                  ].join(" ")}
-                >
-                  {/* background image */}
+                <div className="relative overflow-hidden rounded-lg border border-black/5 p-5 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500">
                   <img
                     src="/images/sidebarbg.png"
                     alt=""
@@ -190,7 +172,7 @@ const Article_Details: React.FC = () => {
           {/* RIGHT COLUMN: article content */}
           <main className="[font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]">
             {(() => {
-              // stepNo keeps ordered list numbers across blocks
+              // keeps ordered-list numbers across blocks
               let stepNo = 1;
 
               return entry.blocks.map((b, i) => {
@@ -204,14 +186,14 @@ const Article_Details: React.FC = () => {
 
                 if (b.type === "p") {
                   return (
-                    <p key={i} className="mb-20 text-[16px] leading-6 ">
+                    <p key={i} className="mb-8 mt-2 text-[16px] leading-6">
                       {b.text}
                     </p>
                   );
                 }
 
                 if (b.type === "ol") {
-                  // figure start number (continue or reset)
+                  // choose start number (continue or reset)
                   const start = b.continue ? stepNo : 1;
                   const count = b.items?.length ?? 0;
                   stepNo = start + count;
@@ -219,24 +201,53 @@ const Article_Details: React.FC = () => {
                   return (
                     <ol
                       key={i}
-                      start={start} // HTML start attribute keeps numbering
-                      className="mb-6 list-decimal pl-6 text-[16px] leading-6 "
+                      start={start}
+                      className="mb-8 list-decimal pl-6 text-[16px] leading-6"
                     >
-                      {b.items?.map((t, j) => (
-                        <li
-                          key={j}
-                          className="mb-1 marker:text-blue-800 marker:font-semibold" // blue numbers
-                        >
-                          {t}
-                        </li>
-                      ))}
+                      {b.items?.map((t, j) => {
+                        // bold the first chunk before " – " or ":" then render as HTML
+                        const html = t.replace(
+                          /^(.*?)(\s-\s|:)/,
+                          "<strong>$1</strong>$2"
+                        );
+                        return (
+                          <li
+                            key={j}
+                            className="mb-3 marker:text-blue-800 marker:font-semibold"
+                            dangerouslySetInnerHTML={{ __html: html }}
+                          />
+                        );
+                      })}
                     </ol>
                   );
                 }
 
+                if (b.type === "ul") {
+                  return (
+                    <ul
+                      key={i}
+                      className="mb-8 list-disc pl-6 text-[16px] leading-6"
+                    >
+                      {b.items?.map((t, j) => {
+                        // same bolding for bullets
+                        const html = t.replace(
+                          /^(.*?)(\s–\s|:)/,
+                          "<strong>$1</strong>$2"
+                        );
+                        return (
+                          <li
+                            key={j}
+                            className="mb-3 marker:text-[#2d5fcc] marker:font-semibold"
+                            dangerouslySetInnerHTML={{ __html: html }}
+                          />
+                        );
+                      })}
+                    </ul>
+                  );
+                }
+
                 if (b.type === "img") {
-                  // Images don’t affect the numbering
-                  return <img key={i} src={b.src} alt={b.alt ?? ""} className="mb-10" />;
+                  return <img key={i} src={b.src} alt={b.alt ?? ""} className="mb-13" />;
                 }
 
                 return null;
@@ -248,13 +259,11 @@ const Article_Details: React.FC = () => {
 
       {/* more categories section */}
       <section className="mb-50">
-        {/* hr and heading aligned to page container */}
         <div className="mx-auto w-full px-5 sm:px-6 lg:px-8">
           <hr className="mb-10 border-t border-black/10" />
           <h2 className="text-[16px] sm:text-[24px] font-bold mb-10 pl-65">More Categories</h2>
         </div>
 
-        {/* article grid imported below */}
         <ArticleIconGrid />
       </section>
     </div>

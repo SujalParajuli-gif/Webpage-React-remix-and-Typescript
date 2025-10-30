@@ -4,11 +4,14 @@ import { FiSearch } from "react-icons/fi";
 import ArticleIconGrid from "./ArticleIconGrid";
 import ArticleGrid from "./ArticleGrid"; // added: grid that reads cards from JSON
 
+
 const Article = () => {
   return (
     <>
-      {/* Reuse same header but use variant for color difference */}
-      <Header variant="article" />
+    
+      {/* We reused same header and the colors are handelded by map inside the header component it self*/}
+      <Header />
+
 
       {/* Main content section for Database / Article */}
       <div className="bg-white py-10 md:py-14 w-8xl mr-25">

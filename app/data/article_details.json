@@ -27,12 +27,80 @@
                 "continue": true,
                 "items": [
                     "The download will start immediately — file name: AnyDesk.exe.",
-                    "Click the downloaded file. The software will ask you to register or log in to an existing account.",
-                    "If you don't have an account, please register. Then go to your email inbox and confirm the account.",
-                    "After confirming, you'll receive a message that your account has been updated.",
-                    "Log in to the new account you created.",
-                    "When you click “Log In,” a new window will open in your browser and you'll need to enter the email and password you created."
+                    "Click the downloaded file. The software will ask you to register or log in to an existing account."
                 ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_2.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "p",
+                "text": [
+                    "If you do not have an existing account  please register."
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_3.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "ol",
+                "continue": true,
+                "items": [
+                    "Go to the email address you registered with and confirm the account"
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_4.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_5.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_6.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "p",
+                "text": [
+                    "After completing the actions, you will receive a confirmation that the account has been updated"
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_7.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "ol",
+                "continue": true,
+                "items": [
+                    "Log in to your new account"
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_8.png",
+                "alt": "AnyDesk step placeholder"
+            },
+            {
+                "type": "p",
+                "text": [
+                    "By clicking Login, a new window will open in your browser and you will need to enter the email and password you created"
+                ]
+            },
+            {
+                "type": "img",
+                "src": "/images/Posts/Screenshot_9.png",
+                "alt": "AnyDesk step placeholder"
             },
             {
                 "type": "p",
@@ -41,10 +109,6 @@
             {
                 "type": "p",
                 "text": "18/4/23 | Avishai Brina"
-            },
-            {
-                "type": "h2",
-                "text": "Need help?"
             },
             {
                 "type": "p",
@@ -65,7 +129,7 @@
         "blocks": [
             {
                 "type": "p",
-                "text": "Today, the world has moved forward and your customers on the sales sites will be happy to receive many notifications by SMS..."
+                "text": "Today, the world has moved forward and customers on sales sites prefer receiving many notifications via SMS rather than email. SMS messages sent to the mobile device have many advantages; below are several benefits you can apply immediately by installing the TextMe SMS plugin on your sales site."
             },
             {
                 "type": "p",
@@ -75,13 +139,164 @@
                 "type": "ol",
                 "items": [
                     "Update customers about products that have returned to stock.",
-                    "Update customers about the change in order status on the website.",
-                    "Log in to the website using a code sent by SMS to a mobile device."
+                    "Update customers about changes in order status on the website.",
+                    "Allow login to the website using a one-time code sent by SMS to the mobile device."
                 ]
             },
             {
                 "type": "p",
-                "text": "In online stores, the sales rate is different from physical stores..."
+                "text": "In online stores, the sales rate differs from physical stores. Consumer culture has changed and many people now move most of their daily shopping to online stores—food, clothing, beauty products, spa packages, and more."
+            },
+            {
+                "type": "p",
+                "text": "Your online customers understand that time is money. To save time, they order most daily products online and receive them quickly at their doorstep."
+            },
+            {
+                "type": "p",
+                "text": "Since we anticipate future trends, we see more people joining online purchasing every year. Sales rates in various categories have increased along with inventory volume, but the product your customers want will not always be in stock."
+            },
+            {
+                "type": "p",
+                "text": "That's why at Matat we developed an option for customers to register with a mobile number to receive an SMS update when a product returns to stock."
+            },
+            {
+                "type": "p",
+                "text": "Today, we understand that the most important thing on sales sites is building a community and a loyalty club. Casual customers are fine, but returning customers drive growth. To help create that community, we shortened the registration/login process: users can register with a mobile phone number and receive a one-time code. After first registration, the customer can log in with a one-time password without needing to remember a fixed password."
+            },
+            {
+                "type": "p",
+                "text": "We also identified that many online buyers either do not use email or do not check it frequently. In addition to email order confirmations, we developed a sales plugin that lets you send SMS messages to your customers about a new order received (for example: “Thank you for your purchase — your online order has been received.”)."
+            },
+            {
+                "type": "p",
+                "text": "With the TextMe SMS plugin, you can send online customers SMS messages about order receipt and order status changes. You can also set it so that when a user signs up on a form (e.g., newsletter), they receive an SMS."
+            },
+            {
+                "type": "p",
+                "text": "The plugin can be downloaded from the WooCommerce plugin store or by clicking here (add your store link)."
+            },
+            {
+                "type": "p",
+                "text": "To use the plugin, purchase a messaging package on the TextMe SMS website (add your package link) for quick setup."
+            }
+        ]
+    },
+    "sales-site-menu-best-practices": {
+        "title": "Connecting Shopify to Zap – How We Developed an App That Creates a Zap-Optimized Feed",
+        "blocks": [
+            {
+                "type": "h2",
+                "text": "Connecting Shopify to Zap – How We Developed an App That Creates a Zap-Optimized Feed Challenge"
+            },
+            {
+                "type": "p",
+                "text": "When we launched a new website for one of our clients, he asked an obvious question: How do I connect the site to Zap? Zap is one of Israel's leading price comparison platforms, which allows e-commerce website owners to present their products to hundreds of thousands of surfers looking for the most affordable price."
+            },
+            {
+                "type": "p",
+                "text": "We looked at the options available and found that there's no official app for connecting Shopify to Zap. For the customer, this was crucial: the display at Zap was an integral part of their sales strategy."
+            },
+            {
+                "type": "h2",
+                "text": "Solution"
+            },
+            {
+                "type": "p",
+                "text": "We decided to develop a dedicated app: Zap Feed Generator."
+            },
+            {
+                "type": "p",
+                "text": "The app generates a dynamic feed according to Zap's requirements, including:"
+            },
+            {
+                "type": "ol",
+                "items": [
+                    "Full sync of all products on Shopify.",
+                    "Option to exclude certain categories.",
+                    "Set the frequency of feed updates (daily, hourly, or personal)."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "At the same time, we worked closely with the Zap team, who made sure that the feed met all their standards – and after testing and approval, the app went live."
+            },
+            {
+                "type": "h2",
+                "text": "Result"
+            },
+            {
+                "type": "p",
+                "text": "Our customer connected the store to Zap services within a few days, and all the products started appearing on the comparison site. Traffic to its website has grown significantly, with new leads and purchases coming directly from the platform."
+            },
+            {
+                "type": "h2",
+                "text": "Comparison: Why not use manual solutions?"
+            },
+            {
+                "type": "p",
+                "text": "Some store owners try to create a Zap feed manually (using an Excel file or CSV updates). It may work in the short term, but it has obvious disadvantages:"
+            },
+            {
+                "type": "ul",
+                "items": [
+                    "❌ Precious time – Any change in inventory or price requires a re-update.",
+                    "❌ Risk of errors – A mistake in the feed may cause the products to be rejected by Zap.",
+                    "❌ Lack of automation – There is no possibility of continuous automatic updates."
+                ]
+            },
+            {
+                "type": "p",
+                "text": "Our app solves all of this – automatic updates, high reliability, and time savings."
+            },
+            {
+                "type": "h2",
+                "text": "Official launch for everyone"
+            },
+            {
+                "type": "p",
+                "text": "We realized that the solution could serve not only the specific customer – but all the shop owners in Shopify – That's why we published the app on the official Shopify app store:"
+            },
+            {
+                "type": "p",
+                "text": "👉 Zap Feed Generator"
+            },
+            {
+                "type": "p",
+                "text": "Today, any Shopify store owner who is interested in appearing on Zap can install the app with one click and start displaying their products on the leading price comparison platform in Israel."
+            },
+            {
+                "type": "h2",
+                "text": "Why is this important for businesses?"
+            },
+            {
+                "type": "ul",
+                "items": [
+                    "Exposure to new customers – hundreds of thousands of surfers search for products on Zap every month.",
+                    "Increase sales – Appearing on Zap creates trust and causes surfers to compare and purchase.",
+                    "Full automation – No more manual updates, your feed automatically updates according to your settings."
+                ]
+            },
+            {
+                "type": "h2",
+                "text": "Frequently Asked Questions (FAQ)"
+            },
+            {
+                "type": "ul",
+                "items": [
+                    "Q: Why should I connect Shopify to Zap? Answer: Connecting to Zap opens up a strong marketing channel that brings in new customers and increases sales.",
+                    "Question: Does the app support all types of products? Answer: Yes. Any product on Shopify can be included in your feed – including variations, images, and prices.",
+                    "Q: How long will it take for my products to appear on Zap? Answer: In most cases, within 24–48 hours of sending the first feed.",
+                    "Question: Is it possible to choose which products will not be displayed? Answer: Absolutely. You can exclude specific categories or products directly from the settings.",
+                    "Question: Is the app only suitable for the Israeli market? Answer: At the moment yes – the integration is specifically designed for Zap Israel."
+                ]
+            },
+            {
+                "type": "h2",
+                "text": "summary"
+            },
+            {
+                "type": "p",
+                "text": "The development of the Zap Feed Generator is an example of a real case study: a challenge by a customer that led to an innovative technological solution, which is now available to all Shopify users in Israel."
             }
         ]
     }
