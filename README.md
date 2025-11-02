@@ -14,6 +14,41 @@ A modern, production-ready template for building full-stack React applications u
 - 🎉 TailwindCSS for styling
 - 📖 [Remix docs](https://remix.run/docs)
 
+## Prerequisites
+
+- Node.js 18+ (LTS recommended)
+- pnpm 8+ installed globally
+
+## Dependencies
+
+### Runtime (Core)
+
+- **react** (19.x)
+- **react-dom** (19.x)
+- **react-router** (v7)
+- **@react-router/node**
+- **@react-router/serve**
+- **isbot** (SSR bot detection utility)
+
+### Dev & Tooling
+
+- **@react-router/dev**
+- **typescript**
+- **vite**
+- **vite-tsconfig-paths**
+- **tailwindcss** (v4)
+- **@tailwindcss/vite**
+- **postcss**
+- **autoprefixer**
+- **@types/node**
+- **@types/react**
+- **@types/react-dom**
+
+### Extras (App Features)
+
+- **react-icons**
+- **react-player**
+
 ## Getting Started
 
 ### Installation
