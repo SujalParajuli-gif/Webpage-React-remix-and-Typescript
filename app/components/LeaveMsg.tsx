@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router";
 // props type for closing from parent (Header)
 type LeaveMsgProps = {
   onClose: () => void;
@@ -43,9 +43,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
           <div className="flex flex-col md:flex-row md:space-x-6 ">
             {/* full name input */}
             <div className="flex-1 mb-4 md:mb-0">
-              <label className="block text-lg  mb-2">
-                Full Name
-              </label>
+              <label className="block text-lg  mb-2">Full Name</label>
               <input
                 type="text"
                 placeholder="Full Name"
@@ -81,9 +79,13 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
               accordance with{" "}
-              <a href="#" className="text-[#4577E4] font-semibold underline">
+              <Link
+                to="/privacy-policy"
+                onClick={onClose} // closes the modal first
+                className="text-[#4577E4] font-semibold underline"
+              >
                 the Privacy Policy
-              </a>
+              </Link>
               . I am not obligated to provide the information in accordance with
               the law, but without providing the information we will not be able
               to contact you or handle your request.

@@ -16,9 +16,9 @@ type ListItem = {
 
 // one block of content in the detail page
 type ContentBlock = {
-  type: "p" | "h2" | "ol" | "ul" | "img"; // added "ul"
+  type: "p" | "h2" | "ol" | "ul" | "img"; 
   text?: string;
-  items?: string[];
+  items?: string[]; //used by ol and ul
   src?: string;
   alt?: string;
   continue?: boolean; // only used by <ol>
@@ -93,7 +93,7 @@ const Article_Details: React.FC = () => {
           </div>
 
           {/* main page title */}
-          <h1 className="pt-5 text-[43px] font-bold leading-tight text-[#0D1B2A]">
+          <h1 className="pt-5 text-[43px] font-bold leading-relaxed text-[#0D1B2A]">
             {entry.title}
           </h1>
         </div>
@@ -101,28 +101,28 @@ const Article_Details: React.FC = () => {
 
       {/* main layout: left related sticky layout + right article content */}
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 gap-25 lg:grid-cols-[300px_1fr]">
+        <div className="grid grid-cols-1 gap-32 lg:grid-cols-[300px_1fr]">
           {/* LEFT COLUMN (sticky wrapper) */}
-          <div className="relative">
+          <div className="relative ">
             <div
-              className="lg:sticky lg:top-[var(--stick-top)] h-max"
-              style={{ ["--stick-top" as any]: "120px" }}
+              className=" lg:sticky lg:top-[var(--stick-top)] h-max"
+              style={{ ["--stick-top" as any]: "150px" }}
             >
-              <aside className="space-y-10">
+              <aside className="space-y-10 ">
                 {/* Related Articles card */}
-                <div className="rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-80 p-6">
+                <div className="h-120 rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-88 p-6">
                   <h3 className="mb-4 text-center text-[15px] font-bold text-gray-400">
                     Related Articles
                   </h3>
 
-                  <ul className="text-[15px]">
+                  <ul className="text-[18px]">
                     {related.map((it, idx) => (
-                      <li key={it.id} className="py-1">
+                      <li key={it.id} className="py-3">
                         <div className="flex items-start gap-2">
                           <span className="text-[15px] text-black">{idx + 1}</span>
                           <Link
                             to={`/article/${it.paths}`}
-                            className="leading-4 hover:text-[#2d5fcc]"
+                            className="leading-6 hover:text-[#2d5fcc]"
                           >
                             {it.title}
                           </Link>
@@ -140,7 +140,7 @@ const Article_Details: React.FC = () => {
                 </div>
 
                 {/* Promo card with background image */}
-                <div className="relative overflow-hidden rounded-lg border border-black/5 p-5 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500">
+                <div className="w-88 h-65 relative overflow-hidden rounded-lg border border-black/5 p-8 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500">
                   <img
                     src="/images/sidebarbg.png"
                     alt=""
@@ -148,18 +148,18 @@ const Article_Details: React.FC = () => {
                   />
 
                   <div className="relative text-center">
-                    <p className="text-[16px] font-semibold leading-5 text-black">
+                    <p className="text-[19px] font-semibold leading-7 text-black">
                       Need a website, an app
                       <br />
                       Or some other
                       <br />
                       technological solution?
                     </p>
-                    <p className="mt-3 text-[12px] text-black/60">We have the answers!</p>
+                    <p className="mt-3 text-[15px]">We have the answers!</p>
 
                     <a
                       href="#"
-                      className="mt-5 inline-block rounded-full bg-[#4577E4] px-5 py-2 text-[13px] font-medium text-white shadow-md ring-1 ring-black/5"
+                      className="mt-5 inline-block rounded-full bg-[#4577E4] px-10 py-3 text-[17px] font-medium text-white shadow-md ring-1 ring-black/5"
                     >
                       Click for a quote
                     </a>
