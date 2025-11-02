@@ -1,8 +1,8 @@
-# Welcome to React Router!
+# Welcome to Remix!
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern, production-ready template for building full-stack React applications using Remix.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/remix)
 
 ## Features
 
@@ -12,7 +12,7 @@ A modern, production-ready template for building full-stack React applications u
 - 🔄 Data loading and mutations
 - 🔒 TypeScript by default
 - 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 📖 [Remix docs](https://remix.run/docs)
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ A modern, production-ready template for building full-stack React applications u
 Install the dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Development
@@ -29,7 +29,7 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -39,7 +39,7 @@ Your application will be available at `http://localhost:5173`.
 Create a production build:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Deployment
@@ -68,11 +68,11 @@ The containerized application can be deployed to any platform that supports Dock
 
 If you're familiar with deploying Node applications, the built-in app server is production-ready.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the output of `pnpm run build`
 
 ```
 ├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── pnpm-lock.yaml
 ├── build/
 │   ├── client/    # Static assets
 │   └── server/    # Server-side code
@@ -84,4 +84,4 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ using Remix.
