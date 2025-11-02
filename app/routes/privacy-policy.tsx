@@ -1,11 +1,11 @@
 // app/routes/privacy-policy.tsx
 import React from "react";
 
-// page layout pieces
+//Other Components 
 import Header_ArticleDetails from "../components/Header_ArticleDetails";
 import Footer from "../components/Footer";
 
-// your reusable component (file below)
+// Our reusable components
 import PrivacyPolicy from "../components/privacy-policy";
 import ContactUs from "~/components/ContactUs";
 

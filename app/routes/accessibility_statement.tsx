@@ -1,7 +1,7 @@
 // app/routes/accessibility-statement.tsx
 import React from "react";
 
-// page layout pieces
+// Importing other components
 import Header_ArticleDetails from "../components/Header_ArticleDetails";
 import Footer from "../components/Footer";
 
