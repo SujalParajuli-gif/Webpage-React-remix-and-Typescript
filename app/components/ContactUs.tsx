@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 // main contact us component
 const ContactUs: React.FC = () => {
@@ -59,9 +60,11 @@ const ContactUs: React.FC = () => {
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
               accordance with{" "}
-              <a href="#" className="text-[#4577E4] font-semibold underline">
+              
+              <Link
+              to="/privacy-policy" className="text-[#4577E4] font-semibold underline">
                 the Privacy Policy
-              </a>
+              </Link>
               . I am not obligated to provide the information in accordance with
               the law, but without providing the information we will not be able
               to contact you or handle your request.

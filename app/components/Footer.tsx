@@ -48,14 +48,14 @@ const Footer = () => {
                 Database
               </Link>
             </li>
-           <li>
-  <Link
-    to="/accessibility_statement"
-    className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
-  >
-    Accessibility Statement
-  </Link>
-</li>
+            <li>
+              <Link
+                to="/accessibility_statement"
+                className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+              >
+                Accessibility Statement
+              </Link>
+            </li>
 
             <li>
               {/* internal link to the Privacy Policy page */}
@@ -68,8 +68,8 @@ const Footer = () => {
             </li>
             <li>
               {/* placeholder until you have a route */}
-              <Link 
-              to="/ContactUs"
+              <Link
+                to="/ContactUs"
                 className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
               >
                 Contact Us
@@ -82,24 +82,43 @@ const Footer = () => {
         <div className="w-47 text-[13px]">
           <h3 className="font-bold mb-4 text-[16px]">Our Products</h3>
           <ul className="space-y-4">
-            {[
-              "VIBEZ Project",
-              "Mflow ERP",
-              "TextMe SMS - Mailing System",
-              "Ship OS - Shipment Management System",
-            ].map((item, idx) => (
-              <li key={idx}>
-                <a
-                  href="#"
-                  className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
+            <li>
+              <Link
+                to="/vibez"
+                className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+              >
+                VIBEZ Project
+              </Link>
+            </li>
+            <li>
+              <a
+                href="https://mflow.co.il/"
+                className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+                
+              >
+                Mflow ERP
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://textme.co.il/"
+                className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+                
+              >
+                TextMe SMS - Mailing System
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://app.shipos.co.il/login"
+                className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
+                
+              >
+                Ship OS - Shipment Management System
+              </a>
+            </li>
           </ul>
         </div>
-
         {/* Column 4: Logo and About */}
         <div className="flex flex-col items-start w-70">
           <img
@@ -118,7 +137,11 @@ const Footer = () => {
       <div className="relative z-10 bg-[#E9F3FF] border-t border-gray-100 py-3 flex justify-between items-center px-70 text-xs mb-2">
         <div className="flex items-center gap-2">
           <span>Developed by Matat Technologies LTD</span>
-          <img src="/images/new-logo.svg" alt="New Logo" className="h-4 w-auto" />
+          <img
+            src="/images/new-logo.svg"
+            alt="New Logo"
+            className="h-4 w-auto"
+          />
         </div>
         <p>All rights reserved to Mata Technologies Ltd.</p>
       </div>
