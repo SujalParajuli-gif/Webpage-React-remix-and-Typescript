@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+
 // props type for closing from parent (Header)
 type LeaveMsgProps = {
   onClose: () => void;
@@ -7,84 +8,93 @@ type LeaveMsgProps = {
 
 // main contact us component
 const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
+  // stop click inside the panel from closing the overlay
+  function stop(e: React.MouseEvent) {
+    e.stopPropagation();
+  }
+
   return (
     // Fullscreen overlay for popup centering
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      // added click on overlay that closes popup
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+      onClick={onClose} // added click on overlay that closes popup
       role="dialog"
+      aria-modal="true"
+      aria-labelledby="leave-msg-title"
     >
       {/* Popup container */}
       <section
-        className="relative bg-white rounded-2xl shadow-2xl p-20 h-180  max-w-160"
-        // prevent overlay close when clicking inside the panel
-        onClick={(e) => e.stopPropagation()}
+        className="relative h-180 max-w-160 rounded-2xl bg-white p-20 shadow-2xl"
+        onClick={stop} // prevent overlay close when clicking inside the panel
       >
         {/* Cross close button on top-left */}
         <button
-          className="absolute top-4 left-5 text-3xl text-gray-400 hover:text-gray-700 transition-all duration-200"
+          type="button"
+          className="absolute left-5 top-4 text-3xl text-gray-400 transition-all duration-200 hover:text-gray-700"
           onClick={onClose}
+          aria-label="Close"
         >
           &times;
         </button>
 
         {/* heading text */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-[#4577E4] mb-10 text-center">
+        <h2
+          id="leave-msg-title"
+          className="mb-10 text-center text-3xl font-semibold text-[#4577E4] md:text-4xl"
+        >
           Contact Us
         </h2>
 
         {/* form part */}
         <form
-          className="w-full bg-white space-y-6 text-[#281776] "
+          className="w-full space-y-6 bg-white text-[#281776]"
           onSubmit={(e) => e.preventDefault()}
         >
           {/* input fields for name and phone */}
-          <div className="flex flex-col md:flex-row md:space-x-6 ">
+          <div className="flex flex-col md:flex-row md:space-x-6">
             {/* full name input */}
-            <div className="flex-1 mb-4 md:mb-0">
-              <label className="block text-lg  mb-2">Full Name</label>
+            <div className="mb-4 flex-1 md:mb-0">
+              <label className="mb-2 block text-lg">Full Name</label>
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-xl"
+                className="w-full rounded-lg border border-gray-200 px-4 py-2 shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
             </div>
 
             {/* phone input */}
             <div className="flex-1">
-              <label className="block text-lg  mb-2">Phone</label>
+              <label className="mb-2 block text-lg">Phone</label>
               <input
                 type="text"
                 placeholder="phone"
-                className="w-full border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-xl"
+                className="w-full rounded-lg border border-gray-200 px-4 py-2 shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
             </div>
           </div>
 
           {/* message input area */}
           <div>
-            <label className="block text-lg mb-2">Message</label>
+            <label className="mb-2 block text-lg">Message</label>
             <textarea
               placeholder="message"
               rows={5}
-              className="w-full border border-gray-200 rounded-lg px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-xl"
-            ></textarea>
+              className="w-full resize-none rounded-lg border border-gray-200 px-4 py-2 shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300"
+            />
           </div>
 
           {/* privacy policy section */}
-          <div className="flex items-start space-x-2 text-lg text-[#281776] ">
+          <div className="flex items-start space-x-2 text-lg text-[#281776]">
             <input type="checkbox" className="mt-1" />
             <p className="leading-relaxed md:text-[15px]">
               The information you provide will be stored and processed for
-              commercial purposes in Matat Technologies Ltd.'s databases in
-             {" "}
+              commercial purposes in Matat Technologies Ltd.'s databases in{" "}
               <Link
                 to="/privacy-policy"
                 onClick={onClose} // closes the modal first
-                className="text-[#4577E4] font-semibold underline"
+                className="font-semibold text-[#4577E4] underline"
               >
-                 accordance with the Privacy Policy
+                accordance with the Privacy Policy
               </Link>
               . I am not obligated to provide the information in accordance with
               the law, but without providing the information we will not be able
@@ -95,7 +105,7 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
           {/* send button */}
           <button
             type="submit"
-            className="max-w-44 h-12 md:w-1/2 mx-auto block bg-[#4577E4] text-white font-semibold py-2 rounded-full hover:scale-105 transition-all duration-200"
+            className="mx-auto block h-12 max-w-44 rounded-full bg-[#4577E4] px-6 py-2 font-semibold text-white transition-all duration-200 hover:scale-105 md:w-1/2"
           >
             send
           </button>

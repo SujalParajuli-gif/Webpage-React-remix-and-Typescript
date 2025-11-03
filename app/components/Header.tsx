@@ -22,9 +22,7 @@ export default function Header() {
   // get current route path to apply underline dynamically
   const location = useLocation();
 
-  // ------------------------------------------
   // code color behavior
-  // ------------------------------------------
   // This map defines how the nav text, icons, and the "Leave a Message"/phone text behave
   // when at top vs after scroll for each route.
   const pageMap: Record<
@@ -86,18 +84,23 @@ export default function Header() {
     },
   };
 
-  // pick settings for current page
-  const cfg = pageMap[location.pathname] ?? pageMap["*"];
+  // pick settings for current page (use "*" when path not listed)
+  let pageCfg = pageMap[location.pathname]; // try exact path first
+  if (!pageCfg) {
+    pageCfg = pageMap["*"]; // fallback behavior (acts like home)
+  }
 
-  // small helper to map our tokens to Tailwind classes
-  const toTextClass = (c: "white" | "black" | "blue" | "inherit") =>
-    c === "white"
-      ? "text-white"
-      : c === "black"
-      ? "text-black"
-      : c === "blue"
-      ? "text-blue-600" 
-      : "";
+  // small helper: turn our tokens into Tailwind classes
+  function toTextClass(c: "white" | "black" | "blue" | "inherit") {
+    // "white" => white text
+    if (c === "white") return "text-white";
+    // "black" => black text
+    if (c === "black") return "text-black";
+    // "blue" => site blue
+    if (c === "blue") return "text-blue-600";
+    // "inherit" => keep parent color
+    return "";
+  }
 
   // controls LeaveMsg popup visibility
   const [showLeaveMsg, setShowLeaveMsg] = useState(false);
@@ -112,9 +115,7 @@ export default function Header() {
           // spacing
           "px-4 md:px-12 pb-2 pt-4",
           // styles based on scroll
-          isAtTop
-            ? "bg-transparent shadow-none"
-            : "bg-white/90 backdrop-blur-md shadow-lg",
+          isAtTop ? "bg-transparent shadow-none" : "bg-white/90 backdrop-blur-md shadow-lg",
         ].join(" ")}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
@@ -123,11 +124,7 @@ export default function Header() {
             <div className="flex flex-col gap-1">
               <Link to="/">
                 {/* using Link instead of a tag for Home too */}
-                <img
-                  src="/logos/matat-logo.png"
-                  alt="Matat Logo"
-                  className="w-52"
-                />
+                <img src="/logos/matat-logo.png" alt="Matat Logo" className="w-52" />
               </Link>
             </div>
           </div>
@@ -138,7 +135,7 @@ export default function Header() {
             className={[
               "flex space-x-9 text-base font-bold ",
               // color from pageMap (top vs scrolled)
-              isAtTop ? toTextClass(cfg.navTop) : toTextClass(cfg.navScrolled),
+              isAtTop ? toTextClass(pageCfg.navTop) : toTextClass(pageCfg.navScrolled),
               // smooth color change
               "transition-colors duration-10 ease-in-out",
             ].join(" ")}
@@ -157,9 +154,7 @@ export default function Header() {
             <Link
               to="/vibez"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
-                ${
-                  location.pathname === "/vibez" ? "after:w-full" : "after:w-0"
-                } 
+                ${location.pathname === "/vibez" ? "after:w-full" : "after:w-0"} 
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out `}
             >
               VIBEZ Project
@@ -169,11 +164,7 @@ export default function Header() {
             <Link
               to="/article"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px]
-                ${
-                  location.pathname === "/article"
-                    ? "after:w-full"
-                    : "after:w-0"
-                }
+                ${location.pathname === "/article" ? "after:w-full" : "after:w-0"}
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out`}
             >
               Database
@@ -192,9 +183,7 @@ export default function Header() {
                   className={[
                     "text-2xl transition-transform duration-300 ease-in-out group-hover:scale-125",
                     // color from map (white at top on "/")
-                    isAtTop
-                      ? toTextClass(cfg.mailIconTop)
-                      : toTextClass(cfg.mailIconScrolled),
+                    isAtTop ? toTextClass(pageCfg.mailIconTop) : toTextClass(pageCfg.mailIconScrolled),
                   ].join(" ")}
                 />
 
@@ -202,8 +191,8 @@ export default function Header() {
                   className={[
                     // text near the icon: follows map (inherit means use nav color above)
                     isAtTop
-                      ? toTextClass(cfg.msgPhoneTextTop)
-                      : toTextClass(cfg.msgPhoneTextScrolled),
+                      ? toTextClass(pageCfg.msgPhoneTextTop)
+                      : toTextClass(pageCfg.msgPhoneTextScrolled),
                     // DEFAULT variant inherits nav color
                     "transition-colors duration-200",
                   ].join(" ")}
@@ -219,17 +208,15 @@ export default function Header() {
                   className={[
                     "text-base transition-transform duration-300 ease-in-out group-hover:scale-125",
                     // color from map (white at top on "/")
-                    isAtTop
-                      ? toTextClass(cfg.phoneIconTop)
-                      : toTextClass(cfg.phoneIconScrolled),
+                    isAtTop ? toTextClass(pageCfg.phoneIconTop) : toTextClass(pageCfg.phoneIconScrolled),
                   ].join(" ")}
                 />
                 <span
                   className={[
                     // text near the icon: follows map (inherit means use nav color above)
                     isAtTop
-                      ? toTextClass(cfg.msgPhoneTextTop)
-                      : toTextClass(cfg.msgPhoneTextScrolled),
+                      ? toTextClass(pageCfg.msgPhoneTextTop)
+                      : toTextClass(pageCfg.msgPhoneTextScrolled),
                     // DEFAULT variant inherits nav color
                     "transition-colors duration-200",
                   ].join(" ")}

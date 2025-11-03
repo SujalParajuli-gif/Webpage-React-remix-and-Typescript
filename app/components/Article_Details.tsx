@@ -61,8 +61,14 @@ const Article_Details: React.FC = () => {
     );
   }
 
-  // small related list left side = first 4 titles (skip current topic if it exists)
-  const related = (list as ListItem[]).filter((it) => it.paths !== paths).slice(0, 4);
+  // simple intern-style: keep only 4, skip current, quick de-dupe by id
+  const related = Array.from(
+    new Map(
+      (list as ListItem[])
+        .filter((it) => it.paths !== paths) // skip the current article
+        .map((it) => [it.id, it])           // Map de-dupes by id
+    ).values()
+  ).slice(0, 4);                             // hard limit to 4
 
   return (
     <div className="bg-white">
@@ -108,9 +114,12 @@ const Article_Details: React.FC = () => {
               className=" lg:sticky lg:top-[var(--stick-top)] h-max"
               style={{ ["--stick-top" as any]: "150px" }}
             >
-              <aside className="space-y-10 ">
+              <aside className="space-y-10 max-h-120">
                 {/* Related Articles card */}
-                <div className="h-120 rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-88 p-6">
+                <div
+                  key={paths} // remount on route change so nothing stacks
+                  className="max-h-120 rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-88 p-6 overflow-hidden"
+                >
                   <h3 className="mb-4 text-center text-[15px] font-bold text-gray-400">
                     Related Articles
                   </h3>
@@ -118,16 +127,19 @@ const Article_Details: React.FC = () => {
                   <ul className="text-[18px]">
                     {related.map((it, idx) => (
                       <li key={it.id} className="py-3">
-                        <div className="flex items-start gap-2">
-                          <span className="text-[15px] text-black">{idx + 1}</span>
+                       
+                        <div className="flex items-start gap-2 min-w-0">
+                          <span className="text-[15px] text-black flex-shrink-0">{idx + 1}</span>
                           <Link
                             to={`/article/${it.paths}`}
-                            className="leading-6 hover:text-[#2d5fcc]"
+                            className="leading-6 hover:text-[#2d5fcc]  block max-w-full"
+                            title={it.title}
                           >
                             {it.title}
                           </Link>
                         </div>
-                        <Divider />
+                        {/* no divider after the last visible item */}
+                        {idx < related.length - 1 && <Divider />}
                       </li>
                     ))}
                   </ul>
@@ -192,59 +204,71 @@ const Article_Details: React.FC = () => {
                   );
                 }
 
-                if (b.type === "ol") {
-                  // choose start number (continue or reset)
-                  const start = b.continue ? stepNo : 1;
-                  const count = b.items?.length ?? 0;
-                  stepNo = start + count;
+              // ordered list (simple) 
+if (b.type === "ol") {
+  const items = b.items ?? [];
+  const start = b.continue ? stepNo : 1;
+  stepNo = start + items.length; // update for next block
 
-                  return (
-                    <ol
-                      key={i}
-                      start={start}
-                      className="mb-8 list-decimal pl-6 text-[16px] leading-6"
-                    >
-                      {b.items?.map((t, j) => {
-                        // bold the first chunk before " – " or ":" then render as HTML
-                        const html = t.replace(
-                          /^(.*?)(\s-\s|:)/,
-                          "<strong>$1</strong>$2"
-                        );
-                        return (
-                          <li
-                            key={j}
-                            className="mb-3 marker:text-blue-800 marker:font-semibold"
-                            dangerouslySetInnerHTML={{ __html: html }}
-                          />
-                        );
-                      })}
-                    </ol>
-                  );
-                }
+  return (
+    <ol key={i} start={start} className="mb-8 list-decimal pl-6 text-[16px] leading-6">
+      {items.map((t, j) => {
+        // make first part bold if there is " - " or ":"
+        const dash = t.indexOf(" - ");
+        const colon = t.indexOf(":");
+        const cut = dash !== -1 ? dash : (colon !== -1 ? colon : -1);
 
-                if (b.type === "ul") {
-                  return (
-                    <ul
-                      key={i}
-                      className="mb-8 list-disc pl-6 text-[16px] leading-6"
-                    >
-                      {b.items?.map((t, j) => {
-                        // same bolding for bullets
-                        const html = t.replace(
-                          /^(.*?)(\s–\s|:)/,
-                          "<strong>$1</strong>$2"
-                        );
-                        return (
-                          <li
-                            key={j}
-                            className="mb-3 marker:text-[#2d5fcc] marker:font-semibold"
-                            dangerouslySetInnerHTML={{ __html: html }}
-                          />
-                        );
-                      })}
-                    </ul>
-                  );
-                }
+        if (cut === -1) {
+          return (
+            <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
+              {t}
+            </li>
+          );
+        }
+
+        return (
+          <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
+            <strong>{t.slice(0, cut)}</strong>
+            {t.slice(cut)}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+//unordered list 
+if (b.type === "ul") {
+  const items = b.items ?? [];
+
+  return (
+    <ul key={i} className="mb-8 list-disc pl-6 text-[16px] leading-6">
+      {items.map((t, j) => {
+        // make first part bold if there is " – " (en dash) or ":"
+        const EN = " - ";
+        const hasEn = t.indexOf(EN);
+        const colon = t.indexOf(":");
+        const cut = hasEn !== -1 ? hasEn : (colon !== -1 ? colon : -1);
+
+        if (cut === -1) {
+          return (
+            <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
+              {t}
+            </li>
+          );
+        }
+
+        return (
+          <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
+            <strong>{t.slice(0, cut)}</strong>
+            {t.slice(cut)}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 
                 if (b.type === "img") {
                   return <img key={i} src={b.src} alt={b.alt ?? ""} className="mb-13" />;
