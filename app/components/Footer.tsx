@@ -69,7 +69,7 @@ const Footer = () => {
             <li>
               {/* placeholder until you have a route */}
               <Link
-                to="/ContactUs"
+                to="/ContactUsV2"
                 className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
               >
                 Contact Us

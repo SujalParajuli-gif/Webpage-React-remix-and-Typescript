@@ -78,13 +78,13 @@ const LeaveMsg: React.FC<LeaveMsgProps> = ({ onClose }) => {
             <p className="leading-relaxed md:text-[15px]">
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
-              accordance with{" "}
+             {" "}
               <Link
                 to="/privacy-policy"
                 onClick={onClose} // closes the modal first
                 className="text-[#4577E4] font-semibold underline"
               >
-                the Privacy Policy
+                 accordance with the Privacy Policy
               </Link>
               . I am not obligated to provide the information in accordance with
               the law, but without providing the information we will not be able

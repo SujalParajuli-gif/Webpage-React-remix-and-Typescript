@@ -8,6 +8,6 @@ export default [
   route("privacy-policy", "routes/privacy-policy.tsx"),
 
   route("accessibility_statement", "routes/accessibility_statement.tsx"),
-
+route("ContactUsV2","routes/ContactUsV2.tsx"),
 
 ] satisfies RouteConfig;

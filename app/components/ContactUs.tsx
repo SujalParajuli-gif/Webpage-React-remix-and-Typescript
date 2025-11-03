@@ -59,11 +59,11 @@ const ContactUs: React.FC = () => {
             <p className="leading-relaxed text-[13px] md:text-[14px]">
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
-              accordance with{" "}
+              {" "}
               
               <Link
               to="/privacy-policy" className="text-[#4577E4] font-semibold underline">
-                the Privacy Policy
+                 accordance with the Privacy Policy
               </Link>
               . I am not obligated to provide the information in accordance with
               the law, but without providing the information we will not be able
