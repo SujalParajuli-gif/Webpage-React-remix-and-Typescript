@@ -16,7 +16,7 @@ type ListItem = {
 
 // one block of content in the detail page
 type ContentBlock = {
-  type: "p" | "h2" | "ol" | "ul" | "img"; 
+  type: "p" | "h2" | "ol" | "ul" | "img";
   text?: string;
   items?: string[]; //used by ol and ul
   src?: string;
@@ -61,14 +61,15 @@ const Article_Details: React.FC = () => {
     );
   }
 
-  // simple intern-style: keep only 4, skip current, quick de-dupe by id
+  // raise how many related items we keep
+  const RELATED_LIMIT = 4; //change to the limit that we want rn its 4 and our json data has 5 datas and this excludes current selection so it shows 4 data
   const related = Array.from(
     new Map(
       (list as ListItem[])
         .filter((it) => it.paths !== paths) // skip the current article
         .map((it) => [it.id, it])           // Map de-dupes by id
     ).values()
-  ).slice(0, 4);                             // hard limit to 4
+  ).slice(0, RELATED_LIMIT);                 // use the limit here
 
   return (
     <div className="bg-white">
@@ -127,7 +128,6 @@ const Article_Details: React.FC = () => {
                   <ul className="text-[18px]">
                     {related.map((it, idx) => (
                       <li key={it.id} className="py-3">
-                       
                         <div className="flex items-start gap-2 min-w-0">
                           <span className="text-[15px] text-black flex-shrink-0">{idx + 1}</span>
                           <Link
@@ -204,71 +204,70 @@ const Article_Details: React.FC = () => {
                   );
                 }
 
-              // ordered list (simple) 
-if (b.type === "ol") {
-  const items = b.items ?? [];
-  const start = b.continue ? stepNo : 1;
-  stepNo = start + items.length; // update for next block
+                // ordered list (simple)
+                if (b.type === "ol") {
+                  const items = b.items ?? [];
+                  const start = b.continue ? stepNo : 1;
+                  stepNo = start + items.length; // update for next block
 
-  return (
-    <ol key={i} start={start} className="mb-8 list-decimal pl-6 text-[16px] leading-6">
-      {items.map((t, j) => {
-        // make first part bold if there is " - " or ":"
-        const dash = t.indexOf(" - ");
-        const colon = t.indexOf(":");
-        const cut = dash !== -1 ? dash : (colon !== -1 ? colon : -1);
+                  return (
+                    <ol key={i} start={start} className="mb-8 list-decimal pl-6 text-[16px] leading-6">
+                      {items.map((t, j) => {
+                        // make first part bold if there is " - " or ":"
+                        const dash = t.indexOf(" - ");
+                        const colon = t.indexOf(":");
+                        const cut = dash !== -1 ? dash : (colon !== -1 ? colon : -1);
 
-        if (cut === -1) {
-          return (
-            <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
-              {t}
-            </li>
-          );
-        }
+                        if (cut === -1) {
+                          return (
+                            <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
+                              {t}
+                            </li>
+                          );
+                        }
 
-        return (
-          <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
-            <strong>{t.slice(0, cut)}</strong>
-            {t.slice(cut)}
-          </li>
-        );
-      })}
-    </ol>
-  );
-}
+                        return (
+                          <li key={j} className="mb-3 marker:text-blue-800 marker:font-semibold">
+                            <strong>{t.slice(0, cut)}</strong>
+                            {t.slice(cut)}
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  );
+                }
 
-//unordered list 
-if (b.type === "ul") {
-  const items = b.items ?? [];
+                // unordered list
+                if (b.type === "ul") {
+                  const items = b.items ?? [];
 
-  return (
-    <ul key={i} className="mb-8 list-disc pl-6 text-[16px] leading-6">
-      {items.map((t, j) => {
-        // make first part bold if there is " – " (en dash) or ":"
-        const EN = " - ";
-        const hasEn = t.indexOf(EN);
-        const colon = t.indexOf(":");
-        const cut = hasEn !== -1 ? hasEn : (colon !== -1 ? colon : -1);
+                  return (
+                    <ul key={i} className="mb-8 list-disc pl-6 text-[16px] leading-6">
+                      {items.map((t, j) => {
+                        // make first part bold if there is " – " (en dash) or ":"
+                        const EN = " - ";
+                        const hasEn = t.indexOf(EN);
+                        const colon = t.indexOf(":");
+                        const cut = hasEn !== -1 ? hasEn : (colon !== -1 ? colon : -1);
 
-        if (cut === -1) {
-          return (
-            <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
-              {t}
-            </li>
-          );
-        }
+                        if (cut === -1) {
+                          return (
+                            <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
+                              {t}
+                            </li>
+                          );
+                        }
 
-        return (
-          <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
-            <strong>{t.slice(0, cut)}</strong>
-            {t.slice(cut)}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
+                        return (
+                          <li key={j} className="mb-3 marker:text-[#2d5fcc] marker:font-semibold">
+                            <strong>{t.slice(0, cut)}</strong>
+                            {t.slice(cut)}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  );
+                }
 
                 if (b.type === "img") {
                   return <img key={i} src={b.src} alt={b.alt ?? ""} className="mb-13" />;

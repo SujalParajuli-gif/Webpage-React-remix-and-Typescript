@@ -85,5 +85,35 @@
             "E commerce"
         ],
         "paths": "install-anydesk"
+    },
+    {
+        "id": "a4",
+        "title": "Optimize product images for faster e-commerce pages",
+        "summary": "Compression formats, lazy loading, and CDN tips to speed up product pages.",
+        "labels": [
+            "Performance",
+            "E commerce"
+        ],
+        "paths": "sales-site-menu-best-practices"
+    },
+    {
+        "id": "a5",
+        "title": "Optimize product images for faster e-commerce pages",
+        "summary": "Quick wins: modern formats, lazy loading, and CDNs to speed up product pages and boost conversions.",
+        "labels": [
+            "Performance",
+            "E commerce"
+        ],
+        "paths": "install-anydesk"
+    },
+    {
+        "id": "a6",
+        "title": "Add WhatsApp chat to your store — simple setup",
+        "summary": "Step-by-step to add a WhatsApp floating button, set business hours, and track clicks.",
+        "labels": [
+            "Marketing",
+            "UX"
+        ],
+        "paths": "sales-site-menu-best-practices"
     }
 ]
