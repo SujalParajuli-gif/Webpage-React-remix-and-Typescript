@@ -60,17 +60,7 @@ export default function Header() {
       phoneIconTop: "blue",
       phoneIconScrolled: "blue",
     },
-    // Vibez page
-    "/vibez": {
-      navTop: "white",
-      navScrolled: "black",
-      msgPhoneTextTop: "inherit",
-      msgPhoneTextScrolled: "inherit",
-      mailIconTop: "white",
-      mailIconScrolled: "blue",
-      phoneIconTop: "white",
-      phoneIconScrolled: "blue",
-    },
+    
     // Fallback (acts like home)
     "*": {
       navTop: "white",
@@ -152,7 +142,7 @@ export default function Header() {
 
             {/* CHANGED: use Link so it can get active underline */}
             <Link
-              to="/vibez"
+              to="/Vibez"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
                 ${location.pathname === "/vibez" ? "after:w-full" : "after:w-0"} 
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out `}

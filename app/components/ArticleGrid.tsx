@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router"; // used for navigation
+import { Link, useNavigate } from "react-router"; // used for navigation + filter links
 import { FiArrowLeft } from "react-icons/fi"; // left arrow icon
 import items from "../data/articles.json"; // JSON data file
 
@@ -8,7 +8,7 @@ type ArticleItem = {
   id: string;        // unique id
   title: string;     // heading text
   summary: string;   // short text under the title
-  labels?: string[]; // tag chips
+  labels?: string[]; // tag chips (used for label filter)
   paths: string;     // URL part used for /article/:paths
 };
 
@@ -37,7 +37,7 @@ const LeftAction: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 // Card shell for spacing, radius, and shadow
 const CardShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex h-60 w-95 ml-19 flex-col rounded-2xl bg-white p-5 shadow-[0_20px_40px_rgba(69,119,228,0.12)] ring-1 ring-black/5">
+    <div className="flex h-60 w-95 ml-19 flex-col rounded-xl bg-white p-5 shadow-[0_20px_40px_rgba(69,119,228,0.12)] ">
       {children}
     </div>
   );
@@ -88,8 +88,9 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
         {/* right: labels (chips) */}
         <div className="post-cat flex flex-wrap justify-end gap-x-3 gap-y-2 pl-4">
           {item.labels?.map((t) => (
-            <span
+            <Link
               key={t}
+              to={{ pathname: "/article", search: `?label=${encodeURIComponent(t)}` }} // This makes clicking a chip filters the list
               className="
                 rounded-full px-3 py-1 text-[13px]
                 bg-[#e2f1ff] text-black
@@ -98,9 +99,10 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
                 hover:bg-[color:var(--accent)] hover:text-white
               "
               style={{ ["--accent" as any]: ACCENT }}
+              title={`Filter by ${t}`}
             >
               {t}
-            </span>
+            </Link>
           ))}
         </div>
       </div>
@@ -108,17 +110,26 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
   );
 };
 
+// helper used for case-insensitive label compare
+const norm = (s: string) => s.toLowerCase().trim();
+
 // Renders all cards from JSON in a 1/2/3 column grid
-export default function ArticleGrid() {
+export default function ArticleGrid({ selectedLabel = "" }: { selectedLabel?: string }) {
   // the grid's gap controls spacing between cards
-  const list = items as ArticleItem[];
+  // this function filters by exact label (case-insensitive). If no label is active or clicked, it show all.
+  const list = (items as ArticleItem[]).filter((it) => {
+    if (!selectedLabel) return true;
+    const ls = it.labels ?? [];
+    return ls.some((l) => norm(l) === norm(selectedLabel));
+  });
 
   return (
     <section className="bg-white py-10">
       <div className="mx-auto max-w-9xl px-5 sm:px-6 lg:px-0">
         <div className="grid grid-cols-1 gap-17 md:grid-cols-2 lg:grid-cols-3">
-          {list.map((it) => (
-            <TextCard key={it.id} item={it} />
+          {list.map((it, idx) => (
+            // some JSON ids repeat; this logic appends idx to keep keys unique
+            <TextCard key={`${it.id}-${idx}`} item={it} />
           ))}
         </div>
       </div>

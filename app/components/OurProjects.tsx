@@ -119,7 +119,7 @@ export default function OurProduct() {
               onClick={onLoadMore}           // reveal more items
               disabled={loading}             // lock during delay
               aria-busy={loading}            // a11y hint
-              className={`inline-flex items-center gap-3 rounded-full px-6 py-3 font-semibold text-white shadow transition
+              className={`inline-flex items-center gap-3 rounded-full px-14 py-3.5 font-semibold text-white shadow transition
                 bg-blue-600 hover:opacity-90
                 ${loading ? "cursor-not-allowed opacity-70 animate-pulse" : ""}`}
             >

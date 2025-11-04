@@ -3,15 +3,19 @@ import Header from "./Header"; //importing our existing header
 import { FiSearch } from "react-icons/fi";
 import ArticleIconGrid from "./ArticleIconGrid";
 import ArticleGrid from "./ArticleGrid"; // added: grid that reads cards from JSON
-
+import { useSearchParams } from "react-router"; // Added: read ?label from URL
 
 const Article = () => {
+  // Added: pull ?label=... so we can filter ArticleGrid
+const [params] = useSearchParams();
+const selectedLabel = params.get("label")?.trim() ?? ""; // read active label from URL
+const displayTitle = selectedLabel || "Database";        // fallback when nothing active
+
   return (
     <>
     
       {/* We reused same header and the colors are handelded by map inside the header component it self*/}
       <Header />
-
 
       {/* Main content section for Database / Article */}
       <div className="bg-white py-10 md:py-14 w-8xl mr-25">
@@ -53,14 +57,15 @@ const Article = () => {
 
               {/* heading + search */}
               <div className="md:col-span-7 relative z-10">
-                <h1
-                  className="
-                    text-4xl md:text-5xl font-bold text-black
-                    drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]
-                  "
-                >
-                  Database
-                </h1>
+                          <h1
+            className="
+              text-4xl md:text-5xl font-bold text-black
+              drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]
+            "
+          >
+            {displayTitle}
+          </h1>
+
 
                 {/* search field */}
                 <form role="search" className="mt-8 md:mt-10">
@@ -82,7 +87,7 @@ const Article = () => {
               </div>
             </div>
 
-            {/* faint outer glow to mimic the long soft shadow in the screenshot */}
+            {/* faint outer glow  */}
             <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl" />
           </div>
         </div>
@@ -94,7 +99,8 @@ const Article = () => {
 
         {/*article cards loaded from /data/articles.json */}
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
-          <ArticleGrid />
+          {/* pass the selected label to filter the grid */}
+          <ArticleGrid selectedLabel={selectedLabel} />
         </div>
       </div>
     </>

@@ -115,6 +115,7 @@ const Article_Details: React.FC = () => {
               className=" lg:sticky lg:top-[var(--stick-top)] h-max"
               style={{ ["--stick-top" as any]: "150px" }}
             >
+
               <aside className="space-y-10 max-h-120">
                 {/* Related Articles card */}
                 <div
@@ -149,10 +150,13 @@ const Article_Details: React.FC = () => {
                       See all articles
                     </Link>
                   </div>
+                  
                 </div>
 
+              
+              </aside>
                 {/* Promo card with background image */}
-                <div className="w-88 h-65 relative overflow-hidden rounded-lg border border-black/5 p-8 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500">
+                <div className="w-88 h-65 relative overflow-hidden rounded-lg border border-black/5 p-8 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500 mt-10 ">
                   <img
                     src="/images/sidebarbg.png"
                     alt=""
@@ -177,7 +181,6 @@ const Article_Details: React.FC = () => {
                     </a>
                   </div>
                 </div>
-              </aside>
             </div>
           </div>
 
@@ -281,8 +284,8 @@ const Article_Details: React.FC = () => {
       </div>
 
       {/* more categories section */}
-      <section className="mb-50">
-        <div className="mx-auto w-full px-5 sm:px-6 lg:px-8">
+      <section className="mb-50 ">
+        <div className="mx-auto w-full px-5 sm:px-6 lg:px-8 ">
           <hr className="mb-10 border-t border-black/10" />
           <h2 className="text-[16px] sm:text-[24px] font-bold mb-10 pl-65">More Categories</h2>
         </div>

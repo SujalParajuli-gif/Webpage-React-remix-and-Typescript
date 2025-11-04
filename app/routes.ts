@@ -9,5 +9,6 @@ export default [
 
   route("accessibility_statement", "routes/accessibility_statement.tsx"),
 route("ContactUsV2","routes/ContactUsV2.tsx"),
+route("Vibez","routes/Vibez.tsx"),
 
 ] satisfies RouteConfig;

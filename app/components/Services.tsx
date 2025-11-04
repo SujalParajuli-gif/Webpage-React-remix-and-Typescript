@@ -10,7 +10,7 @@ export default function Services() {
 
           {/* Why us? */}
           <div className="flex items-center justify-between gap-12 h-full min-h-[260px]">
-            <div className="max-w-sm">
+            <div className="max-w-">
               <h3 className="mb-3 text-xl font-semibold">Why us?</h3>
               <p className="text-[13px] leading-6 text-[rgba(0,0,0,0.5)] font-medium">
                 The graphics, interfaces, clearing, data tracking, all the parameters that are important
