@@ -76,10 +76,10 @@ const displayTitle = selectedLabel || "Database";        // fallback when nothin
                       placeholder="Type a search word"
                       className="
                         w-full rounded-full border-0 bg-white
-                        py-4 md:py-5 pl-12 pr-6
+                        py-4 md:py-3.5 pl-12 pr-6
                         shadow-[0_22px_45px_rgba(69,119,228,0.25)]
                         placeholder:text-gray-400
-                        focus:outline-none focus:ring-2 focus:ring-[#4577E4]/30
+                        focus:outline-none focus:ring-0 
                       "
                     />
                   </div>

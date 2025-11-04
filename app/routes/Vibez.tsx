@@ -1,15 +1,15 @@
 // app/routes/privacy-policy.tsx
-import React from "react";
 
 //Other Components 
 
 // Our reusable components
+import Header from "~/components/Header";
 import VIbez from "../components/VIbez";
 
 export default function PrivacyPolicyRoute() {
   return (
     <>
-      
+      <Header />
       <VIbez />
      
      
