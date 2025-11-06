@@ -5,9 +5,9 @@ import { Link } from "react-router";
 const ContactUs: React.FC = () => {
   return (
     // main section wrapper for the contact form
-    <section className="relative flex flex-col items-center justify-center bg-white text-[#1F1F1F]">
+    <section className="relative flex flex-col items-center justify-center bg-white text-[#281776]">
       {/* heading text */}
-      <h2 className="text-3xl md:text-4xl font-semibold text-[#4577E4] mb-10">
+      <h2 className="text-3xl font-extrabold text-[#4577E4] mb-10">
         Contact Us
       </h2>
 
@@ -22,7 +22,7 @@ const ContactUs: React.FC = () => {
           <div className="flex flex-col md:flex-row md:space-x-6  ">
             {/* full name input */}
             <div className="flex-1 mb-4 md:mb-0 ">
-              <label className="block text-lg font-semibold mb-2">
+              <label className="block text-[17px] font-light mb-2">
                 Full Name
               </label>
               <input
@@ -34,7 +34,7 @@ const ContactUs: React.FC = () => {
 
             {/* phone input */}
             <div className="flex-1">
-              <label className="block text-lg font-semibold mb-2">Phone</label>
+              <label className="block text-[17px] font-light mb-2">Phone</label>
               <input
                 type="text"
                 placeholder="phone"
@@ -45,7 +45,7 @@ const ContactUs: React.FC = () => {
 
           {/* message input area */}
           <div>
-            <label className="block text-lg font-semibold mb-2">Message</label>
+            <label className="block text-[17px] font-lightmb-2">message</label>
             <textarea
               placeholder="message"
               rows={5}
@@ -54,15 +54,15 @@ const ContactUs: React.FC = () => {
           </div>
 
           {/* privacy policy section */}
-          <div className="flex items-start space-x-2 text-lg text-[#1F1F1F]">
+          <div className="flex items-start space-x-2 text-[#281776]">
             <input type="checkbox" className="mt-1" />
-            <p className="leading-relaxed text-[13px] md:text-[14px]">
+            <p className="leading-relaxed text-[13px] md:text-[15px] ">
               The information you provide will be stored and processed for
               commercial purposes in Matat Technologies Ltd.'s databases in
               {" "}
               
               <Link
-              to="/privacy-policy" className="text-[#4577E4] font-semibold underline">
+              to="/privacy-policy" className="text-[#4577E4] font-extrabold underline">
                  accordance with the Privacy Policy
               </Link>
               . I am not obligated to provide the information in accordance with

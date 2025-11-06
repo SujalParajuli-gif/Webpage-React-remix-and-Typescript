@@ -60,7 +60,7 @@ export default function Header() {
       phoneIconTop: "blue",
       phoneIconScrolled: "blue",
     },
-    
+
     // Fallback (acts like home)
     "*": {
       navTop: "white",
@@ -105,7 +105,9 @@ export default function Header() {
           // spacing
           "px-4 md:px-12 pb-2 pt-4",
           // styles based on scroll
-          isAtTop ? "bg-transparent shadow-none" : "bg-white/90 backdrop-blur-md shadow-lg",
+          isAtTop
+            ? "bg-transparent shadow-none"
+            : "bg-white/90 backdrop-blur-md shadow-lg",
         ].join(" ")}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
@@ -114,7 +116,11 @@ export default function Header() {
             <div className="flex flex-col gap-1">
               <Link to="/">
                 {/* using Link instead of a tag for Home too */}
-                <img src="/logos/matat-logo.png" alt="Matat Logo" className="w-52" />
+                <img
+                  src="/logos/matat-logo.png"
+                  alt="Matat Logo"
+                  className="w-52"
+                />
               </Link>
             </div>
           </div>
@@ -123,9 +129,11 @@ export default function Header() {
           {/*We add only color control + smooth transition here other things like inner items stays untouched */}
           <nav
             className={[
-              "flex space-x-9 text-base font-bold ",
+              "flex space-x-9 text-base font-extrabold text-[17px] ",
               // color from pageMap (top vs scrolled)
-              isAtTop ? toTextClass(pageCfg.navTop) : toTextClass(pageCfg.navScrolled),
+              isAtTop
+                ? toTextClass(pageCfg.navTop)
+                : toTextClass(pageCfg.navScrolled),
               // smooth color change
               "transition-colors duration-10 ease-in-out",
             ].join(" ")}
@@ -144,7 +152,9 @@ export default function Header() {
             <Link
               to="/Vibez"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
-                ${location.pathname === "/vibez" ? "after:w-full" : "after:w-0"} 
+                ${
+                  location.pathname === "/vibez" ? "after:w-full" : "after:w-0"
+                } 
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out `}
             >
               VIBEZ Project
@@ -154,7 +164,11 @@ export default function Header() {
             <Link
               to="/article"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px]
-                ${location.pathname === "/article" ? "after:w-full" : "after:w-0"}
+                ${
+                  location.pathname === "/article"
+                    ? "after:w-full"
+                    : "after:w-0"
+                }
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out`}
             >
               Database
@@ -173,7 +187,9 @@ export default function Header() {
                   className={[
                     "text-2xl transition-transform duration-300 ease-in-out group-hover:scale-125",
                     // color from map (white at top on "/")
-                    isAtTop ? toTextClass(pageCfg.mailIconTop) : toTextClass(pageCfg.mailIconScrolled),
+                    isAtTop
+                      ? toTextClass(pageCfg.mailIconTop)
+                      : toTextClass(pageCfg.mailIconScrolled),
                   ].join(" ")}
                 />
 
@@ -198,7 +214,9 @@ export default function Header() {
                   className={[
                     "text-base transition-transform duration-300 ease-in-out group-hover:scale-125",
                     // color from map (white at top on "/")
-                    isAtTop ? toTextClass(pageCfg.phoneIconTop) : toTextClass(pageCfg.phoneIconScrolled),
+                    isAtTop
+                      ? toTextClass(pageCfg.phoneIconTop)
+                      : toTextClass(pageCfg.phoneIconScrolled),
                   ].join(" ")}
                 />
                 <span

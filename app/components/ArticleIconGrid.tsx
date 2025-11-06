@@ -7,14 +7,12 @@ import { LuMegaphone } from "react-icons/lu";
 // simple helpers used in multiple places
 const norm = (s: string) => s.toLowerCase().trim();
 
-// base pieces (kepps hover behavior for non-active tiles)
+// base pieces (keeps hover behavior for non-active tiles)
 const baseCard =
   "group flex flex-col items-center justify-center rounded-lg min-h-[150px] w-full transition-colors";
 const inactiveCard =
   "bg-white shadow-[0_8px_22px_rgba(69,119,228,0.15)] hover:bg-[#4577E4] hover:shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
-const activeCard =
-  // solid blue bg + stronger shadow when selected
-  "bg-[#4577E4] shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
+const activeCard = "bg-[#4577E4] shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
 
 const iconBase = "text-[30px] transition-colors";
 const labelBase = "mt-3 text-[18px] leading-6 text-center transition-colors";
@@ -45,17 +43,22 @@ export default function ArticleIconGrid() {
             return (
               <Link
                 key={text}
-                to={{ pathname: "/article", search: `?label=${encodeURIComponent(text)}` }} // send label forr query
+                to={{
+                  pathname: "/article",
+                  search: `?label=${encodeURIComponent(text)}`,
+                }} // send label for query
                 className={[
                   baseCard,
-                  isActive ? activeCard : inactiveCard, // solid blue color and  normal color
+                  isActive ? activeCard : inactiveCard,
                 ].join(" ")}
               >
                 {/* icon color switches to white when active; otherwise black and turns white on hover */}
                 <Icon
                   className={[
                     iconBase,
-                    isActive ? "text-white" : "text-black group-hover:text-white",
+                    isActive
+                      ? "text-white"
+                      : "text-black group-hover:text-white",
                   ].join(" ")}
                 />
 
@@ -63,7 +66,9 @@ export default function ArticleIconGrid() {
                 <span
                   className={[
                     labelBase,
-                    isActive ? "text-white" : "text-black group-hover:text-white",
+                    isActive
+                      ? "text-white"
+                      : "text-black group-hover:text-white",
                   ].join(" ")}
                 >
                   {text}

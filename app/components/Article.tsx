@@ -16,7 +16,7 @@ const displayTitle = selectedLabel || "Database";        // fallback when nothin
     
       {/* We reused same header and the colors are handelded by map inside the header component it self*/}
       <Header />
-
+``
       {/* Main content section for Database / Article */}
       <div className="bg-white py-10 md:py-14 w-8xl mr-25">
         {/* container */}
@@ -59,7 +59,7 @@ const displayTitle = selectedLabel || "Database";        // fallback when nothin
               <div className="md:col-span-7 relative z-10">
                           <h1
             className="
-              text-4xl md:text-5xl font-bold text-black
+              text-4xl md:text-[55px] font-extrabold text-black
               drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]
             "
           >

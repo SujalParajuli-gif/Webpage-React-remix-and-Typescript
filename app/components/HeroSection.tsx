@@ -35,13 +35,13 @@ const HeroSection = () => {
 
 
             {/* Heading */}
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight text-gray-900">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl font-extrabold leading-tight text-gray-900">
               Do you need an efficient, high-quality and most importantly
               <span className="block">fast sales website?</span>
             </h1>
 
             {/* Sub text */}
-            <p className="mt-5 text-gray-600 max-w-md">
+            <p className="mt-5  text-[17px] text-gray-600 max-w-md ">
               Leave your details and we will get back to you as soon as possible.
             </p>
 

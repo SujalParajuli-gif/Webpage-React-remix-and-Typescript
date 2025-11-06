@@ -1,30 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 
 // This array stores all the client reviews that will be displayed in the slider
 const reviews = [
   {
-    text: "I built a sales website with Matat. Professionalism at the highest level, creative, knowledgeable, and experienced. The best choice I could make. Highly recommend!",
+    text: "I built a sales website with Matat. Professionalism at the highest level, creative, with great knowledge and experience.",
     name: "Stav Davidovich",
     title: "Jewelry Designer",
-    logo: "/images/sidebar/logo01.png",
+    logo: "/images/Customers/logo01.png",
   },
   {
-    text: "Their development team made my website faster and smoother than ever. Great service and communication.",
-    name: "Rina Cohen",
-    title: "Business Owner",
-    logo: "/images/sidebar/logo02.png",
+    text: "The only programmer who tolerates my craziness. Cannon, creative, almost like me and provides service. Always there when you need it.",
+    name: "Gilad Shimchi",
+    title: "",
+    logo: "/images/Customers/logo02.png",
   },
   {
-    text: "Absolutely fantastic! The design, communication, and delivery were perfect. I’m very happy with the outcome.",
-    name: "Amit Levi",
-    title: "UI/UX Specialist",
-    logo: "/images/sidebar/logo03.png",
+    text: "Professionals!!! Highly recommend. Great knowledge, serious service and all with a smile and a good atmosphere :)",
+    name: "Gili Greenberg",
+    title: "Offix",
+    logo: "/images/Customers/logo03.png",
   },
   {
-    text: "They understood our needs perfectly and created something beautiful and functional. Would love to work again!",
-    name: "Noa Ben-David",
-    title: "Marketing Manager",
-    logo: "/images/sidebar/logo04.png",
+    text: "I have worked and work with them on a lot of complex projects. Professionals one by one, lots of knowledge and experience.",
+    name: "Elad Shalev",
+    title: "CEO of Sortino Digital Marketing",
+    logo: "/images/Customers/logo04.png",
   },
 ];
 
@@ -97,15 +98,13 @@ const OurCustomer: React.FC = () => {
       onMouseLeave={handleMouseUp} // also ends drag when cursor leaves area
     >
       {/* Blue curved background with top and bottom waves */}
-      <div className="relative bg-[#4577E4] py-40 before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-20 before:bg-white before:rounded-b-[100%] after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-20 after:bg-white after:rounded-t-[100%]">
+      <div className="relative bg-[#4577E4] py-30 before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-20 before:bg-white before:rounded-b-[100%] after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-20 after:bg-white after:rounded-t-[100%]">
         {/* This is the visible content area on top of the background */}
-        <div className="relative z-10 max-w-6xl mx-auto ">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">
-            Our Clients Review
-          </h2>
+        <div className="relative p-3 z-10 max-w-6xl mx-auto ">
+          <h2 className="text-[33px] font-extrabold">Our Client Says</h2>
 
           {/* Container that holds all the review slides */}
-          <div className="relative h-60 md:h-55 overflow-hidden">
+          <div className=" relative min-h-70 md:h-55 overflow-hidden py-5">
             {/* This div moves left and right to show different reviews */}
             <div
               className="flex transition-transform duration-600 ease-in-out"
@@ -115,19 +114,32 @@ const OurCustomer: React.FC = () => {
               {reviews.map((review, i) => (
                 <div
                   key={i}
-                  className="min-w-full flex flex-col items-center justify-center px-4"
+                  className="min-w-full flex flex-col items-center justify-center px-0"
                 >
                   {/* Review text */}
-                  <p className="text-base md:text-lg leading-relaxed mb-6 max-w-xl mx-auto">
-                    “{review.text}”
-                  </p>
+                  {/* Review text */}
+                  <div className="relative max-w-150 mx-auto px-2 ">
+                    <RiDoubleQuotesL
+                      className="absolute left-[-26px] top-1/2 -translate-y-1/2 text-white/60 pointer-events-none select-none"
+                      size={24} // tweak 22–28 to taste
+                    />
+                    <RiDoubleQuotesR
+                      className="absolute right-[-26px] top-1/2 -translate-y-1/2 text-white/60 pointer-events-none select-none"
+                      size={24}
+                    />
+                    <p className="text-base md:text-[18px] leading-relaxed mb-6">
+                      {review.text}
+                    </p>
+                  </div>
 
-                  {/* Client logo below the review text */}
-                  <img
-                    src={review.logo}
-                    alt="client logo"
-                    className="filter brightness-0 invert mb-4 mt-2"
-                  />
+                  <div className="max-w-35">
+                    {/* Client logo below the review text */}
+                    <img
+                      src={review.logo}
+                      alt="client logo"
+                      className=" filter brightness-0 invert mb-4 mt-2"
+                    />
+                  </div>
 
                   {/* Client name and title */}
                   <p className="font-semibold">
@@ -139,7 +151,7 @@ const OurCustomer: React.FC = () => {
           </div>
 
           {/* Navigation dots at the bottom to switch between reviews */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="  flex justify-center gap-2">
             {reviews.map((_, i) => (
               <button
                 key={i}
@@ -156,4 +168,4 @@ const OurCustomer: React.FC = () => {
   );
 };
 
-export default OurCustomer
+export default OurCustomer;

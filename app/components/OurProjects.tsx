@@ -7,7 +7,7 @@ import PhotoCard from "./PhotoCard";
 // simple type for our items
 type PortfolioItem = {
   type: "video" | "image"; // which component to show
-  src: string;             // file path
+  src: string; // file path
 };
 
 export default function OurProduct() {
@@ -16,7 +16,7 @@ export default function OurProduct() {
 
   // show 3 rows first (9 items), then add 2 rows (6 items) per click
   const INITIAL = 9; // 3x3
-  const STEP = 6;    // +2 rows each time
+  const STEP = 6; // +2 rows each time
   const [count, setCount] = useState<number>(INITIAL); // how many items to show
 
   // fade-in flag (re-arms after each load-more)
@@ -48,7 +48,7 @@ export default function OurProduct() {
   return (
     <section className="bg-white py-16">
       {/* section heading */}
-      <h2 className="mb-12 text-center text-3xl font-bold">Our Projects</h2>
+      <h2 className="mb-12 text-center text-[35px] font-light">Our Projects</h2>
 
       {/* grid of videos + photos in the order from JSON */}
       <div className="mx-auto grid max-w-8xl grid-cols-1 gap-15 px-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -70,7 +70,11 @@ export default function OurProduct() {
 
           if (item.type === "video") {
             return (
-              <div key={`v-${idx}`} style={{ ["--d" as any]: delay }} className={wrapClass}>
+              <div
+                key={`v-${idx}`}
+                style={{ ["--d" as any]: delay }}
+                className={wrapClass}
+              >
                 <VideoCard src={item.src} />
               </div>
             );
@@ -78,7 +82,11 @@ export default function OurProduct() {
 
           // image case
           return (
-            <div key={`p-${idx}`} style={{ ["--d" as any]: delay }} className={wrapClass}>
+            <div
+              key={`p-${idx}`}
+              style={{ ["--d" as any]: delay }}
+              className={wrapClass}
+            >
               <PhotoCard src={item.src} />
             </div>
           );
@@ -116,12 +124,14 @@ export default function OurProduct() {
             )}
 
             <button
-              onClick={onLoadMore}           // reveal more items
-              disabled={loading}             // lock during delay
-              aria-busy={loading}            // a11y hint
+              onClick={onLoadMore} // reveal more items
+              disabled={loading} // lock during delay
+              aria-busy={loading} // a11y hint
               className={`inline-flex items-center gap-3 rounded-full px-14 py-3.5 font-semibold text-white shadow transition
                 bg-blue-600 hover:opacity-90
-                ${loading ? "cursor-not-allowed opacity-70 animate-pulse" : ""}`}
+                ${
+                  loading ? "cursor-not-allowed opacity-70 animate-pulse" : ""
+                }`}
             >
               {loading ? "Loading..." : "Load more"}
             </button>

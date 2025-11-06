@@ -3,14 +3,12 @@
 //Other Components 
 
 // Our reusable components
-import Header from "~/components/Header";
-import VIbez from "../components/VIbez";
+import VIbezHeader from "../components/VIbezHeader";
 
 export default function PrivacyPolicyRoute() {
   return (
     <>
-      <Header />
-      <VIbez />
+      <VIbezHeader/>
      
      
     </>

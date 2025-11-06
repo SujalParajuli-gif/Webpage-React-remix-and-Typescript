@@ -1,3 +1,4 @@
+// app/components/ArticleGrid.tsx
 import React from "react";
 import { Link, useNavigate } from "react-router"; // used for navigation + filter links
 import { FiArrowLeft } from "react-icons/fi"; // left arrow icon
@@ -5,11 +6,11 @@ import items from "../data/articles.json"; // JSON data file
 
 // This type matches the JSON directly (no normalizer)
 type ArticleItem = {
-  id: string;        // unique id
-  title: string;     // heading text
-  summary: string;   // short text under the title
+  id: string; // unique id
+  title: string; // heading text
+  summary: string; // short text under the title
   labels?: string[]; // tag chips (used for label filter)
-  paths: string;     // URL part used for /article/:paths
+  paths: string; // URL part used for /article/:paths
 };
 
 const ACCENT = "#2d5fcc"; // shared accent color for hovers
@@ -80,7 +81,6 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
 
       {/* footer row: left button + right labels */}
       <div className="mt-auto flex items-center justify-between">
-        {/* left: action button */}
         <div className="post-action">
           <LeftAction onClick={openDetails} />
         </div>
@@ -90,7 +90,10 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
           {item.labels?.map((t) => (
             <Link
               key={t}
-              to={{ pathname: "/article", search: `?label=${encodeURIComponent(t)}` }} // This makes clicking a chip filters the list
+              to={{
+                pathname: "/article",
+                search: `?label=${encodeURIComponent(t)}`,
+              }} // This makes clicking a chip filter the list
               className="
                 rounded-full px-3 py-1 text-[13px]
                 bg-[#e2f1ff] text-black
@@ -114,9 +117,13 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
 const norm = (s: string) => s.toLowerCase().trim();
 
 // Renders all cards from JSON in a 1/2/3 column grid
-export default function ArticleGrid({ selectedLabel = "" }: { selectedLabel?: string }) {
+export default function ArticleGrid({
+  selectedLabel = "",
+}: {
+  selectedLabel?: string;
+}) {
   // the grid's gap controls spacing between cards
-  // this function filters by exact label (case-insensitive). If no label is active or clicked, it show all.
+  // this function filters by exact label (case-insensitive). If no label is active or clicked, it shows all.
   const list = (items as ArticleItem[]).filter((it) => {
     if (!selectedLabel) return true;
     const ls = it.labels ?? [];

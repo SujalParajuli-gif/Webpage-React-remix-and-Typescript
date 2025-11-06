@@ -15,20 +15,20 @@ const Footer = () => {
       </div>
 
       {/* Main footer content */}
-      <div className="relative z-10 max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-40">
+      <div className="relative z-10 max-w-7xl mx-auto py-8 px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-40">
         {/* Column 1: Follow us */}
         <div>
-          <h3 className="text-lg font-bold mb-4">Follow us</h3>
+          <h3 className="text-lg font-extrabold mb-4">Follow us</h3>
           <div className="flex gap-9">
             <a
               href="#"
-              className="text-2xl text-blue-600 transition-transform duration-300 ease-in-out hover:scale-125"
+              className="text-2xl transition-transform duration-300 ease-in-out hover:scale-125"
             >
               <img src="/logos/facebook-2.svg" alt="Facebook" />
             </a>
             <a
               href="#"
-              className="text-2xl text-pink-600 transition-transform duration-300 ease-in-out hover:scale-125"
+              className="text-2xl transition-transform duration-300 ease-in-out hover:scale-125"
             >
               <img src="/logos/instagram-2.svg" alt="Instagram" />
             </a>
@@ -38,7 +38,7 @@ const Footer = () => {
         {/* Column 2: Quick Links */}
         <div className="w-25 text-[13px]">
           <h3 className=" font-bold mb-4 text-[16px] ">Quick Links</h3>
-          <ul className="space-y-4">
+          <ul className="space-y-4 text-[14px]">
             <li>
               {/* internal link to our article list (meaning "Database") */}
               <Link
@@ -81,7 +81,7 @@ const Footer = () => {
         {/* Column 3: Our Products */}
         <div className="w-47 text-[13px]">
           <h3 className="font-bold mb-4 text-[16px]">Our Products</h3>
-          <ul className="space-y-4">
+          <ul className="space-y-4 text-[14px]">
             <li>
               <Link
                 to="/vibez"
@@ -94,7 +94,6 @@ const Footer = () => {
               <a
                 href="https://mflow.co.il/"
                 className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
-                
               >
                 Mflow ERP
               </a>
@@ -103,7 +102,6 @@ const Footer = () => {
               <a
                 href="https://textme.co.il/"
                 className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
-                
               >
                 TextMe SMS - Mailing System
               </a>
@@ -112,7 +110,6 @@ const Footer = () => {
               <a
                 href="https://app.shipos.co.il/login"
                 className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
-                
               >
                 Ship OS - Shipment Management System
               </a>
