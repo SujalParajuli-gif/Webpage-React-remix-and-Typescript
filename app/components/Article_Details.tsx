@@ -2,7 +2,7 @@
 // article detail page: left = related, right = HTML content
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import list from "../data/articles.json";             // used to build "related"
+import list from "../data/articles.json"; // used to build "related"
 import detailMap from "../data/article_details.json"; // { title, html } per slug
 import ArticleIconGrid from "../components/ArticleIconGrid";
 import Html from "../components/Html";
@@ -23,7 +23,9 @@ type DetailEntry = {
 };
 
 // small divider between related items
-const Divider: React.FC = () => <div className="my-2 h-px w-full bg-black/10" />;
+const Divider: React.FC = () => (
+  <div className="my-2 h-px w-full bg-black/10" />
+);
 
 // marker rules per article slug
 function getMarkerClasses(slug?: string): string[] {
@@ -62,7 +64,8 @@ const Article_Details: React.FC = () => {
       <div className="mx-auto max-w-6xl px-5 py-35">
         <h1 className="text-2xl font-bold">Article not found</h1>
         <p className="mt-2 text-[14px] text-black/60">
-          This article has not been added to <code>article_details.json</code> yet.
+          This article has not been added to <code>article_details.json</code>{" "}
+          yet.
         </p>
         <button
           onClick={() => navigate(-1)}
@@ -87,7 +90,12 @@ const Article_Details: React.FC = () => {
   return (
     <div className="bg-white">
       {/* banner: breadcrumb + page title */}
-      <div className={["mx-auto max-w-360 px-5 sm:px-6 lg:px-8", "pt-32 pb-6"].join(" ")}>
+      <div
+        className={[
+          "mx-auto max-w-360 px-5 sm:px-6 lg:px-8",
+          "pt-32 mb-15",
+        ].join(" ")}
+      >
         <div
           className={[
             "bg-[#EAF3FF] px-15 py-15",
@@ -95,8 +103,10 @@ const Article_Details: React.FC = () => {
           ].join(" ")}
         >
           {/* breadcrumb */}
-          <div className="mb-3 text-[13px] text-black/60">
-            <Link to="/" className="hover:text-[#2d5fcc]">Home</Link>
+          <div className=" text-[14px] text-black/60">
+            <Link to="/" className="hover:text-[#2d5fcc]">
+              Home
+            </Link>
             <span className="mx-1">/</span>
             <a
               href="#"
@@ -104,7 +114,7 @@ const Article_Details: React.FC = () => {
                 e.preventDefault();
                 navigate(-1);
               }}
-              className="hover:text-[#2d5fcc]"
+              className="hover:text-black"
             >
               Database
             </a>
@@ -113,7 +123,7 @@ const Article_Details: React.FC = () => {
           </div>
 
           {/* page title */}
-          <h1 className="pt-5 text-[43px] font-bold leading-relaxed text-[#0D1B2A]">
+          <h1 className="pt-5 text-[47px] font-extrabold leading-relaxed text-[#0D1B2A]">
             {entry.title}
           </h1>
         </div>
@@ -142,7 +152,9 @@ const Article_Details: React.FC = () => {
                     {related.map((it, idx) => (
                       <li key={it.id} className="py-3">
                         <div className="flex items-start gap-2 min-w-0">
-                          <span className="text-[15px] text-black flex-shrink-0">{idx + 1}</span>
+                          <span className="text-[15px] text-black flex-shrink-0">
+                            {idx + 1}
+                          </span>
                           <Link
                             to={`/article/${it.paths}`}
                             className="leading-6 hover:text-[#2d5fcc] block max-w-full"
@@ -157,7 +169,10 @@ const Article_Details: React.FC = () => {
                   </ul>
 
                   <div className="pt-1 text-center">
-                    <Link to="/article" className="text-[14px] text-[#2d5fcc] hover:underline">
+                    <Link
+                      to="/article"
+                      className="text-[14px] text-[#2d5fcc] hover:underline"
+                    >
                       See all articles
                     </Link>
                   </div>
@@ -197,10 +212,10 @@ const Article_Details: React.FC = () => {
               html={entry.html}
               className={[
                 // h2
-                "[&_h2]:mt-4",
+
                 "[&_h2]:mb-3",
-                "[&_h2]:text-[30px]",
-                "[&_h2]:font-semibold",
+                "[&_h2]:text-[32px]",
+                "[&_h2]:font-light",
                 "[&_h2]:text-[#0D1B2A]",
 
                 // p
@@ -220,12 +235,11 @@ const Article_Details: React.FC = () => {
                 "[&_ul]:text-[16px]",
                 "[&_ul]:leading-6",
 
-        "[&_ul]:list-disc",
-"[&_ol]:list-decimal",
+                "[&_ul]:list-disc",
+                "[&_ol]:list-decimal",
 
-      "[&_ul>li]:marker:text-[#2d5fcc]",
-      
-    
+                "[&_ul>li]:marker:text-[#2d5fcc]",
+
                 // image spacing (custom spacing token; adjust if your Tailwind doesn't have mb-13)
                 "[&_img]:mb-13",
 
@@ -241,7 +255,9 @@ const Article_Details: React.FC = () => {
       <section className="mb-50">
         <div className="mx-auto w-full px-5 sm:px-6 lg:px-8">
           <hr className="mb-10 border-t border-black/10" />
-          <h2 className="text-[16px] sm:text-[24px] font-bold mb-10 pl-65">More Categories</h2>
+          <h2 className="text-[16px] sm:text-[24px] font-bold mb-10 pl-65">
+            More Categories
+          </h2>
         </div>
         <ArticleIconGrid />
       </section>

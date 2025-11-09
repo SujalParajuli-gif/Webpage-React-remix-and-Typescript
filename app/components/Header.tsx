@@ -110,16 +110,16 @@ export default function Header() {
             : "bg-white/90 backdrop-blur-md shadow-lg",
         ].join(" ")}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <div className="max-w-full mx-48 flex justify-between items-center p-4">
           {/* Left side logo */}
           <div className="flex items-center space-x-3">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col ml-10">
               <Link to="/">
                 {/* using Link instead of a tag for Home too */}
                 <img
                   src="/logos/matat-logo.png"
                   alt="Matat Logo"
-                  className="w-52"
+                  className="w-48"
                 />
               </Link>
             </div>
@@ -129,7 +129,7 @@ export default function Header() {
           {/*We add only color control + smooth transition here other things like inner items stays untouched */}
           <nav
             className={[
-              "flex space-x-9 text-base font-extrabold text-[17px] ",
+              "flex space-x-12.5 text-base font-extrabold text-[17.5px] ",
               // color from pageMap (top vs scrolled)
               isAtTop
                 ? toTextClass(pageCfg.navTop)
@@ -148,7 +148,7 @@ export default function Header() {
               Home
             </Link>
 
-            {/* CHANGED: use Link so it can get active underline */}
+            {/*use Link so it can get active underline */}
             <Link
               to="/Vibez"
               className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 

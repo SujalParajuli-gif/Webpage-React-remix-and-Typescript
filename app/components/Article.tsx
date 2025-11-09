@@ -7,16 +7,15 @@ import { useSearchParams } from "react-router"; // Added: read ?label from URL
 
 const Article = () => {
   // Added: pull ?label=... so we can filter ArticleGrid
-const [params] = useSearchParams();
-const selectedLabel = params.get("label")?.trim() ?? ""; // read active label from URL
-const displayTitle = selectedLabel || "Database";        // fallback when nothing active
+  const [params] = useSearchParams();
+  const selectedLabel = params.get("label")?.trim() ?? ""; // read active label from URL
+  const displayTitle = selectedLabel || "Database"; // fallback when nothing active
 
   return (
     <>
-    
       {/* We reused same header and the colors are handelded by map inside the header component it self*/}
       <Header />
-``
+      ``
       {/* Main content section for Database / Article */}
       <div className="bg-white py-10 md:py-14 w-8xl mr-25">
         {/* container */}
@@ -26,9 +25,9 @@ const displayTitle = selectedLabel || "Database";        // fallback when nothin
             className="
               relative overflow-visible
               bg-[#EAF3FF]
-              px-6 py-10 md:px-12 w-350 h-105
+              px-6 py-10 md:px-12 w-340 h-105
               shadow-[0_20px_30px_rgba(69,119,228,0.20)]
-              rounded-3xl
+             
             "
           >
             {/* leaf decoration behind the person */}
@@ -57,15 +56,14 @@ const displayTitle = selectedLabel || "Database";        // fallback when nothin
 
               {/* heading + search */}
               <div className="md:col-span-7 relative z-10">
-                          <h1
-            className="
+                <h1
+                  className="
               text-4xl md:text-[55px] font-extrabold text-black
               drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]
             "
-          >
-            {displayTitle}
-          </h1>
-
+                >
+                  {displayTitle}
+                </h1>
 
                 {/* search field */}
                 <form role="search" className="mt-8 md:mt-10">

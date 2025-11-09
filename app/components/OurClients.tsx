@@ -117,7 +117,7 @@ const OurCustomer: React.FC = () => {
                   className="min-w-full flex flex-col items-center justify-center px-0"
                 >
                   {/* Review text */}
-                  {/* Review text */}
+
                   <div className="relative max-w-150 mx-auto px-2 ">
                     <RiDoubleQuotesL
                       className="absolute left-[-26px] top-1/2 -translate-y-1/2 text-white/60 pointer-events-none select-none"

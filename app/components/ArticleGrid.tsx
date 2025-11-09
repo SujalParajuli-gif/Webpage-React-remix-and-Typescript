@@ -38,7 +38,7 @@ const LeftAction: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 // Card shell for spacing, radius, and shadow
 const CardShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex h-60 w-95 ml-19 flex-col rounded-xl bg-white p-5 shadow-[0_20px_40px_rgba(69,119,228,0.12)] ">
+    <div className="flex h-60 w-93 ml-19 flex-col rounded-xl bg-white p-5 shadow-[0_20px_40px_rgba(69,119,228,0.12)] ">
       {children}
     </div>
   );
@@ -59,7 +59,7 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
       <h4
         onClick={openDetails}
         className="
-          mb-2 cursor-pointer text-[19px] font-bold leading-6 text-[#0D1B2A]
+          mb-2 cursor-pointer text-[20px] font-extrabold leading-6 text-[#0D1B2A]
           [font-family:inherit]
           transition-colors duration-200
           hover:text-[color:var(--accent)]
@@ -72,7 +72,7 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
       {/* summary text */}
       <p
         className="
-          pb-3 text-[14px] leading-relaxed text-[rgb(0_0_0_/_60%)]
+          pb-3 text-[14px] leading-relaxed text-[rgb(0_0_0_/_55%)]
           [font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]
         "
       >
@@ -131,7 +131,7 @@ export default function ArticleGrid({
   });
 
   return (
-    <section className="bg-white py-10">
+    <section className="bg-white">
       <div className="mx-auto max-w-9xl px-5 sm:px-6 lg:px-0">
         <div className="grid grid-cols-1 gap-17 md:grid-cols-2 lg:grid-cols-3">
           {list.map((it, idx) => (
