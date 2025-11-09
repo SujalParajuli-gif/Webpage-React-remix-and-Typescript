@@ -1,8 +1,7 @@
-// app/components/Html.tsx
-// we added a tiny helper to safely render HTML stored in JSON
+// we added a tiny helper to safely render HTML stored in JSON fro articledetials page right section
 import React from "react";
-import DOMPurify from "dompurify";      // we sanitize incoming html
-import parse from "html-react-parser";  // we convert html string → React nodes
+import DOMPurify from "dompurify"; // we sanitize incoming html
+import parse from "html-react-parser"; // we convert html string → React nodes
 
 type Props = { html: string; className?: string };
 

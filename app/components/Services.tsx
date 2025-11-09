@@ -1,4 +1,3 @@
-// app/components/Services.tsx
 export default function Services() {
   return (
     <section className="relative overflow-hidden bg-white">

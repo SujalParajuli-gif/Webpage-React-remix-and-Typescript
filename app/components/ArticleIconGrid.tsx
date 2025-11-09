@@ -1,4 +1,3 @@
-// app/components/ArticleIconGrid.tsx
 import React from "react";
 import { Link, useSearchParams } from "react-router";
 // NOTE: we switched to IcoMoon classes instead of react-icons to match with the website

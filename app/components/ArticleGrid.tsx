@@ -1,4 +1,3 @@
-// app/components/ArticleGrid.tsx
 import React from "react";
 import { Link, useNavigate } from "react-router"; // used for navigation + filter links
 import { FiArrowLeft } from "react-icons/fi"; // left arrow icon
