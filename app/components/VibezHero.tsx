@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 
+// Added: AOS = animation on scroll
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const VibezHero: React.FC = () => {
+  useEffect(() => {
+    // init once, slow + smooth easing
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 60,
+    });
+    // refresh after mount so image sizing doesn't break offsets
+    setTimeout(() => AOS.refresh(), 100);
+  }, []);
+
   return (
     // parent that holds the stack meaning the texts as a child
     <section className="relative w-full min-h-[70vh] overflow-hidden">
@@ -13,7 +29,6 @@ const VibezHero: React.FC = () => {
       />
 
       {/* full-screen overlay that uses flex elements so content stays responsive */}
-
       <div
         className="
           absolute inset-0 z-10
@@ -29,21 +44,40 @@ const VibezHero: React.FC = () => {
             mr-2 md:mr-6 lg:mr-10              
           "
         >
-          <h1 className="text-white font-extrabold leading-tight text-[40px] md:text-[72px] lg:text-[88px]">
+          {/* AOS: fade to the right */}
+          <h1
+            className="text-white font-extrabold leading-tight text-[40px] md:text-[72px] lg:text-[88px]"
+            data-aos="fade-right"
+          >
             VIBEZ
           </h1>
 
-          <h2 className="text-white font-extrabold text-[24px] md:text-[36px] lg:text-[44px] mt-2">
+          {/* AOS: fade to the right with slight delay */}
+          <h2
+            className="text-white font-extrabold text-[24px] md:text-[36px] lg:text-[44px] mt-2"
+            data-aos="fade-right"
+            data-aos-delay="150"
+          >
             Platform for E-commerce Websites
           </h2>
 
-          <p className="text-white/90 mt-4 text-[14px] md:text-[16px] font-semibold max-w-[48ch]">
+          {/* AOS: fade to the right,added delay for paragraph */}
+          <p
+            className="text-white/90 mt-4 text-[14px] md:text-[16px] font-semibold max-w-[48ch]"
+            data-aos="fade-right"
+            data-aos-delay="300"
+          >
             Do we also want to start selling online in less than a month? Join
             hundreds of customers who have already chosen VIBEZ and discover a
             sales rate never known!
           </p>
 
-          <div className="mt-6 md:mt-8">
+          {/* animation fades to the right when reloads/renders */}
+          <div
+            className="mt-6 md:mt-8"
+            data-aos="fade-right"
+            data-aos-delay="450"
+          >
             <button
               type="button"
               // button arrow hover behavior works opposite of the header hover
