@@ -141,7 +141,7 @@ export default function Header() {
             {/* Home link with active underline */}
             <Link
               to="/"
-              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[1px] 
                 ${location.pathname === "/" ? "after:w-full" : "after:w-0"} 
                 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out`}
             >
@@ -151,7 +151,7 @@ export default function Header() {
             {/*use Link so it can get active underline */}
             <Link
               to="/Vibez"
-              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px] 
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[1px] 
                 ${
                   location.pathname === "/vibez" ? "after:w-full" : "after:w-0"
                 } 
@@ -163,7 +163,7 @@ export default function Header() {
             {/* Link helps to go to another page (Article route) without refreshing the entire page*/}
             <Link
               to="/article"
-              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[2px]
+              className={`relative after:absolute after:left-0 after:bottom-0 after:h-[1px]
                 ${
                   location.pathname === "/article"
                     ? "after:w-full"

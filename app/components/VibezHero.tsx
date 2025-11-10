@@ -7,16 +7,18 @@ const VibezHero: React.FC = () => {
     <section className="relative w-full min-h-[70vh] overflow-hidden">
       {/* image bg */}
       <img
-        src="/images/Vibez/images/banner.jpg"
+        src="/images/Vibez/image/banner.jpg"
         alt="VIBEZ banner"
         className="absolute inset-0 h-full w-full object-cover"
       />
 
       {/* full-screen overlay that uses flex elements so content stays responsive */}
+
       <div
         className="
           absolute inset-0 z-10
-          flex items-center justify-end        /* puts content on the right */
+          flex items-center justify-end      
+            /* puts content on the right */
           px-4 md:px-10 lg:px-16               /* We added a responsive side paddings */
         "
       >

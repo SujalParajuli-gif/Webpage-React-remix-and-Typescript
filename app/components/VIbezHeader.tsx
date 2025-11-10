@@ -76,7 +76,7 @@ const VibezHeader: React.FC<Props> = ({
         {/* right: phone text */}
         <a
           href="tel:0559909090"
-          className="justify-self-end text-sm md:text-base text-black"
+          className="justify-self-end text-sm md:text-base text-black relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"
         >
           {phone}
         </a>
