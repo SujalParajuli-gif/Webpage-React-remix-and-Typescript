@@ -3,6 +3,8 @@ import VibezLayout_2 from "~/components/VibezLayout_2";
 import VIbezHeader from "../components/VIbezHeader";
 import VibezHero from "../components/VibezHero";
 import VibezLayout_1 from "~/components/VibezLayout_1";
+
+import VibezLayout_3 from "~/components/VibezLayout_3";
 import VibezLogoSlider from "~/components/VibezLogoSlider";
 
 export default function PrivacyPolicyRoute() {
@@ -13,6 +15,7 @@ export default function PrivacyPolicyRoute() {
       <VibezLayout_1 />
       <VibezLayout_2 />
       <VibezLogoSlider />
+      <VibezLayout_3 />
     </>
   );
 }

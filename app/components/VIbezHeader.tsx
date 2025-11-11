@@ -63,7 +63,7 @@ const VibezHeader: React.FC<Props> = ({
 
         {/* center: vibez logo image */}
         <Link to="#" className="inline-flex items-center justify-self-center">
-          {/* use your existing image path */}
+          {/*Our existing image path */}
           <div className="w-full">
             <img
               src="/images/Vibez/logos/vibez-logo-big.png"
@@ -73,7 +73,7 @@ const VibezHeader: React.FC<Props> = ({
           </div>
         </Link>
 
-        {/* right: phone text */}
+        {/* right side phone text */}
         <a
           href="tel:0559909090"
           className="justify-self-end text-sm md:text-base text-black relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"

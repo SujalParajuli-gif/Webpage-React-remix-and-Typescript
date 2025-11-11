@@ -30,7 +30,7 @@ const VibezLayout_2: React.FC = () => {
           <h2 className="text-[40px] md:text-[42px] lg:text-[47px] font-extrabold leading-[1.05] text-[#270c54]">
             Dynamic Home Page
           </h2>
-          <p className="mt-6 text-[#270c54] text-base md:text-lg font-bold leading-relaxed max-w-[500px]">
+          <p className="mt-6 text-[#270c54] text-base md:text-[16px] font-bold leading-relaxed max-w-[500px]">
             Vibez is built entirely on versatility. We follow design trends, and
             understand that the website needs to adapt to your business, which
             is also dynamic and constantly changing. Using the builder we
@@ -56,7 +56,7 @@ const VibezLayout_2: React.FC = () => {
             className="w-full max-w-[460px] h-auto object-contain"
             loading="lazy"
           />
-          {/* row 2 — center-left paragraph under the mobile */}
+          {/* row 2 — center-left paragraph under the mobile wireframe */}
         </div>
         <div className="relative left-113 bottom-47 w-73" data-aos="fade-right">
           <p className="text-[#270c54] text-bold md:text-[17px] ">
@@ -125,7 +125,7 @@ const VibezLayout_2: React.FC = () => {
           />
           {/* blue glow under the image */}
           <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center min-w-100">
-            <div className="w-[400px] h-[340px] rounded-full bg-[#5a86ff1f] blur-2xl mb-90" />
+            <div className="w-[400px] h-[350px] rounded-full bg-[#5a86ff1f] blur-3xl" />
           </div>
         </div>
       </div>

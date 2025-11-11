@@ -22,8 +22,8 @@ const VibezLayout_1: React.FC = () => {
       n: 3,
       title: "The site is up in the air!",
       body: [
-        "That's almost done!",
-        "After a short and focused process, your business is about to start selling online.",
+        "That's it, we're almost done!",
+        "After a short and focused process, your business will soon start selling online.",
         "Don't worry, you're not alone. Our support team is here for any questions along the way.",
         "From here, sales will start coming in at a rate you never knew.",
       ],
@@ -32,24 +32,22 @@ const VibezLayout_1: React.FC = () => {
       n: 2,
       title: "Design & Development",
       body: [
-        "In the second stage, the design and development team will create a website that fits the needs of your business.",
-        "From a custom design to a user experience that suits your clientele.",
-        "During the project, a personal project manager will be your contact for any questions.",
+        "In the second stage, the design and development team will create a website for you that will meet all the needs of your business. From custom design, to a user experience that fits precisely for your clientele.",
+        "During the work on the project, you will be closely accompanied by a personal project manager who will provide answers and will be the contact person for any questions.",
       ],
     },
     {
       n: 1,
       title: "Choose a platform",
       body: [
-        "In the first step, the team helps choose the most suitable platform for your business.",
-        "Understand the pros and cons of each option to match your online goals.",
+        "In the first stage of the process, our team will help you choose the most suitable platform for your business. We will help you understand the pros and cons of each of the options in order to choose the right platform for your online business goal.",
       ],
       logos: [
         {
-          src: "/images/Vibez/logos/shopify.png.webp",
+          src: "/images/Vibez/logos/shopify.png",
           alt: "Shopify Partners logo",
         },
-        { src: "/images/Vibez/logos/woo.png.webp", alt: "WooCommerce logo" },
+        { src: "/images/Vibez/logos/woo.png", alt: "WooCommerce logo" },
       ],
     },
   ];
@@ -66,12 +64,12 @@ const VibezLayout_1: React.FC = () => {
             <article
               key={s.n}
               // AOS: fade/slide from left; stagger per column (0/200/400)
-              data-aos="fade-right"
-              data-aos-delay={i * 200}
+              // data-aos="fade-right"
+              // data-aos-delay={i * 200}
               className="
-                relative rounded-2xl bg-white
-                shadow-[0_12px_28px_rgba(22,28,45,0.12)]
-                px-16 py-8 pb-15
+                relative rounded-xl bg-white
+                shadow-[0_0px_30px_rgba(22,28,45,0.12)]
+                p-8 px-15
               "
             >
               {/* large faint number in the background */}
@@ -93,7 +91,7 @@ const VibezLayout_1: React.FC = () => {
               </h3>
 
               {/* body */}
-              <div className="mt-3 space-y-2 text-center text-[15px] md:text-[16px] text-[#2a1b5a]/80 font-medium">
+              <div className="mt-2 text-center text-[15px] md:text-[16px] text-[#270c54] font-light">
                 {s.body.map((line, j) => (
                   <p key={j}>{line}</p>
                 ))}
@@ -107,7 +105,7 @@ const VibezLayout_1: React.FC = () => {
                       key={l.src}
                       src={l.src}
                       alt={l.alt}
-                      className="h-7 md:h-8 w-auto"
+                      className=" w-auto"
                       loading="lazy"
                     />
                   ))}
