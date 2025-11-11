@@ -23,7 +23,7 @@ const VibezLayout_3: React.FC = () => {
   return (
     <section className="w-full bg-white py-10 md:py-5">
       {/* container that keeps items centered and responsive */}
-      <div className="max-w-8xl mx-auto md:px-80">
+      <div className="max-w-8xl mx-auto  md:px-80">
         {/* row of three columns */}
         <div className="grid grid-cols-1 md:grid-cols-3  main-feat-wrapper">
           {features.map((item, i) => (

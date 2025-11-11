@@ -64,8 +64,8 @@ const VibezLayout_1: React.FC = () => {
             <article
               key={s.n}
               // AOS: fade/slide from left; stagger per column (0/200/400)
-              // data-aos="fade-right"
-              // data-aos-delay={i * 200}
+              data-aos="fade-right"
+              data-aos-delay={i * 200}
               className="
                 relative rounded-xl bg-white
                 shadow-[0_0px_30px_rgba(22,28,45,0.12)]
