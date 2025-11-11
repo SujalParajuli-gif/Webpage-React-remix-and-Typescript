@@ -51,16 +51,16 @@ const VibezLogoSlider: React.FC = () => {
   return (
     // added aos fade-up like your reference layout
     <section
-      className="w-full py-10 md:py-14 overflow-hidden"
+      className="w-full pt-10 md:pt-14 overflow-hidden"
       data-aos="fade-up"
     >
       {/* section heading */}
-      <h2 className="text-center text-2xl sm:text-3xl md:text-[42px] font-extrabold leading-tight text-[#270c54] px-4">
+      <h2 className="text-center text-2xl sm:text-3xl md:text-[50px] font-extrabold leading-tight text-[#270c54] px-4 pt-10">
         {title}
       </h2>
 
       {/* wrapper that hides overflow and centers slider */}
-      <div className="relative mt-8 max-w-[1400px] mx-auto overflow-hidden py-4 sm:py-6">
+      <div className="relative mt-8 max-w-[1150px] mx-auto overflow-hidden py-4 sm:py-6">
         {/* moving row */}
         <div className="flex items-center gap-8 sm:gap-12 md:gap-13 min-w-max animate-vibez-slider will-change-transform">
           {track.map((src, i) => (

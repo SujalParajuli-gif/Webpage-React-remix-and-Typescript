@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-// we render three main feature blocks similar to the original Vibez layout
+// responsive 3-column layout
 const VibezLayout_3: React.FC = () => {
-  // added array so it’s easy to edit images or texts later
+  useEffect(() => {
+    // initialize AOS animation on scroll
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 60,
+    });
+  }, []);
+
+  // feature data (each card image + title)
   const features = [
     {
       img: "/images/Vibez/image/mainft-col-1.png",
@@ -19,38 +31,33 @@ const VibezLayout_3: React.FC = () => {
     },
   ];
 
-  // wrap return so we can control layout and animation separately
   return (
-    <section className="w-full bg-white py-10 md:py-5">
-      {/* container that keeps items centered and responsive */}
-      <div className="max-w-8xl mx-auto  md:px-80">
-        {/* row of three columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3  main-feat-wrapper">
+    // added fade-right to the whole component
+    <section
+      className="w-full bg-white py-10 md:py-15"
+      data-aos="fade-right"
+      data-aos-delay="100"
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-0">
+        {/* grid with 3 equal columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2">
           {features.map((item, i) => (
             <div
               key={i}
-              // we add AOS fade-right like
-              data-aos="fade-right"
-              data-aos-delay="100"
-              className="mainft-col flex flex-col items-center aos-init aos-animate"
+              className="relative flex flex-col items-center justify-end text-center overflow-hidden"
             >
-              {/* inner wrapper for image + title */}
-              <div className="mainft-col-wrap flex flex-col items-center text-center">
-                {/* image wrapper */}
-                <div className="mainft-img mb-6">
-                  <img
-                    src={item.img}
-                    alt=""
-                    className="w-[300px] md:w-[410px] h-auto object-contain"
-                  />
-                </div>
+              {/* image section */}
+              <div className="relative w-full h-full">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-auto h-auto object-cover"
+                />
               </div>
-              {/* feature title */}
-              <div
-                className=" 
-              absolute text-center px-10 py-7"
-              >
-                <h2 className=" leading-tight text-white text-xl md:text-[29px] font-extrabold">
+
+              {/* title text above the image */}
+              <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[90%] px-4">
+                <h2 className="text-white font-extrabold text-xl sm:text-3xl md:text-[25px] leading-tight">
                   {item.title}
                 </h2>
               </div>
