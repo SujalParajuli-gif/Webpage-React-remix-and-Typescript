@@ -1,33 +1,36 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router";
-// NOTE: we switched to IcoMoon classes instead of react-icons to match with the website
 
-// simple helpers we use in multiple places
+// helper: normalize a string for safe comparisons (lowercase + trim)
 const norm = (s: string) => s.toLowerCase().trim();
 
-// base pieces (we keep hover behavior for non-active tiles)
+// base card styles (same size + rounded + smooth color change)
 const baseCard =
   "group flex flex-col items-center justify-center rounded-lg min-h-[150px] w-full transition-colors";
+// non-active look (white bg + soft shadow, turns blue on hover)
 const inactiveCard =
   "bg-white shadow-[0_8px_22px_rgba(69,119,228,0.15)] hover:bg-[#4577E4] hover:shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
+// active look (blue bg + stronger shadow)
 const activeCard = "bg-[#4577E4] shadow-[0_16px_35px_rgba(69,119,228,0.35)]";
 
-const iconBase = "icon-xl transition-colors"; // icon-xl -> font-size:35px (we defined this in app.css)
+// icon and label base styles (sizes + transitions)
+// icon-xl is defined in app.css => font-size: 35px
+const iconBase = "icon-xl transition-colors";
 const labelBase =
   "mt-3 text-[21px] font-xl leading-6 text-center transition-colors";
 
-// small helper so we can render an IcoMoon glyph by class like "icon-ux-design"
+// small helper to render an IcoMoon glyph via its class (e.g., "icon-ux-design")
 const Glyph = ({ className }: { className: string }) => (
   <span aria-hidden="true" className={className} />
 );
 
 export default function ArticleIconGrid() {
-  // we read current ?label=... so we can highlight the active card
+  // read ?label=... from the URL so the matching tile can look active
   const [params] = useSearchParams();
   const active = params.get("label") ?? "";
 
-  // each tile represents a label from our JSON
-  // we map labels to IcoMoon class names we added in app.css
+  // tiles config: label text + the IcoMoon class to show
+  // clicking a tile navigates to /article?label=<Label>
   const items = [
     { label: "Promotions", iconClass: "icon-ecommerce" },
     { label: "E commerce", iconClass: "icon-ecommerce" },
@@ -40,24 +43,31 @@ export default function ArticleIconGrid() {
   return (
     <section className="w-full pt-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* responsive grid:
+            - 2 columns on small screens
+            - 3 on sm+
+            - 6 on lg+
+            gap controls space between tiles */}
         <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {items.map(({ label: text, iconClass }) => {
-            // if this matches ?label=..., we render the active style
+            // active state check (case/space-insensitive)
             const isActive = norm(text) === norm(active);
 
             return (
               <Link
                 key={text}
+                // send label in the query so detail/list pages can filter
                 to={{
                   pathname: "/article",
                   search: `?label=${encodeURIComponent(text)}`,
-                }} // we send label for query
+                }}
+                // choose active or inactive style while keeping base styles
                 className={[
                   baseCard,
                   isActive ? activeCard : inactiveCard,
                 ].join(" ")}
               >
-                {/* icon color switches to white when active otherwise black also turns white on hover */}
+                {/* icon: white when active; otherwise black that turns white on hover */}
                 <Glyph
                   className={[
                     iconBase,
@@ -68,7 +78,7 @@ export default function ArticleIconGrid() {
                   ].join(" ")}
                 />
 
-                {/* text color switches to white when active otherwise black also turns white on hover */}
+                {/* label: same color behavior as the icon */}
                 <span
                   className={[
                     labelBase,

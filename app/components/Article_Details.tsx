@@ -6,7 +6,7 @@ import detailMap from "../data/article_details.json"; // { title, html } per slu
 import ArticleIconGrid from "../components/ArticleIconGrid";
 import Html from "../components/Html";
 
-// related-list item shape
+// related-list item shape (same as in articles.json)
 type ListItem = {
   id: string;
   title: string;
@@ -27,6 +27,7 @@ const Divider: React.FC = () => (
 );
 
 // marker rules per article slug
+// we return extra Tailwind selectors to style list markers differently
 function getMarkerClasses(slug?: string): string[] {
   if (slug === "install-anydesk") {
     // numbering markers in blue for <ol>
@@ -52,12 +53,12 @@ const Article_Details: React.FC = () => {
   const { paths } = useParams();
   const navigate = useNavigate();
 
-  // lookup by slug
+  // lookup by slug inside detailMap (title + html)
   const entry: DetailEntry | undefined = paths
     ? (detailMap as Record<string, DetailEntry>)[paths]
     : undefined;
 
-  // soft 404
+  // soft 404 page when there is no entry for this slug
   if (!entry) {
     return (
       <div className="mx-auto max-w-6xl px-5 py-35">
@@ -76,7 +77,10 @@ const Article_Details: React.FC = () => {
     );
   }
 
-  // related list: skip current slug, de-dup by id, limit to N
+  // related list for the left column:
+  // - remove current article
+  // - de-dup by id using Map
+  // - limit to first N items
   const RELATED_LIMIT = 4;
   const related = Array.from(
     new Map(
@@ -101,7 +105,7 @@ const Article_Details: React.FC = () => {
             "shadow-[0_20px_40px_rgba(69,119,228,0.20)] ring-1 ring-black/5",
           ].join(" ")}
         >
-          {/* breadcrumb */}
+          {/* breadcrumb trail with back to Database */}
           <div className=" text-[14px] text-black/60">
             <Link to="/" className="hover:text-[#2d5fcc]">
               Home
@@ -111,7 +115,7 @@ const Article_Details: React.FC = () => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                navigate(-1);
+                navigate(-1); // go to previous page
               }}
               className="hover:text-black"
             >
@@ -121,7 +125,7 @@ const Article_Details: React.FC = () => {
             <span className="text-black">{entry.title}</span>
           </div>
 
-          {/* page title */}
+          {/* page title from the entry */}
           <h1 className="pt-5 text-[47px] font-extrabold leading-relaxed text-[#0D1B2A]">
             {entry.title}
           </h1>
@@ -140,13 +144,14 @@ const Article_Details: React.FC = () => {
               {/* related list card */}
               <aside className="space-y-10 max-h-120">
                 <div
-                  key={paths}
+                  key={paths} // key helps React re-render when slug changes
                   className="max-h-120 rounded-lg border border-black/5 bg-white shadow-[0_12px_28px_rgba(69,119,228,0.10)] w-88 p-6 overflow-hidden"
                 >
                   <h3 className="mb-4 text-center text-[15px] font-bold text-gray-400">
                     Related Articles
                   </h3>
 
+                  {/* ordered list of related titles */}
                   <ul className="text-[18px]">
                     {related.map((it, idx) => (
                       <li key={it.id} className="py-3">
@@ -167,6 +172,7 @@ const Article_Details: React.FC = () => {
                     ))}
                   </ul>
 
+                  {/* link to full list page */}
                   <div className="pt-1 text-center">
                     <Link
                       to="/article"
@@ -178,7 +184,7 @@ const Article_Details: React.FC = () => {
                 </div>
               </aside>
 
-              {/* promo card */}
+              {/* promo card under related */}
               <div className="w-88 h-65 relative overflow-hidden rounded-lg border border-black/5 p-8 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500 mt-10 ">
                 <img
                   src="/images/sidebarbg.png"
@@ -207,17 +213,17 @@ const Article_Details: React.FC = () => {
 
           {/* right column: HTML content with per-article marker styles */}
           <main className="[font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif]">
+            {/* Html component injects sanitized HTML with our Tailwind scopes */}
             <Html
               html={entry.html}
               className={[
-                // h2
-
+                // h2 styles
                 "[&_h2]:mb-3",
                 "[&_h2]:text-[32px]",
                 "[&_h2]:font-light",
                 "[&_h2]:text-[#0D1B2A]",
 
-                // p
+                // paragraph styles
                 "[&_p]:mt-2",
                 "[&_p]:mb-8",
                 "[&_p]:text-[16px]",
@@ -234,15 +240,17 @@ const Article_Details: React.FC = () => {
                 "[&_ul]:text-[16px]",
                 "[&_ul]:leading-6",
 
+                // default list types
                 "[&_ul]:list-disc",
                 "[&_ol]:list-decimal",
 
+                // default ul marker color (blue)
                 "[&_ul>li]:marker:text-[#2d5fcc]",
 
-                // image spacing (custom spacing token; adjust if your Tailwind doesn't have mb-13)
+                // image spacing (custom token)
                 "[&_img]:mb-13",
 
-                // per-article marker set
+                // per-article marker overrides (from helper)
                 ...getMarkerClasses(paths),
               ].join(" ")}
             />

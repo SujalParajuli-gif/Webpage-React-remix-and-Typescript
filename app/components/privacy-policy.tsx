@@ -3,10 +3,11 @@ import { Link } from "react-router"; // breadcrumb Home link
 import ArticleIconGrid from "../components/ArticleIconGrid";
 
 // simple blue bullet list (with extra spacing + taller line-height)
+// we pass an array of React nodes and render them as <li> under a styled <ul>
 const BlueList: React.FC<{ items: React.ReactNode[] }> = ({ items }) => (
   <ul className="list-disc pl-6 space-y-3 marker:text-[#2d5fcc] leading-7">
     {items.map((it, i) => (
-      <li key={i}>{it}</li>
+      <li key={i}>{it}</li> // each row in the list
     ))}
   </ul>
 );
@@ -14,7 +15,8 @@ const BlueList: React.FC<{ items: React.ReactNode[] }> = ({ items }) => (
 export default function PrivacyPolicy() {
   return (
     <div className="bg-white">
-      {/* local styles scoped to this component only */}
+      {/* local styles scoped to this component only
+         we keep typography consistent for h2, p, lists in the policy area */}
       <style>{`
         .pp-scope h2 { font-size: 15.5px; font-weight: 700; margin-top: 1.35rem; margin-bottom: .35rem; }
         .pp-scope p  { font-size: 14px; margin-bottom: 22px; line-height: 1.8; }
@@ -22,9 +24,12 @@ export default function PrivacyPolicy() {
         .pp-scope ul, .pp-scope ol { font-size: 14px; line-height: 1.8; }
       `}</style>
 
-      {/* top banner + breadcrumb */}
+      {/* top banner + breadcrumb
+         container gives max width + side paddings
+         banner has light blue bg + subtle shadow + ring */}
       <div className="mx-auto max-w-360 px-5 sm:px-6 lg:px-8 pt-32 pb-6">
         <div className="bg-[#EAF3FF] px-15 py-15 shadow-[0_20px_40px_rgba(69,119,228,0.20)] ring-1 ring-black/5">
+          {/* breadcrumb: Home / Privacy Policy */}
           <div className="mb-3 text-[13px] text-black/60">
             <Link to="/" className="hover:text-[#2d5fcc]">
               Home
@@ -32,21 +37,28 @@ export default function PrivacyPolicy() {
             <span className="mx-1">/</span>
             <span className="text-black">Privacy Policy</span>
           </div>
+
+          {/* main page title */}
           <h1 className="pt-5 text-[43px] font-bold leading-tight text-[#0D1B2A]">
             Privacy Policy
           </h1>
         </div>
       </div>
 
-      {/* two-column layout */}
+      {/* two-column layout
+         left = sticky promo card
+         right = policy content (pp-scope applies local typography rules) */}
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pb-16">
         <div className="grid grid-cols-1 gap-25 lg:grid-cols-[300px_1fr]">
-          {/* left sticky promo */}
+          {/* left sticky promo
+             lg:sticky keeps the card fixed while scrolling past it
+             --stick-top sets where it sticks from top */}
           <aside className="relative">
             <div
               className="lg:sticky lg:top-[var(--stick-top)] h-max"
               style={{ ["--stick-top" as any]: "160px" }}
             >
+              {/* promo card with bg image + CTA */}
               <div className="w-88 h-65 relative overflow-hidden rounded-lg border border-black/5 p-8 shadow-[0_12px_28px_rgba(69,119,228,0.10)] ring-2 ring-blue-500 mt-20">
                 <img
                   src="/images/sidebarbg.png"
@@ -73,15 +85,17 @@ export default function PrivacyPolicy() {
             </div>
           </aside>
 
-          {/* right content */}
+          {/* right content
+             pp-scope = local CSS above, sets sizes/line-heights for headings/paragraphs/lists */}
           <main className="pp-scope [font-family:'Heebo','Helvetica Neue',Helvetica,Arial,sans-serif] max-w-5xl ">
-            {/* wrapper adds vertical spacing between blocks */}
+            {/* wrapper adds vertical spacing between sections */}
             <div className="space-y-6 sm:space-y-7">
+              {/* page-level heading with site domain for clarity */}
               <h1 className="pt-5 text-[35px] font-bold leading-tight text-[#0D1B2A]">
                 Privacy Policy - matat.co.il
               </h1>
 
-              {/* 1 */}
+              {/* 1: intro + scope of policy */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">1&nbsp;</span>Introduction and scope
@@ -95,7 +109,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 2 */}
+              {/* 2: what info we collect */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">2&nbsp;</span>Information Collected
@@ -118,7 +132,7 @@ export default function PrivacyPolicy() {
                 </div>
               </section>
 
-              {/* 3 */}
+              {/* 3: how we use the info */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">3&nbsp;</span>Use of the Information
@@ -144,7 +158,7 @@ export default function PrivacyPolicy() {
                 />
               </section>
 
-              {/* 4 */}
+              {/* 4: cookies usage + management */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">4&nbsp;</span>Use of Cookies
@@ -174,7 +188,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 5 */}
+              {/* 5: third-party sharing rules */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">5&nbsp;</span>Sharing with Third Parties
@@ -197,7 +211,7 @@ export default function PrivacyPolicy() {
                 />
               </section>
 
-              {/* 6 */}
+              {/* 6: security measures */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">6&nbsp;</span>Information Security
@@ -209,7 +223,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 7 */}
+              {/* 7: how long data is stored */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">7&nbsp;</span>Data Retention
@@ -221,7 +235,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 8 */}
+              {/* 8: user rights */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">8&nbsp;</span>Your rights
@@ -233,7 +247,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 9 */}
+              {/* 9: policy updates */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">9&nbsp;</span>Updates to this Policy
@@ -245,7 +259,7 @@ export default function PrivacyPolicy() {
                 </p>
               </section>
 
-              {/* 10 */}
+              {/* 10: contact info */}
               <section className="space-y-2">
                 <h2>
                   <span className="num">10&nbsp;</span>Contact
@@ -272,7 +286,8 @@ export default function PrivacyPolicy() {
         </div>
       </div>
 
-      {/* more categories */}
+      {/* more categories
+         small section at bottom that shows the reusable ArticleIconGrid */}
       <section className="mb-50">
         <div className="mx-auto w-full px-5 sm:px-6 lg:px-8">
           <hr className="mb-10 border-t border-black/10" />

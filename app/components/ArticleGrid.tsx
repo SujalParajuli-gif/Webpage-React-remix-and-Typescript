@@ -5,7 +5,7 @@ import items from "../data/articles.json"; // JSON data file
 
 // This type matches the JSON directly (no normalizer)
 type ArticleItem = {
-  id: string; // unique id
+  id: string; // unique id from JSON
   title: string; // heading text
   summary: string; // short text under the title
   labels?: string[]; // tag chips (used for label filter)
@@ -27,6 +27,7 @@ const LeftAction: React.FC<{ onClick: () => void }> = ({ onClick }) => {
         shadow-sm transition-colors duration-200
         hover:bg-white hover:text-[color:var(--accent)]
       "
+      // CSS var lets the same color drive bg, text, and ring
       style={{ ["--accent" as any]: ACCENT }}
     >
       <FiArrowLeft className="h-4 w-4" />
@@ -45,9 +46,9 @@ const CardShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 // Single text card with title + summary + footer (button + chips)
 const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
-  const navigate = useNavigate(); // used by title and arrow button
+  const navigate = useNavigate(); // programmatic navigation hook
 
-  // go to details page (simple helper)
+  // helper: go to details page for this article
   function openDetails() {
     navigate(`/article/${item.paths}`);
   }
@@ -68,7 +69,7 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
         {item.title}
       </h4>
 
-      {/* summary text */}
+      {/* summary text under the title */}
       <p
         className="
           pb-3 text-[14px] leading-relaxed text-[rgb(0_0_0_/_55%)]
@@ -78,13 +79,14 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
         {item.summary}
       </p>
 
-      {/* footer row: left button + right labels */}
+      {/* footer row: left round button + right label chips */}
       <div className="mt-auto flex items-center justify-between">
+        {/* small arrow button opens the details page */}
         <div className="post-action">
           <LeftAction onClick={openDetails} />
         </div>
 
-        {/* right: labels (chips) */}
+        {/* labels: clicking a chip navigates to list filtered by that label */}
         <div className="post-cat flex flex-wrap justify-end gap-x-3 gap-y-2 pl-4">
           {item.labels?.map((t) => (
             <Link
@@ -92,7 +94,7 @@ const TextCard: React.FC<{ item: ArticleItem }> = ({ item }) => {
               to={{
                 pathname: "/article",
                 search: `?label=${encodeURIComponent(t)}`,
-              }} // This makes clicking a chip filter the list
+              }} // clicking sets ?label= for filtering
               className="
                 rounded-full px-3 py-1 text-[13px]
                 bg-[#e2f1ff] text-black
@@ -121,8 +123,8 @@ export default function ArticleGrid({
 }: {
   selectedLabel?: string;
 }) {
-  // the grid's gap controls spacing between cards
-  // this function filters by exact label (case-insensitive). If no label is active or clicked, it shows all.
+  // filter list by selectedLabel if provided; otherwise show all
+  // uses case-insensitive compare so "Promo" and "promo" both match
   const list = (items as ArticleItem[]).filter((it) => {
     if (!selectedLabel) return true;
     const ls = it.labels ?? [];
@@ -132,9 +134,10 @@ export default function ArticleGrid({
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-9xl px-5 sm:px-6 lg:px-0">
+        {/* responsive grid: 1 col mobile, 2 on md, 3 on lg; gap controls spacing */}
         <div className="grid grid-cols-1 gap-17 md:grid-cols-2 lg:grid-cols-3">
           {list.map((it, idx) => (
-            // some JSON ids repeat; this logic appends idx to keep keys unique
+            // some JSON ids may repeat; append idx to keep React keys unique
             <TextCard key={`${it.id}-${idx}`} item={it} />
           ))}
         </div>

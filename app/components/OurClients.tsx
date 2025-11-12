@@ -30,17 +30,18 @@ const reviews = [
 ];
 
 const OurCustomer: React.FC = () => {
-  // This keeps track of which review is currently visible
+  // index = which review is visible now (0..reviews.length-1)
   const [index, setIndex] = useState(0);
 
-  // This controls whether the reviews should slide automatically
+  // autoSlide = when true, reviews change on their own every 2.5s
   const [autoSlide, setAutoSlide] = useState(true);
 
-  // These are used for drag/swipe functionality
+  // drag/swipe helpers
+  // startX remembers mouse X when drag starts; isDragging tells if mouse is held
   const startX = useRef<number | null>(null);
   const isDragging = useRef(false);
 
-  // This useEffect handles the automatic sliding logic
+  // auto sliding logic (runs when autoSlide is true)
   useEffect(() => {
     // If auto sliding is turned off, do nothing
     if (!autoSlide) return;
@@ -56,6 +57,7 @@ const OurCustomer: React.FC = () => {
 
   // Function to handle drag start
   const handleMouseDown = (e: React.MouseEvent) => {
+    // remember where drag began and pause auto slide
     startX.current = e.clientX;
     isDragging.current = true;
     setAutoSlide(false); // Stop auto slide when user starts dragging
@@ -64,15 +66,16 @@ const OurCustomer: React.FC = () => {
   // Function to handle drag move
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current || startX.current === null) return;
-    // Optional: you can show slight movement feedback if desired
+    // Optional: could show small movement feedback here if needed
   };
 
   // Function to handle drag end
   const handleMouseUp = (e: React.MouseEvent) => {
     if (!isDragging.current || startX.current === null) return;
 
+    // how far the mouse moved horizontally
     const diff = e.clientX - startX.current;
-    const threshold = 50; // how far to drag before changing slide
+    const threshold = 50; // minimum pixels to count as a slide
 
     if (diff > threshold) {
       // drag right → previous slide
@@ -82,7 +85,7 @@ const OurCustomer: React.FC = () => {
       setIndex((prev) => (prev + 1) % reviews.length);
     }
 
-    // Reset drag state
+    // reset drag state and resume auto slide
     startX.current = null;
     isDragging.current = false;
     setAutoSlide(true); // Resume auto slide after releasing
@@ -90,6 +93,7 @@ const OurCustomer: React.FC = () => {
 
   return (
     // Main container for the review section
+    // onMouse* handlers enable drag/swipe on desktop
     <div
       className="relative w-full overflow-hidden text-center text-white cursor-default"
       onMouseDown={handleMouseDown}
@@ -99,25 +103,24 @@ const OurCustomer: React.FC = () => {
     >
       {/* Blue curved background with top and bottom waves */}
       <div className="relative bg-[#4577E4] py-30 before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-20 before:bg-white before:rounded-b-[100%] after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-20 after:bg-white after:rounded-t-[100%]">
-        {/* This is the visible content area on top of the background */}
+        {/* Visible content area */}
         <div className="relative p-3 z-10 max-w-6xl mx-auto ">
           <h2 className="text-[33px] font-extrabold">Our Client Says</h2>
 
-          {/* Container that holds all the review slides */}
+          {/* Slider viewport (hides overflow) */}
           <div className=" relative min-h-70 md:h-55 overflow-hidden py-5">
-            {/* This div moves left and right to show different reviews */}
+            {/* Track that shifts left/right based on index (100% per slide) */}
             <div
               className="flex transition-transform duration-600 ease-in-out"
               style={{ transform: `translateX(-${index * 100}%)` }}
             >
-              {/* Each review card */}
+              {/* One full-width slide per review */}
               {reviews.map((review, i) => (
                 <div
                   key={i}
                   className="min-w-full flex flex-col items-center justify-center px-0"
                 >
-                  {/* Review text */}
-
+                  {/* Review text with quote icons */}
                   <div className="relative max-w-150 mx-auto px-2 ">
                     <RiDoubleQuotesL
                       className="absolute left-[-26px] top-1/2 -translate-y-1/2 text-white/60 pointer-events-none select-none"
@@ -132,8 +135,8 @@ const OurCustomer: React.FC = () => {
                     </p>
                   </div>
 
+                  {/* Logo below the text */}
                   <div className="max-w-35">
-                    {/* Client logo below the review text */}
                     <img
                       src={review.logo}
                       alt="client logo"
@@ -141,7 +144,7 @@ const OurCustomer: React.FC = () => {
                     />
                   </div>
 
-                  {/* Client name and title */}
+                  {/* Client name + optional title */}
                   <p className="font-semibold">
                     {review.name} - {review.title}
                   </p>
@@ -150,7 +153,7 @@ const OurCustomer: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation dots at the bottom to switch between reviews */}
+          {/* Navigation dots to jump to any review */}
           <div className="  flex justify-center gap-2">
             {reviews.map((_, i) => (
               <button
@@ -159,6 +162,8 @@ const OurCustomer: React.FC = () => {
                 className={`w-3 h-3 rounded-full transition-all ${
                   i === index ? "bg-white scale-80" : "bg-gray-300"
                 }`}
+                aria-label={`Go to review ${i + 1}`}
+                aria-pressed={i === index}
               ></button>
             ))}
           </div>

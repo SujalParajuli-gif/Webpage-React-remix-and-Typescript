@@ -3,13 +3,16 @@ import React from "react";
 import DOMPurify from "dompurify"; // we sanitize incoming html
 import parse from "html-react-parser"; // we convert html string → React nodes
 
+// props: html = raw html string, className = optional styles for the wrapper
 type Props = { html: string; className?: string };
 
 const Html: React.FC<Props> = ({ html, className = "" }) => {
-  // we clean the html to avoid any XSS issues
+  // sanitize the incoming html string to prevent XSS
+  // DOMPurify removes unsafe tags/attributes (e.g., scripts, on* handlers)
   const safe = DOMPurify.sanitize(html);
 
-  // we render the sanitized html inside a wrapper so we can style it via className
+  // parse the sanitized string into React elements
+  // we wrap it in a div so parent can pass Tailwind classes via className
   return <div className={className}>{parse(safe)}</div>;
 };
 

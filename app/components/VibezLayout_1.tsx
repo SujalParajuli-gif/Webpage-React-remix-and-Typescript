@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
-// Added: AOS (same config as Layout_2)
+// AOS = animation on scroll (same config as Layout_2)
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const VibezLayout_1: React.FC = () => {
-  // init AOS once (slow + smooth)
   useEffect(() => {
+    // start AOS once on mount
+    // duration = speed, easing = feel, once = run only first time, offset = start a bit later
     AOS.init({
       duration: 1000,
       easing: "ease-out-cubic",
       once: true,
       offset: 60,
     });
-    // refresh after mount in case images affect positions
+    // refresh after mount in case images shift layout
     setTimeout(() => AOS.refresh(), 100);
   }, []);
 
-  // simple data so order/content is easy to change later
+  // steps data used to render the three cards in order (3 -> 2 -> 1)
+  // n = big background number, title = card heading, body = bullet-like lines
+  // logos is optional and only appears on step 1
   const steps = [
     {
       n: 3,
@@ -54,16 +57,21 @@ const VibezLayout_1: React.FC = () => {
 
   return (
     <section
-      // negative top margin pulls the cards upward over the hero and the z-index keeps above hero image
+      // negative top margin pulls the cards up over the hero section
+      // z-20 keeps the cards above the hero image (stack order)
       className="-mt-16 md:-mt-24 lg:-mt-25 relative z-20"
     >
+      {/* page width container with side paddings */}
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        {/* grid for cards */}
+        {/* 3-card grid
+           - 1 column on mobile
+           - 3 columns on md and up
+           - gap controls space between cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 ">
           {steps.map((s, i) => (
             <article
               key={s.n}
-              // AOS: fade/slide from left; stagger per column (0/200/400)
+              // fade from right, stagger each card by 200ms (0 / 200 / 400)
               data-aos="fade-right"
               data-aos-delay={i * 200}
               className="
@@ -72,7 +80,7 @@ const VibezLayout_1: React.FC = () => {
                 p-8 px-15
               "
             >
-              {/* large faint number in the background */}
+              {/* giant faint number in the background (decorative) */}
               <div
                 className="
                   pointer-events-none select-none
@@ -85,19 +93,19 @@ const VibezLayout_1: React.FC = () => {
                 {s.n}
               </div>
 
-              {/* title */}
+              {/* card title */}
               <h3 className="text-center text-[#2a1b5a] text-2xl md:text-[26px] font-extrabold">
                 {s.title}
               </h3>
 
-              {/* body */}
+              {/* card body (multiple short paragraphs) */}
               <div className="mt-2 text-center text-[15px] md:text-[16px] text-[#270c54] font-light">
                 {s.body.map((line, j) => (
                   <p key={j}>{line}</p>
                 ))}
               </div>
 
-              {/* logos only for step 1 */}
+              {/* partner logos (only shows if this step has logos) */}
               {s.logos && (
                 <div className="mt-5 flex items-center justify-center gap-4">
                   {s.logos.map((l) => (

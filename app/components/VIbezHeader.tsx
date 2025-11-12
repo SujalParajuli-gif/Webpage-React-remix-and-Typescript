@@ -4,22 +4,23 @@ import { Link } from "react-router";
 import { FiArrowLeft } from "react-icons/fi";
 
 type Props = {
-  onQuoteClick?: () => void;
-  phone?: string;
+  onQuoteClick?: () => void; // runs when the "quote" button is clicked
+  phone?: string; // phone text on the right (can be replaced from parent)
 };
 
 const VibezHeader: React.FC<Props> = ({
   onQuoteClick,
-  phone = "055-9909090",
+  phone = "055-9909090", // default phone if parent does not pass one
 }) => {
   return (
     <header
       className={
-        // sticky header with solid background with no scroll listeners
+        // sticky header that stays on top while scrolling
+        // solid white background; high z-index so it sits above page content
         "sticky top-0 z-50 w-full h-25 bg-white"
       }
     >
-      {/* main row */}
+      {/* main row (3 columns): left button | center logo | right phone */}
       <div
         className="
             mx-auto pt-2
@@ -28,12 +29,12 @@ const VibezHeader: React.FC<Props> = ({
             h-12 max-w-7xl px-4 md:h-20 md:px-8
           "
       >
-        {/* left quote button */}
+        {/* left: quote button */}
         <div className="justify-self-start">
           <button
             type="button"
-            onClick={onQuoteClick}
-            // width handled by grid also we only animate inner padding meaning for the quote button hover
+            onClick={onQuoteClick} // click handler comes from parent
+            // rounded pill button with gradient; padding-left grows on hover
             className="
                 group relative rounded-3xl
                 px-5 py-2 pl-5
@@ -44,7 +45,7 @@ const VibezHeader: React.FC<Props> = ({
                 shadow-[0_10px_18px_rgba(0,0,0,0.15)]
               "
           >
-            {/* left arrow that fades/slides in on hover */}
+            {/* arrow icon that slides in when the parent button is hovered */}
             <FiArrowLeft
               className="
                   absolute left-4 top-1/2 -translate-y-1/2
@@ -56,14 +57,14 @@ const VibezHeader: React.FC<Props> = ({
               size={20}
             />
 
-            {/* We keep the label as-is */}
+            {/* button label */}
             <span className="inline-block">quote</span>
           </button>
         </div>
 
-        {/* center: vibez logo image */}
+        {/* center: brand logo links to home (placeholder '#') */}
         <Link to="#" className="inline-flex items-center justify-self-center">
-          {/*Our existing image path */}
+          {/* logo image kept as provided */}
           <div className="w-full">
             <img
               src="/images/Vibez/logos/vibez-logo-big.png"
@@ -73,7 +74,8 @@ const VibezHeader: React.FC<Props> = ({
           </div>
         </Link>
 
-        {/* right side phone text */}
+        {/* right: phone text with a subtle underline on hover
+           anchor uses tel: so it opens dialer on mobile */}
         <a
           href="tel:0559909090"
           className="justify-self-end text-sm md:text-base text-black relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current hover:after:w-full after:transition-all after:duration-300 after:ease-in-out"

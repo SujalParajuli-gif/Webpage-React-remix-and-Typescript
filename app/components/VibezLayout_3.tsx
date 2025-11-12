@@ -38,7 +38,7 @@ const VibezLayout_3: React.FC = () => {
       data-aos="fade-right"
       data-aos-delay="100"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-0">
+      <div className="max-w-7xl mx-auto px-4 md:px-0 sm:px-30 sm:w43xl">
         {/* grid with 3 equal columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2">
           {features.map((item, i) => (
@@ -56,8 +56,8 @@ const VibezLayout_3: React.FC = () => {
               </div>
 
               {/* title text above the image */}
-              <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[90%] px-4">
-                <h2 className="text-white font-extrabold text-xl sm:text-3xl md:text-[25px] leading-tight">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] lg:pr-9  md:px-1 sm:py-10  sm:px-10 sm:left-60 ">
+                <h2 className="text-white font-extrabold lg:text-[28px] sm:text-[24px]   md:text-[20px] leading-tight">
                   {item.title}
                 </h2>
               </div>
