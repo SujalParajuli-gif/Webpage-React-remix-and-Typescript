@@ -1,8 +1,8 @@
 import React from "react";
 
-// props for video card 
+// props for video card
 type Props = {
-  src: string;      // video file path
+  src: string; // video file path
 };
 
 const VideoCard: React.FC<Props> = ({ src }) => {
@@ -12,13 +12,11 @@ const VideoCard: React.FC<Props> = ({ src }) => {
       <video
         src={src}
         className="w-full h-full object-cover"
-        autoPlay   // play automatically
-        loop       // repeat
-        muted      // needed for autoplay on mobile
+        autoPlay // play automatically
+        loop // repeat
+        muted // needed for autoplay on mobile
         playsInline
       />
-            
-      
     </div>
   );
 };

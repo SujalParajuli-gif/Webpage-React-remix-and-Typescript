@@ -16,6 +16,7 @@ export default function PrivacyPolicyRoute() {
       <VibezLayout_1 />
       <VibezLayout_2 />
       <VibezLogoSlider />
+
       <VibezLayout_3 />
       <VIbezLayout_4 />
     </>

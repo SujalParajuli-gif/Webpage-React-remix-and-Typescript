@@ -14,7 +14,6 @@ const items = [
     price: 60,
     imageSrc1: "/images/Vibez/image/product-4.jpg",
     imageSrc2: "/images/Vibez/image/product-3.jpg",
-    label: "SALE",
     colors: ["#c4b03c", "#6610f2"], // two dots = two options
   },
   {
@@ -31,7 +30,9 @@ const items = [
     title: "Yet Another Product",
     price: 80,
     label: "SALE",
-    videoSrc: "/videos/vibez/product-1.mp4", // video file played in the card
+    // vimeo iframe link used here instead of local video file
+    videoSrc:
+      "https://player.vimeo.com/video/675583280?title=0&byline=0&portrait=0&autoplay=1&background=1&controls=0&muted=1&loop=1",
     imageSrc: "/images/Vibez/image/product-2.jpg.webp", // image used as the other option
     colors: ["#2d79c7", "#e24444ff"], // two dots = image vs video
   },
@@ -61,15 +62,15 @@ const VIbezLayout_4: React.FC = () => {
   return (
     <section className="w-full bg-white lg:px-80">
       {/* centered container with padding */}
-      <div className="mx-auto max-w-[1280px] py-16 md:pb-10 pt-0">
+      <div className="mx-auto max-w-[1280px] py-16 md:pb-10 pt-0 ">
         {/* layout: left text (1fr) and right cards area (2fr) on large screens */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[38%_62%] gap-0">
           {/* left side: title and paragraph */}
           <div data-aos="fade-right">
-            <h2 className="text-[#270c54] leading-tight font-extrabold text-[34px] md:text-[42px] lg:text-[50px]">
+            <h2 className="text-[#270c54] leading-tight font-extrabold text-[34px] md:text-[42px] lg:text-[50px] lg:pr-17 lg:pb-2">
               Incorporate videos to create an interactive and engaging website
             </h2>
-            <p className="mt-2 text-[#270c54] text-[15px] md:text-[16px] max-w-[500px] font-bold">
+            <p className="mt-2 text-[#270c54] text-[15px] md:text-[16px] max-w-[500px] font-bold lg:pr-18">
               Today, in the age of history and TikTok, videos are an integral
               part of the browsing experience, and we don't argue with things
               that work. We have developed the option for you to integrate
@@ -98,7 +99,7 @@ const VIbezLayout_4: React.FC = () => {
                       { kind: "image" as const, src: it.imageSrc },
                       {
                         kind: "video" as const,
-                        src: it.videoSrc,
+                        src: it.videoSrc, // iframe link used here
                         image: it.imageSrc, // used as poster-like info for this card
                       },
                     ];
@@ -158,23 +159,15 @@ const VIbezLayout_4: React.FC = () => {
                       {/* fixed aspect ratio area for the media */}
                       <div className="aspect-[3/4] w-full">
                         {gallery[cur]?.kind === "video" ? (
-                          // video view: auto play muted loop to match design
-                          // note: src below feeds the <source>; imageSrc is being set as the video tag's src attribute here
-                          // if a poster image is required, pass it via the "poster" prop instead
-                          <video
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                            src={(gallery[cur] as any).imageSrc}
+                          // iframe view: vimeo player inside the same card
+                          <iframe
+                            src={(gallery[cur] as any).src}
                             className="h-full w-full object-cover"
-                          >
-                            <source
-                              src={(gallery[cur] as any).src}
-                              type="video/mp4"
-                            />
-                          </video>
+                            loading="lazy"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                            title={it.title}
+                          />
                         ) : (
                           // image view: shows the chosen image source
                           <img
