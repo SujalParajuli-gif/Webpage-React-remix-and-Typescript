@@ -94,16 +94,21 @@ const VIbezLayout_4: React.FC = () => {
                 // - if only one image given => single option
                 // useMemo keeps the array stable unless these inputs change
                 const gallery = useMemo(() => {
+                  // when card has both video and image
                   if (it.videoSrc && it.imageSrc) {
                     return [
-                      { kind: "image" as const, src: it.imageSrc },
                       {
-                        kind: "video" as const,
-                        src: it.videoSrc, // iframe link used here
-                        image: it.imageSrc, // used as poster-like info for this card
+                        kind: "video" as const, // video first so it shows by default
+                        src: it.videoSrc, // iframe link
+                        image: it.imageSrc, // still keep the image info if needed
+                      },
+                      {
+                        kind: "image" as const, // image second option
+                        src: it.imageSrc,
                       },
                     ];
                   }
+
                   if (it.imageSrc1 && it.imageSrc2) {
                     return [
                       { kind: "image" as const, src: it.imageSrc1 },
@@ -114,8 +119,9 @@ const VIbezLayout_4: React.FC = () => {
                     return [{ kind: "image" as const, src: it.imageSrc1 }];
                   if (it.imageSrc2)
                     return [{ kind: "image" as const, src: it.imageSrc2 }];
+
                   return [];
-                }, [it.videoSrc, it.imageSrc2, it.imageSrc1]);
+                }, [it.videoSrc, it.imageSrc, it.imageSrc1, it.imageSrc2]);
 
                 // wanted: which dot user selected for this card (default 0)
                 const wanted = activeIdx[it.id] ?? 0;
@@ -134,7 +140,7 @@ const VIbezLayout_4: React.FC = () => {
                     data-aos-delay={(i + 1) * 100}
                   >
                     {/* media wrapper */}
-                    <div className="relative overflow-hidden bg-gray-100  ">
+                    <div className="relative overflow-hidden bg-white">
                       {/* heart button: toggles like state */}
                       <button
                         type="button"
@@ -157,12 +163,13 @@ const VIbezLayout_4: React.FC = () => {
                       )}
 
                       {/* fixed aspect ratio area for the media */}
-                      <div className="aspect-[3/4] w-full">
+                      <div className="relative aspect-[3/4] w-full">
                         {gallery[cur]?.kind === "video" ? (
-                          // iframe view: vimeo player inside the same card
+                          // iframe view: vimeo player fills the whole box (no extra px gaps)
                           <iframe
                             src={(gallery[cur] as any).src}
-                            className="h-full w-full object-cover"
+                            className="absolute inset-0 h-110 max-w-90"
+                            style={{ border: "none" }}
                             loading="lazy"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
