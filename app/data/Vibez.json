@@ -1,0 +1,84 @@
+{
+    "layout4Items": [
+        {
+            "id": "p1",
+            "title": "Product Title",
+            "price": 60,
+            "imageSrc1": "/images/Vibez/image/product-4.jpg",
+            "imageSrc2": "/images/Vibez/image/product-3.jpg",
+            "colors": [
+                "#c4b03c",
+                "#6610f2"
+            ]
+        },
+        {
+            "id": "p2",
+            "title": "Another Product",
+            "price": 70,
+            "imageSrc1": "/images/Vibez/image/product-4.jpg",
+            "imageSrc2": "/images/Vibez/image/product-3.jpg",
+            "label": "NEW",
+            "colors": [
+                "#2d79c7",
+                "#b3e777ff"
+            ]
+        },
+        {
+            "id": "p3",
+            "title": "Yet Another Product",
+            "price": 80,
+            "label": "SALE",
+            "videoSrc": "https://player.vimeo.com/video/675583280?title=0&byline=0&portrait=0&autoplay=1&background=1&controls=0&muted=1&loop=1",
+            "imageSrc": "/images/Vibez/image/product-2.jpg.webp",
+            "colors": [
+                "#2d79c7",
+                "#e24444ff"
+            ]
+        }
+    ],
+    "layout6FeatureBackground": "/images/Vibez/image/feat-background-desktop.svg",
+    "layout6Features": [
+        {
+            "id": "login",
+            "label": "Login & Register",
+            "desktopImg": "/images/Vibez/image/feat-1-desktop.png",
+            "desktopClass": "relative z-10 mx-auto w-[60%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[88%] object-contain"
+        },
+        {
+            "id": "deal-timer",
+            "label": "Deal Timer",
+            "desktopImg": "/images/Vibez/image/feat-2-desktop.png",
+            "desktopClass": "relative z-10 mx-auto w-[95%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[78%] object-contain"
+        },
+        {
+            "id": "mega-menu",
+            "label": "Mega Manu Menus",
+            "desktopImg": "/images/Vibez/image/new-feat.png",
+            "desktopClass": "relative z-10 mx-auto w-[100%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[92%] object-contain"
+        },
+        {
+            "id": "club",
+            "label": "Connection to the customer club",
+            "desktopImg": "/images/Vibez/image/feat-4-desktop.png.webp",
+            "desktopClass": "relative z-10 mx-auto w-[70%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[82%] object-contain"
+        },
+        {
+            "id": "filtering",
+            "label": "Advanced Filtering",
+            "desktopImg": "/images/Vibez/image/feat-5-mobile.png",
+            "desktopClass": "relative z-10 mx-auto w-[50%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[75%] object-contain"
+        },
+        {
+            "id": "floating-cart",
+            "label": "Floating shopping basket",
+            "desktopImg": "/images/Vibez/image/feat-6-desktop.png.webp",
+            "desktopClass": "relative z-10 mx-auto w-[55%] object-contain",
+            "mobileClass": "relative z-10 mx-auto h-[80%] object-contain"
+        }
+    ]
+}

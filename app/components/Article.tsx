@@ -20,7 +20,7 @@ const Article = () => {
       {/* We reused same header and the colors are handelded by map inside the header component it self*/}
       {/* header stays sticky as defined inside Header component */}
       <Header />
-      ``
+
       {/* Main content section for Database / Article
           this whole block includes the blue banner, icon grid, and the cards grid */}
       <div className="bg-white py-10 md:py-14 w-8xl mr-25">

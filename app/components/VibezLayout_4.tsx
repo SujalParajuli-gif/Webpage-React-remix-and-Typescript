@@ -4,48 +4,43 @@ import "aos/dist/aos.css";
 import { FiHeart } from "react-icons/fi"; // outline heart icon
 import { FaHeart } from "react-icons/fa"; // filled heart icon
 
+// json data for Vibez layouts
+import vibezData from "../data/Vibez.json";
+
 // cards data: each item can show images or a video
 // imageSrc1 / imageSrc2 are used to switch images with the dots
 // if videoSrc exists, that card will also be able to show a video
-const items = [
-  {
-    id: "p1",
-    title: "Product Title",
-    price: 60,
-    imageSrc1: "/images/Vibez/image/product-4.jpg",
-    imageSrc2: "/images/Vibez/image/product-3.jpg",
-    colors: ["#c4b03c", "#6610f2"], // two dots = two options
-  },
-  {
-    id: "p2",
-    title: "Another Product",
-    price: 70,
-    imageSrc1: "/images/Vibez/image/product-4.jpg",
-    imageSrc2: "/images/Vibez/image/product-3.jpg",
-    label: "NEW",
-    colors: ["#2d79c7", "#b3e777ff"], // two dots = two options
-  },
-  {
-    id: "p3",
-    title: "Yet Another Product",
-    price: 80,
-    label: "SALE",
-    // vimeo iframe link used here instead of local video file
-    videoSrc:
-      "https://player.vimeo.com/video/675583280?title=0&byline=0&portrait=0&autoplay=1&background=1&controls=0&muted=1&loop=1",
-    imageSrc: "/images/Vibez/image/product-2.jpg.webp", // image used as the other option
-    colors: ["#2d79c7", "#e24444ff"], // two dots = image vs video
-  },
-];
+type Item = {
+  id: string;
+  title: string;
+  price: number;
+  imageSrc1?: string;
+  imageSrc2?: string;
+  imageSrc?: string;
+  videoSrc?: string;
+  label?: string;
+  colors: string[]; // used for dots that change the image / video
+};
+
+// small helper type for what we expect from Vibez.json for this layout
+type VibezLayout4Data = {
+  layout4Items: Item[];
+};
+
+// casted the imported json so TypeScript knows the shape for layout4
+const vibezJson = vibezData as VibezLayout4Data;
+
+// cards data now comes from Vibez.json dynamically
+const items: Item[] = vibezJson.layout4Items;
 
 const VIbezLayout_4: React.FC = () => {
-  // liked: remembers which card is liked by id (true/false)
+  // for liked: remembers which card is liked by id (true/false)
   const [liked, setLiked] = useState<Record<string, boolean>>({});
 
   // activeIdx: remembers which dot (option) is active for each card
   const [activeIdx, setActiveIdx] = useState<Record<string, number>>({});
 
-  // onHeart: toggles the heart state for a card (outline <-> filled)
+  // for Heart shape (wishlist): toggles the heart state for a card (outline is filled)
   const onHeart = (id: string) =>
     setLiked((old) => ({ ...old, [id]: !old[id] }));
 
@@ -84,11 +79,10 @@ const VIbezLayout_4: React.FC = () => {
           <div>
             <div className="grid grid-cols-3 w-220 md:w-full md:grid-cols-3 gap-3">
               {items.map((it, i) => {
-                // isLiked: easy boolean for the heart state
+                // boolean for the heart state
                 const isLiked = !!liked[it.id];
 
                 // gallery: builds the list of options for this card based on the data it has
-                // rules:
                 // - if video + imageSrc => first option is the image, second option is the video
                 // - if imageSrc1 + imageSrc2 => two image options
                 // - if only one image given => single option
@@ -126,7 +120,7 @@ const VIbezLayout_4: React.FC = () => {
                 // wanted: which dot user selected for this card (default 0)
                 const wanted = activeIdx[it.id] ?? 0;
 
-                // cur: safe index inside gallery range (prevents errors on bad index)
+                // this is for  safe indexing inside gallery range (prevents errors on bad index)
                 const cur =
                   gallery.length > 0
                     ? Math.min(Math.max(wanted, 0), gallery.length - 1)
