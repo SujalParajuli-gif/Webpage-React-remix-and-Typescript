@@ -33,7 +33,7 @@ const desktopImgClassById: Record<string, string> = {
   login: "relative z-10 mx-auto w-[55%] lg:top-10 object-contain",
   "deal-timer": "relative z-10 mx-auto w-[100%] object-contain",
   "mega-menu": "relative z-10 mx-auto w-[100%] object-contain",
-  club: "relative z-10 mx-auto w-[60%] object-contain",
+  club: "relative z-10 mx-auto w-[50%] lg:top-35 object-contain",
   filtering: "relative z-10 mx-auto lg:h-145 lg:left-87 object-contain",
   "floating-cart": "relative z-10 mx-auto lg:h-145 lg:left-87 object-contain",
 };
@@ -80,7 +80,7 @@ const VibezLayout_6: React.FC = () => {
         data-aos-delay={(index + 1) * 80}
         className={[
           // base pill layout
-          "inline-flex items-center justify-center px-5 py-2.5 text-sm md:text-lg rounded-full",
+          "inline-flex items-center justify-center px-5 py-2.5 text-lg md:text-xl rounded-3xl",
           "transition-colors whitespace-nowrap",
           // when active: show colored background and bolder text
           isActive
@@ -94,9 +94,9 @@ const VibezLayout_6: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white lg:px-50">
+    <section className="w-full bg-white lg:px-10 ">
       {/* centered container with padding */}
-      <div className="mx-auto max-w-[1280px] pt-0 pb-20">
+      <div className="mx-auto max-w-[1140px] pt-0 pb-20 ">
         {/* top side title and description */}
         <div
           className="text-center max-w-[420px] md:max-w-[720px] mx-auto"
@@ -109,7 +109,7 @@ const VibezLayout_6: React.FC = () => {
         </div>
 
         <div
-          className="mt-3 text-center max-w-[420px] md:max-w-[720px] mx-auto"
+          className="mb-8 text-center max-w-[420px] md:max-w-[720px] mx-auto"
           data-aos="fade-up"
           data-aos-delay="200"
         >
@@ -123,7 +123,7 @@ const VibezLayout_6: React.FC = () => {
 
         {/* MOBILE and TABLET LAYOUT */}
         {/* FOr small screens: tabs are on top by (flex wrap) and the images are below */}
-        <div className="mt-8 lg:hidden">
+        <div className="mt-8 lg:hidden w-200">
           {/* tabs row (can wrap to 2 lines) */}
           <div
             className="flex flex-wrap justify-center gap-3"
@@ -163,10 +163,11 @@ const VibezLayout_6: React.FC = () => {
 
         {/* DESKTOP LAYOUT  */}
         {/* on large screens: big image on the left, vertical tab list on the right */}
+
         <div className="mt-5 hidden lg:grid lg:grid-cols-[85%_34%] gap-20 items-center">
           {/* left side: feature image */}
           <div className="w-full" data-aos="fade-right" data-aos-delay="300">
-            <div className="mx-auto max-w-[1000px] ">
+            <div className="mx-auto w-full ">
               {/* fixed aspect box so main div size stays stable and image doesnt overlap the div/} */}
               <div className="relative w-full aspect-[16/9] overflow-hidden bg-white">
                 {/* background image behind (in desktop style */}
@@ -191,7 +192,7 @@ const VibezLayout_6: React.FC = () => {
           </div>
 
           {/* right side: vertical list of tabs */}
-          <div className="flex flex-col items-start gap-5">
+          <div className="flex flex-col items-start gap-5 ]">
             {features.map((f, i) => renderTabButton(f, i))}
           </div>
         </div>
