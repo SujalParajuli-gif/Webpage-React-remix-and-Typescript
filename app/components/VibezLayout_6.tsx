@@ -30,10 +30,10 @@ const featureBackground = vibezJson.layout6FeatureBackground;
 
 // this mapping controls desktop foreground image styling per feature id
 const desktopImgClassById: Record<string, string> = {
-  login: "relative z-10 mx-auto w-[55%] lg:top-10 object-contain",
+  login: "relative z-10 mx-auto w-[55%] lg:top-8 object-contain",
   "deal-timer": "relative z-10 mx-auto w-[100%] object-contain",
   "mega-menu": "relative z-10 mx-auto w-[100%] object-contain",
-  club: "relative z-10 mx-auto w-[50%] lg:top-35 object-contain",
+  club: "relative z-10 mx-auto w-[55%] lg:top-28 object-contain",
   filtering:
     "relative z-10 mx-auto lg:h-130 lg:left-73 lg:bottom-7 object-contain",
   "floating-cart":

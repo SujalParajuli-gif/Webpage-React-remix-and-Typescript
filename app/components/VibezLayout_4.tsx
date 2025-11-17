@@ -30,7 +30,7 @@ type VibezLayout4Data = {
 // casted the imported json so TypeScript knows the shape for layout4
 const vibezJson = vibezData as VibezLayout4Data;
 
-// cards data now comes from Vibez.json dynamically
+// cards data comes from Vibez.json dynamically
 const items: Item[] = vibezJson.layout4Items;
 
 const VIbezLayout_4: React.FC = () => {

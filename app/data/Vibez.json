@@ -15,8 +15,8 @@
             "id": "p2",
             "title": "Another Product",
             "price": 70,
-            "imageSrc1": "/images/Vibez/image/product-4.jpg",
-            "imageSrc2": "/images/Vibez/image/product-3.jpg",
+            "imageSrc2": "/images/Vibez/image/product-4.jpg",
+            "imageSrc1": "/images/Vibez/image/product-3.jpg",
             "label": "NEW",
             "colors": [
                 "#2d79c7",
@@ -67,6 +67,30 @@
             "id": "floating-cart",
             "label": "Floating shopping basket",
             "desktopImg": "/images/Vibez/image/feat-6-desktop.png.webp"
+        }
+    ],
+    "layout8InstagramBackground": {
+        "mobile": "/images/Vibez/image/instagram-background-small.svg",
+        "desktop": "/images/Vibez/image/instagram-background.svg"
+    },
+    "layout8InstagramSlides": [
+        {
+            "id": "insta_1",
+            "thumb": "/images/Vibez/image/ig-img-3.jpg.webp",
+            "desktopImg": "/images/Vibez/image/desk3.png.webp",
+            "mobileImg": "/images/Vibez/image/mobile3.png"
+        },
+        {
+            "id": "insta_2",
+            "thumb": "/images/Vibez/image/product-3.jpg",
+            "desktopImg": "/images/Vibez/image/desk1.png.webp",
+            "mobileImg": "/images/Vibez/image/mobile1.png"
+        },
+        {
+            "id": "insta_3",
+            "thumb": "/images/Vibez/image/ig-img-1.jpg.webp",
+            "desktopImg": "/images/Vibez/image/desk2.png big.webp",
+            "mobileImg": "/images/Vibez/image/mobile2.png"
         }
     ]
 }
