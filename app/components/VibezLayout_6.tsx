@@ -34,8 +34,10 @@ const desktopImgClassById: Record<string, string> = {
   "deal-timer": "relative z-10 mx-auto w-[100%] object-contain",
   "mega-menu": "relative z-10 mx-auto w-[100%] object-contain",
   club: "relative z-10 mx-auto w-[50%] lg:top-35 object-contain",
-  filtering: "relative z-10 mx-auto lg:h-145 lg:left-87 object-contain",
-  "floating-cart": "relative z-10 mx-auto lg:h-145 lg:left-87 object-contain",
+  filtering:
+    "relative z-10 mx-auto lg:h-130 lg:left-73 lg:bottom-7 object-contain",
+  "floating-cart":
+    "relative z-10 mx-auto lg:h-130 lg:left-73 lg:bottom-7 object-contain",
 };
 
 // fallback for desktop if id is not in the mapping
@@ -80,11 +82,11 @@ const VibezLayout_6: React.FC = () => {
         data-aos-delay={(index + 1) * 80}
         className={[
           // base pill layout
-          "inline-flex items-center justify-center px-5 py-2.5 text-lg md:text-xl rounded-3xl",
+          "inline-flex items-center justify-center px-5 py-2.5 text-lg md:text-[17px] rounded-3xl",
           "transition-colors whitespace-nowrap",
           // when active: show colored background and bolder text
           isActive
-            ? "bg-gradient-to-r from-[#f6b2ff] to-[#e1b3ff] text-[#270c54] font-extrabold"
+            ? "bg-gradient-to-r from-[#ebccf7] to-[#ebccf7] text-[#270c54] font-extrabold"
             : "bg-transparent text-[#270c54] font-extrabold",
         ].join(" ")}
       >
@@ -164,7 +166,7 @@ const VibezLayout_6: React.FC = () => {
         {/* DESKTOP LAYOUT  */}
         {/* on large screens: big image on the left, vertical tab list on the right */}
 
-        <div className="mt-5 hidden lg:grid lg:grid-cols-[85%_34%] gap-20 items-center">
+        <div className="mt-5 hidden lg:grid lg:grid-cols-[75%_34%] gap-20 items-center">
           {/* left side: feature image */}
           <div className="w-full" data-aos="fade-right" data-aos-delay="300">
             <div className="mx-auto w-full ">
