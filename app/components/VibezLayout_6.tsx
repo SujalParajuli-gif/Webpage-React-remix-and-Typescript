@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -57,38 +57,33 @@ const mobileImgClassById: Record<string, string> = {
 const defaultMobileImgClass = "relative z-10 mx-auto h-[82%] object-contain";
 
 const VibezLayout_6: React.FC = () => {
-  // activeId: remembers which feature tab is currently selected
-  const [activeId, setActiveId] = useState<string>(features[0]?.id ?? "");
+  // this state stores which tab index is active (0 = first tab)
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  // finds the current feature object for the active tab
-  const current = useMemo(() => {
-    return features.find((f) => f.id === activeId) ?? features[0];
-  }, [activeId]);
+  // this is the currently selected feature based on the active index
+  const current: FeatureItem = features[activeIndex] ?? features[0];
 
-  // thid use effect runs AOS one time for fade / slide animations
   useEffect(() => {
+    // init AOS for scroll animations
     AOS.init({ duration: 900, once: true, easing: "ease-out" });
   }, []);
 
-  // small helper to render a tab button (used in mobile + desktop layouts both)
+  // small helper to render a tab button (used for both mobile and desktop layouts)
   const renderTabButton = (f: FeatureItem, index: number) => {
-    const isActive = f.id === activeId;
+    const isActive = index === activeIndex;
 
     return (
       <button
         key={f.id}
         type="button"
-        onClick={() => setActiveId(f.id)}
+        // when clicked, this tab becomes active
+        onClick={() => setActiveIndex(index)}
         data-aos-delay={(index + 1) * 80}
-        className={[
-          // base pill layout
-          "inline-flex items-center justify-center px-5 py-2.5 text-lg md:text-[17px] rounded-3xl",
-          "transition-colors whitespace-nowrap",
-          // when active: show colored background and bolder text
+        className={`inline-flex items-center justify-center px-5 py-2.5 text-lg md:text-[17px] rounded-3xl transition-colors whitespace-nowrap font-extrabold ${
           isActive
-            ? "bg-gradient-to-r from-[#ebccf7] to-[#ebccf7] text-[#270c54] font-extrabold"
-            : "bg-transparent text-[#270c54] font-extrabold",
-        ].join(" ")}
+            ? "bg-gradient-to-r from-[#ebccf7] to-[#ebccf7] text-[#270c54]"
+            : "bg-transparent text-[#270c54]"
+        }`}
       >
         {f.label}
       </button>
@@ -96,9 +91,9 @@ const VibezLayout_6: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white lg:px-10 ">
+    <section className="w-full bg-white lg:px-10">
       {/* centered container with padding */}
-      <div className="mx-auto max-w-[1140px] pt-0 pb-20 ">
+      <div className="mx-auto max-w-[1140px] pt-0 pb-20">
         {/* top side title and description */}
         <div
           className="text-center max-w-[420px] md:max-w-[720px] mx-auto"
@@ -118,13 +113,13 @@ const VibezLayout_6: React.FC = () => {
           <p className="text-[#270c54] text-[14px] md:text-[17px] font-bold">
             VIBEZ offers many features, some of the most advanced on the market,
             in accordance with the clientele and the latest technologies in the
-            field. Click on the feature names and discover options you didn't
-            know about.
+            field. Click on the feature names and discover options you
+            didn&apos;t know about.
           </p>
         </div>
 
         {/* MOBILE and TABLET LAYOUT */}
-        {/* FOr small screens: tabs are on top by (flex wrap) and the images are below */}
+        {/* For small screens: tabs are on top and the image card is below */}
         <div className="mt-8 lg:hidden w-200">
           {/* tabs row (can wrap to 2 lines) */}
           <div
@@ -135,11 +130,11 @@ const VibezLayout_6: React.FC = () => {
             {features.map((f, i) => renderTabButton(f, i))}
           </div>
 
-          {/* image below tabs/mobile size styling  */}
+          {/* image below tabs / mobile size styling */}
           <div className="mt-6" data-aos="fade-up" data-aos-delay="350">
             {/* wrapper so mobile card looks like centered mockup */}
             <div className="mx-auto w-full max-w-[420px] rounded-[22px] shadow-[0_18px_45px_rgba(0,0,0,0.16)] bg-white overflow-hidden">
-              {/* This is a wrapper that keeps fixed aspect so height doesn't jump when images change */}
+              {/* fixed aspect so height doesn't jump when images change */}
               <div className="relative w-full aspect-[4/5] bg-white">
                 {/* background image that sits behind everything */}
                 <img
@@ -163,16 +158,15 @@ const VibezLayout_6: React.FC = () => {
           </div>
         </div>
 
-        {/* DESKTOP LAYOUT  */}
+        {/* DESKTOP LAYOUT */}
         {/* on large screens: big image on the left, vertical tab list on the right */}
-
         <div className="mt-5 hidden lg:grid lg:grid-cols-[75%_34%] gap-20 items-center">
           {/* left side: feature image */}
           <div className="w-full" data-aos="fade-right" data-aos-delay="300">
-            <div className="mx-auto w-full ">
-              {/* fixed aspect box so main div size stays stable and image doesnt overlap the div/} */}
+            <div className="mx-auto w-full">
+              {/* fixed aspect box so size stays stable */}
               <div className="relative w-full aspect-[16/9] overflow-hidden bg-white">
-                {/* background image behind (in desktop style */}
+                {/* background image behind main mockup */}
                 <img
                   src={featureBackground}
                   alt=""
@@ -194,7 +188,7 @@ const VibezLayout_6: React.FC = () => {
           </div>
 
           {/* right side: vertical list of tabs */}
-          <div className="flex flex-col items-start gap-5 ]">
+          <div className="flex flex-col items-start gap-5">
             {features.map((f, i) => renderTabButton(f, i))}
           </div>
         </div>
