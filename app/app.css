@@ -109,3 +109,31 @@ body {
 .icon-xl {
   font-size: 35px;
 }
+
+/* Vibez button styling animation (VibezLayout_7) – pulsing dot on active tab */
+/* Vibez IG dot – pulsing active marker */
+/* small white pulsing circle used under the active instagram image */
+.vibez-pulse-dot {
+  width:18px;                /* dot size */
+  height: 18px;
+  display: block;
+  border-radius: 20px;        /* makes it a circle */
+  background: #ffffff;  /* white center */     
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  animation: pulse-white 2s ease infinite;
+}
+
+
+/* pulse animation (glow expands and fades) */
+@keyframes pulse-white {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+

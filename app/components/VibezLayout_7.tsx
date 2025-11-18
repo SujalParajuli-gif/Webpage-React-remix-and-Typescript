@@ -1,4 +1,3 @@
-// app/components/VibezLayout_7.jsx
 // note: video url kept here in case it is needed later
 // https://player.vimeo.com/video/849103523?title=0&byline=0&portrait=0&autoplay=1&background=1&controls=0&muted=1&loop=1
 
@@ -10,23 +9,23 @@ import "aos/dist/aos.css";
 import vibezData from "../data/Vibez.json";
 
 const VibezLayout_7 = () => {
-  // this gets instagram slides from the json file
+  // gets instagram slides list from json
   const slides = vibezData.layout8InstagramSlides || [];
 
-  // this gets background banner images from the json
+  // gets background banner images for this section
   const bg = vibezData.layout8InstagramBackground || {};
 
-  // if there is no data in json, nothing is rendered
+  // stop rendering if there are no slides in json
   if (!slides.length) return null;
 
-  // this state stores the active slide index (0 = first slide)
+  // keeps which slide is active (0 = first slide)
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // this finds the active slide from the array using the index
+  // gets the active slide object by index
   const activeSlide = slides[activeIndex] || slides[0];
 
   useEffect(() => {
-    // init AOS for scroll animations
+    // start AOS scroll animations
     AOS.init({
       duration: 1000,
       easing: "ease-out-cubic",
@@ -36,7 +35,7 @@ const VibezLayout_7 = () => {
   }, []);
 
   return (
-    // main wrapper for the whole instagram section
+    // main wrapper for the instagram section
     <section className="relative w-full overflow-hidden bg-white">
       {/* top banner background like original instagram-head-bg */}
       <div className="w-full absolute">
@@ -48,24 +47,24 @@ const VibezLayout_7 = () => {
           <img
             src={bg.desktop || bg.mobile || ""}
             alt="Instagram banner"
-            className="h-32 w-full object-cover md:h-40"
+            className="h-32 w-full object-cover md:h-40 "
           />
         </picture>
       </div>
 
-      {/* main content container (sizes kept same) */}
-      <div className="mx-auto max-w-8xl px-50 pt-14 pb-20 md:pt-16">
-        {/* top row = text on left + ig images on right */}
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.6fr)] lg:items-start">
+      {/* main content area with text + images */}
+      <div className="mx-auto max-w-8xl px-6 lg:px-0 pt-10 pb-10 md:pt-12">
+        {/* top row = text on the left and images on the right */}
+        <div className="grid gap-8 lg:grid-cols-11 lg:items-start">
           {/* left text column */}
-          <div data-aos="fade-right">
+          <div className="lg:col-span-4 p-28 " data-aos="fade-right">
             {/* section title */}
-            <h2 className="text-left text-2xl font-extrabold text-[#270c54] md:text-5xl lg:pt-20 lg:px-10">
+            <h2 className="text-left text-2xl font-extrabold text-[#270c54] md:text-5xl ">
               Connect your Instagram account
             </h2>
 
-            {/* section paragraph */}
-            <p className="mt-4 text-left text-sm text-[#270c54] md:text-lg font-extrabold lg:px-15 lg:pl-10 lg:w-150">
+            {/* section description text */}
+            <p className="mt-4 text-left text-sm text-[#270c54] md:text-base font-bold ">
               Vibez understands the power of community. You spend a lot of time
               nurturing your business&apos;s Instagram, and we allow you to
               showcase it on your website as well. With the{" "}
@@ -75,48 +74,86 @@ const VibezLayout_7 = () => {
             </p>
           </div>
 
-          {/* right images column */}
+          {/* right column with instagram cards and bottom popup image */}
           <div
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 items-center lg:items-start lg:col-span-7 lg:mt-10"
             data-aos="fade-left"
             data-aos-delay="80"
           >
-            {/* on desktop: big row of images */}
-            <div className="hidden gap-5 md:grid md:grid-cols-3">
-              {slides.map((item, index) => {
-                const isActive = index === activeIndex;
+            {/* desktop layout: 3 image cards + 1 popup image inside one grid */}
+            <div className="hidden md:block w-full">
+              <div className="grid md:grid-cols-3 gap-x-5 gap-y-6">
+                {slides.map((item, index) => {
+                  const isActive = index === activeIndex; // tells which slide is active (used for click + bottom card)
 
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    // this click changes which slide is active
-                    onClick={() => setActiveIndex(index)}
-                    className="group relative overflow-hidden transition-transform duration-200"
-                    aria-label="instagram image"
-                  >
-                    {/* main square / portrait image */}
-                    <div className="aspect-[4/5] w-full">
+                  // wrapper for each desktop card (used to place arrow under first card)
+                  return (
+                    <div key={item.id} className="relative">
+                      <button
+                        type="button"
+                        // set this slide as active when user clicks
+                        onClick={() => setActiveIndex(index)}
+                        className="group relative overflow-hidden transition-transform duration-200 w-full"
+                        aria-label="instagram image"
+                      >
+                        {/* main square / portrait image */}
+                        <div className="w-full h-[260px] md:h-[380px]">
+                          <img
+                            src={item.thumb}
+                            alt="Instagram preview"
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+
+                        {/* white dot marker at bottom center
+                            animation is written in global styling in app.css file */}
+                        {/* always uses vibez-pulse-dot so all dots have the glow animation */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute bottom-4 left-1/2 -translate-x-1/2 vibez-pulse-dot"
+                        />
+                      </button>
+
+                      {/* arrow image only under the first card (points to popup image below) */}
+                      {index === 0 && (
+                        <img
+                          src="/images/Vibez/image/arrow-down.svg"
+                          alt=""
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -bottom-10 left-50 -translate-x-1/2 w-10 md:w-18 rotate-[290deg]"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* bottom main "Shop the Look" image as 4th grid item (second row) */}
+                <div className="md:col-span-3 flex justify-start pt-10">
+                  <div className="w-full max-w-[600px]">
+                    <picture>
+                      {activeSlide.desktopImg && (
+                        <source srcSet={activeSlide.desktopImg} />
+                      )}
+                      {activeSlide.mobileImg && (
+                        <source
+                          srcSet={activeSlide.mobileImg}
+                          media="(max-width: 750px)"
+                        />
+                      )}
                       <img
-                        src={item.thumb}
-                        alt="Instagram preview"
-                        className="h-full w-full object-cover"
+                        src={activeSlide.desktopImg || activeSlide.mobileImg}
+                        alt="Shop the look popup preview"
+                        className="w-full object-contain"
                         loading="lazy"
                       />
-                    </div>
-
-                    {/* white dot marker at bottom center */}
-                    <span
-                      className={`absolute bottom-4 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border border-white ${
-                        isActive ? "bg-white" : "bg-white/80"
-                      }`}
-                    />
-                  </button>
-                );
-              })}
+                    </picture>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* on mobile: active big image first (portrait), thumbs in a row under it */}
+            {/* mobile layout: one big active image and small thumbs below */}
             <div className="flex flex-col gap-4 md:hidden">
               {/* big active portrait image for mobile */}
               <div className="mx-auto w-full max-w-sm">
@@ -139,7 +176,7 @@ const VibezLayout_7 = () => {
                 </picture>
               </div>
 
-              {/* small scrollable thumbnails under the big image */}
+              {/* horizontal row with scrollable thumbnails under the big image */}
               <div className="flex gap-3 overflow-x-auto pb-1">
                 {slides.map((item, index) => {
                   const isActive = index === activeIndex;
@@ -160,44 +197,17 @@ const VibezLayout_7 = () => {
                         className="h-full w-full object-cover"
                         loading="lazy"
                       />
+                      {/* small status dot on thumbnail */}
+                      {/* dot always has vibez-pulse-dot so animation runs on all thumbnails */}
                       <span
-                        className={`absolute bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border border-white ${
-                          isActive ? "bg-white" : "bg-white/80"
-                        }`}
+                        aria-hidden="true"
+                        className="absolute bottom-2 left-1/2 -translate-x-1/2 vibez-pulse-dot"
                       />
                     </button>
                   );
                 })}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* bottom main "Shop the Look" card (big image bar) */}
-        <div
-          className="mt-10 flex justify-center"
-          data-aos="fade-up"
-          data-aos-delay="120"
-        >
-          <div className="w-full h-130 max-w-2xl overflow-hidden p-3 md:p-4">
-            {/* this image simulates the popup/modal product card */}
-            <picture>
-              {activeSlide.desktopImg && (
-                <source srcSet={activeSlide.desktopImg} />
-              )}
-              {activeSlide.mobileImg && (
-                <source
-                  srcSet={activeSlide.mobileImg}
-                  media="(max-width: 767px)"
-                />
-              )}
-              <img
-                src={activeSlide.desktopImg || activeSlide.mobileImg}
-                alt="Shop the look popup preview"
-                className="h-auto w-full rounded-xl object-contain"
-                loading="lazy"
-              />
-            </picture>
           </div>
         </div>
       </div>

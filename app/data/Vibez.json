@@ -75,22 +75,22 @@
     },
     "layout8InstagramSlides": [
         {
-            "id": "insta_1",
-            "thumb": "/images/Vibez/image/ig-img-3.jpg.webp",
-            "desktopImg": "/images/Vibez/image/desk3.png.webp",
-            "mobileImg": "/images/Vibez/image/mobile3.png"
+            "id": "insta_3",
+            "thumb": "/images/Vibez/image/ig-img-1.jpg.webp",
+            "desktopImg": "/images/Vibez/image/desk2.png",
+            "mobileImg": "/images/Vibez/image/mobile2.png"
         },
         {
             "id": "insta_2",
             "thumb": "/images/Vibez/image/product-3.jpg",
-            "desktopImg": "/images/Vibez/image/desk1.png.webp",
+            "desktopImg": "/images/Vibez/image/desk1.png",
             "mobileImg": "/images/Vibez/image/mobile1.png"
         },
         {
-            "id": "insta_3",
-            "thumb": "/images/Vibez/image/ig-img-1.jpg.webp",
-            "desktopImg": "/images/Vibez/image/desk2.png big.webp",
-            "mobileImg": "/images/Vibez/image/mobile2.png"
+            "id": "insta_1",
+            "thumb": "/images/Vibez/image/ig-img-3.jpg.webp",
+            "desktopImg": "/images/Vibez/image/desk3.png",
+            "mobileImg": "/images/Vibez/image/mobile3.png"
         }
     ]
 }
