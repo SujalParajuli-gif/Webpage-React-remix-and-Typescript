@@ -10,6 +10,7 @@ import VIbezLayout_4 from "~/components/VibezLayout_4";
 import VibezLayout_5 from "~/components/VibezLayout_5";
 import VibezLayout_6 from "~/components/VibezLayout_6";
 import VibezLayout_7 from "~/components/VibezLayout_7";
+import VibezLayout_8 from "~/components/VibezLayout_8";
 
 export default function PrivacyPolicyRoute() {
   return (
@@ -25,6 +26,7 @@ export default function PrivacyPolicyRoute() {
       <VibezLayout_5 />
       <VibezLayout_6 />
       <VibezLayout_7 />
+      <VibezLayout_8 />
     </>
   );
 }

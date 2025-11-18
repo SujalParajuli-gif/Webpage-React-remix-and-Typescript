@@ -36,7 +36,7 @@ const VibezLayout_7 = () => {
 
   return (
     // main wrapper for the instagram section
-    <section className="relative w-full overflow-hidden bg-white">
+    <section className="relative w-full overflow-hidden bg-white vibez-rubik">
       {/* top banner background like original instagram-head-bg */}
       <div className="w-full absolute">
         <picture>
