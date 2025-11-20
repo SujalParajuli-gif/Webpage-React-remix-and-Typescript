@@ -50,8 +50,7 @@ const VibezLayout_8: React.FC = () => {
               
             "
           >
-            {/* vimeo iframe video – auto-plays like in original site */}
-            {/* src is hard-coded from the link you provided above */}
+            {/* vimeo iframe video, auto-plays  */}
             <iframe
               src={phoneVideoSrc}
               title="Vimeo video"
@@ -91,7 +90,6 @@ const VibezLayout_8: React.FC = () => {
           </h2>
 
           {/* description paragraph */}
-          {/* this explains what the app does, and we limit width for better reading */}
           <p
             className="
               mt-6

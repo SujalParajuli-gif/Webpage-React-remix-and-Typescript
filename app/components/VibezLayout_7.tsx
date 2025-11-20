@@ -1,6 +1,3 @@
-// note: video url kept here in case it is needed later
-// https://player.vimeo.com/video/849103523?title=0&byline=0&portrait=0&autoplay=1&background=1&controls=0&muted=1&loop=1
-
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
